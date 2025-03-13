@@ -10,7 +10,7 @@ function OurNews() {
       title:
         'The Best Student Gadgets to Rent: Laptops and iPads for Every Study Need',
       img: 'https://img.freepik.com/free-photo/modern-stationary-collection-arrangement_23-2149309643.jpg',
-      date: '20 jun, 2025',
+      date: '20 feb, 2025',
     },
     {
       title:
