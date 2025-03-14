@@ -1,6 +1,5 @@
-
-
 const Navbar = () => {
+  //  override
   return (
     <div>
       <div className="navbar bg-base-100 shadow-sm">
