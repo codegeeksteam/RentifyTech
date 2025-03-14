@@ -1,13 +1,24 @@
-/* eslint-disable no-unused-vars */
+// Desc: Navbar component for the application
 import { useEffect, useState } from "react";
-import { FiBell, FiShoppingCart } from "react-icons/fi";
+import { FiShoppingCart } from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
+import { CgProfile } from "react-icons/cg";
 import useAuth from "../Hooks/useAuth";
 // import useAuth from "../services/useAuth";
 // import useData from "../services/useData";
 
 export default function Navbar() {
   const { signOutUser, user } = useAuth();
+
+  const handleSignOut = () => {
+    // similar log out function
+    signOutUser()
+      .then(() => {
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   // const { setDarkMode, darkMode } = useData(); //this state value false?
   const [darkMode, setDarkMode] = useState(false);
@@ -64,6 +75,7 @@ export default function Navbar() {
   }, []);
 
   const toggleDarkMode = () => {
+    // Dark Mode function
     setDarkMode((prevMode) => {
       const newMode = !prevMode;
       localStorage.setItem("theme", newMode ? "dark" : "light");
@@ -163,7 +175,7 @@ export default function Navbar() {
                     </Link>
                     <div className="p-2 mt-2">
                       <button
-                        // onClick={handleSignOut}
+                        onClick={handleSignOut}
                         className="w-full rounded-full bg-gray-900 hover:shadow-lg text-white px-6 py-2"
                       >
                         Log Out
@@ -174,7 +186,8 @@ export default function Navbar() {
               </div>
             </div>
           ) : (
-            <Link to="/signin" className="btn btn-primary">
+            <Link to="/signIn" className="btn btn-primary">
+              <CgProfile size={15} />
               Sign In
             </Link>
           )}
