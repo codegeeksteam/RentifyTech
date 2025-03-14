@@ -1,93 +1,79 @@
-import { useEffect } from "react";
-import toast from "react-hot-toast";
+/* eslint-disable no-unused-vars */
+import { useEffect, useState } from "react";
+import { FiBell, FiShoppingCart } from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
 // import useAuth from "../services/useAuth";
 // import useData from "../services/useData";
 
 export default function Navbar() {
-  // const { logout, user } = useAuth();
-  const { logout, user } = true;
+  const { signOutUser, user } = useAuth();
+
   // const { setDarkMode, darkMode } = useData(); //this state value false?
-  const { setDarkMode, darkMode } = false;
+  const [darkMode, setDarkMode] = useState(false);
+
   const links = (
     <>
       <div>
-        <NavLink className=" font-semibold" to={"/"}>
+        <NavLink className=" font-semibold uppercase" to={"/"}>
           Home
         </NavLink>
       </div>
       <div>
-        <NavLink className="font-semibold " to={"/shop"}>
+        <NavLink className="font-semibold uppercase " to={"/shop"}>
           Shop
         </NavLink>
       </div>
       <div>
-        <NavLink className="font-semibold" to={"/all-gadgets"}>
+        <NavLink className="font-semibold uppercase" to={"/all-gadgets"}>
           All Gadgets
         </NavLink>
       </div>
       <div>
-        {user ? (
-          <>
-            <NavLink
-              className="hover:bg-transparent dark:text-gray-300 font-semibold transition-all duration-200 hover:focus:bg-transparent hover:text-[#0e9f6e]"
-              to={"/liked"}
-            >
-              Liked Gadgets
-            </NavLink>
-          </>
-        ) : (
-          <></>
+        {user && (
+          <NavLink
+            className="hover:bg-transparent uppercase dark:text-gray-300 font-semibold transition-all duration-200 hover:focus:bg-transparent hover:text-[#0e9f6e]"
+            to={"/liked"}
+          >
+            Liked Gadgets
+          </NavLink>
         )}
       </div>
       <div>
-        {user ? (
-          <>
-            <NavLink
-              className="hover:bg-transparent dark:text-gray-300 font-semibold transition-all duration-200 hover:focus:bg-transparent hover:text-[#0e9f6e]"
-              to={"/my-gadgets"}
-            >
-              My Gadgets
-            </NavLink>
-          </>
-        ) : (
-          <></>
+        {user && (
+          <NavLink
+            className="hover:bg-transparent uppercase dark:text-gray-300 font-semibold transition-all duration-200 hover:focus:bg-transparent hover:text-[#0e9f6e]"
+            to={"/my-gadgets"}
+          >
+            My Gadgets
+          </NavLink>
         )}
       </div>
     </>
   );
+
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
       setDarkMode(savedTheme === "dark");
-      if (savedTheme === "dark") {
-        document.body.classList.add("dark");
-      } else {
-        document.body.classList.remove("dark");
-      }
+      document.body.classList.toggle("dark", savedTheme === "dark");
     } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
       setDarkMode(true);
       document.body.classList.add("light");
     }
   }, []);
+
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => {
       const newMode = !prevMode;
       localStorage.setItem("theme", newMode ? "dark" : "light");
-
-      // Apply dark mode to the body tag
-      if (newMode) {
-        document.body.classList.add("dark");
-      } else {
-        document.body.classList.remove("dark");
-      }
-
+      document.body.classList.toggle("dark", newMode);
       return newMode;
     });
   };
 
   return (
-    <div className="   w-full top-0 sticky bg-white text-black    z-50">
+    <div className="w-full top-0 sticky bg-white text-black z-50">
       <div className="navbar container mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -96,7 +82,6 @@ export default function Navbar() {
               role="button"
               className="btn btn-ghost pl-0 lg:hidden"
             >
-              {/* className="h-5 w-5" */}
               <i className="fa-solid fa-bars text-xl dark:text-gray-400"></i>
             </div>
             <ul
@@ -107,7 +92,6 @@ export default function Navbar() {
             </ul>
           </div>
           <Link to={"/"} className="text-3xl font-bold dark:text-gray-200">
-            {/* <span className="mr-1 p-1 bg-green-500"></span> */}
             <span className="text-indigo-400 ">Shop</span>
             <span className="text-green-500 italic font-4xl ">Now</span>
           </Link>
@@ -125,43 +109,74 @@ export default function Navbar() {
               }
             ></i>
           </button>
+          {/* Notification Icon */}
+          <button className="btn btn-circle hidden md:block">
+            <FiShoppingCart className="text-xl mx-auto" />
+          </button>
+
           {user ? (
-            <div className="flex items-center gap-2">
-              <Link
-                onClick={async () => {
-                  await logout();
-                  toast.success("Logout success");
-                }}
-                className="btn btn-sm bg-red-500 dark:bg-red-700 dark:border-slate-900 hover:bg-red-600 text-white rounded-md"
-              >
-                Logout
-              </Link>
-              <div className="dropdown dropdown-end ">
+            <div className="relative">
+              {/* Dropdown Menu */}
+              <div className="dropdown dropdown-end">
+                <div tabIndex={0} role="button" className="m-1">
+                  <button>
+                    <img
+                      className="w-10 h-10 border rounded-full object-cover"
+                      src={user.photoURL}
+                      alt=""
+                    />
+                  </button>
+                </div>
                 <div
                   tabIndex={0}
-                  role="button"
-                  className="btn btn-ghost btn-circle avatar"
+                  className="dropdown-content menu z-[1] w-72 p-4 sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900"
                 >
-                  <div className="w-10 rounded-full">
+                  <div className="rounded-t-lg h-32 overflow-hidden">
                     <img
-                      alt="Tailwind CSS Navbar component"
-                      src={user?.photoURL}
+                      className="object-cover object-top w-full"
+                      src=""
+                      alt="Mountain"
                     />
                   </div>
+                  <div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
+                    <img
+                      className="object-cover object-center h-32"
+                      src={user.photoURL}
+                      alt="Woman looking front"
+                    />
+                  </div>
+                  <div className="text-center mt-2">
+                    <h2 className="font-semibold md:text-2xl text-sm">
+                      Name: {user.displayName}
+                    </h2>
+                    <p className="text-gray-500 md:text-lg text-sm">
+                      Email: {user.email}
+                    </p>
+                  </div>
+                  <div className="divider"></div>
+                  <div className="p-2">
+                    <Link
+                      to="/"
+                      className="w-full rounded-full bg-gray-900 hover:shadow-lg text-white px-6 py-2"
+                    >
+                      Dashboard
+                    </Link>
+                    <div className="p-2 mt-2">
+                      <button
+                        // onClick={handleSignOut}
+                        className="w-full rounded-full bg-gray-900 hover:shadow-lg text-white px-6 py-2"
+                      >
+                        Log Out
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <ul
-                  tabIndex={0}
-                  className="menu menu-sm dark:shadow-sm dark:bg-slate-900  dark:text-gray-400 dropdown-content gap-2 bg-base-100 rounded-box z-[1] mt-3 w-64 p-4 shadow"
-                ></ul>
               </div>
             </div>
           ) : (
-            <NavLink
-              to={"/auth/login"}
-              className="btn btn-sm hover:bg-indigo-500  hover:text-white bg-green-300      text-indigo-700  rounded-md"
-            >
-              Join Now
-            </NavLink>
+            <Link to="/signin" className="btn btn-primary">
+              Sign In
+            </Link>
           )}
         </div>
       </div>
