@@ -9,6 +9,16 @@ import useAuth from "../Hooks/useAuth";
 export default function Navbar() {
   const { signOutUser, user } = useAuth();
 
+  const handleSignOut = () => {
+    // similar log out function
+    signOutUser()
+      .then(() => {
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   // const { setDarkMode, darkMode } = useData(); //this state value false?
   const [darkMode, setDarkMode] = useState(false);
 
@@ -163,7 +173,7 @@ export default function Navbar() {
                     </Link>
                     <div className="p-2 mt-2">
                       <button
-                        // onClick={handleSignOut}
+                        onClick={handleSignOut}
                         className="w-full rounded-full bg-gray-900 hover:shadow-lg text-white px-6 py-2"
                       >
                         Log Out
