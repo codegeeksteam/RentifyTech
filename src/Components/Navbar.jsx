@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
+import img from "../assets/download (2).jpeg";
 import { CgProfile } from "react-icons/cg";
 import useAuth from "../Hooks/useAuth";
 // import useAuth from "../services/useAuth";
@@ -85,7 +86,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="w-full top-0 sticky bg-white text-black z-50">
+    <div className="w-full top-0 sticky bg-black/50 backdrop-blur text-white z-50">
       <div className="navbar container mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -104,8 +105,8 @@ export default function Navbar() {
             </ul>
           </div>
           <Link to={"/"} className="text-3xl font-bold dark:text-gray-200">
-            <span className="text-indigo-400 ">Shop</span>
-            <span className="text-green-500 italic font-4xl ">Now</span>
+            <span className="text-white">Ren</span>
+            <span className="text-white ">Techify</span>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -122,7 +123,7 @@ export default function Navbar() {
             ></i>
           </button>
           {/* Notification Icon */}
-          <button className="btn btn-circle hidden md:block">
+          <button className="btn btn-md btn-circle hidden md:block">
             <FiShoppingCart className="text-xl mx-auto" />
           </button>
 
@@ -141,12 +142,12 @@ export default function Navbar() {
                 </div>
                 <div
                   tabIndex={0}
-                  className="dropdown-content menu z-[1] w-72 p-4 sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900"
+                  className="dropdown-content menu z-[1] w-80 p-4 sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900"
                 >
                   <div className="rounded-t-lg h-32 overflow-hidden">
                     <img
                       className="object-cover object-top w-full"
-                      src=""
+                      src={img}
                       alt="Mountain"
                     />
                   </div>
@@ -161,8 +162,8 @@ export default function Navbar() {
                     <h2 className="font-semibold md:text-2xl text-sm">
                       Name: {user.displayName}
                     </h2>
-                    <p className="text-gray-500 md:text-lg text-sm">
-                      Email: {user.email}
+                    <p className="text-gray-500 md:text-[15px] text-sm">
+                    <span className="font-bold">Email:</span> {user.email}
                     </p>
                   </div>
                   <div className="divider"></div>
