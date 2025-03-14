@@ -1,20 +1,17 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import { FiBell, FiShoppingCart } from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
+import useAuth from "../Hooks/useAuth";
 // import useAuth from "../services/useAuth";
 // import useData from "../services/useData";
 
 export default function Navbar() {
-  // const { logout, user } = useAuth();
-  const user = true; // Simulated user state
-  const logout = async () => {
-    // Simulated logout function
-    toast.success("Logout success");
-  };
-  
+  const { signOutUser, user } = useAuth();
+
   // const { setDarkMode, darkMode } = useData(); //this state value false?
   const [darkMode, setDarkMode] = useState(false);
-  
+
   const links = (
     <>
       <div>
@@ -80,10 +77,17 @@ export default function Navbar() {
       <div className="navbar container mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost pl-0 lg:hidden">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost pl-0 lg:hidden"
+            >
               <i className="fa-solid fa-bars text-xl dark:text-gray-400"></i>
             </div>
-            <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow gap-5">
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow gap-5"
+            >
               {links}
             </ul>
           </div>
@@ -97,34 +101,82 @@ export default function Navbar() {
         </div>
         <div className="navbar-end gap-2">
           <button onClick={toggleDarkMode}>
-            <i className={darkMode ? "fa-solid fa-moon text-white text-xl" : "fa-regular fa-sun text-slate-700 text-xl"}></i>
+            <i
+              className={
+                darkMode
+                  ? "fa-solid fa-moon text-white text-xl"
+                  : "fa-regular fa-sun text-slate-700 text-xl"
+              }
+            ></i>
           </button>
+          {/* Notification Icon */}
+          <button className="btn btn-circle hidden md:block">
+            <FiShoppingCart className="text-xl mx-auto" />
+          </button>
+
           {user ? (
-            <div className="flex items-center gap-2">
-              <Link
-                onClick={async () => {
-                  try {
-                    await logout();
-                  } catch (error) {
-                    toast.error("Logout failed!",error);
-                  }
-                }}
-                className="btn btn-sm bg-red-500 dark:bg-red-700 dark:border-slate-900 hover:bg-red-600 text-white rounded-md"
-              >
-                Logout
-              </Link>
+            <div className="relative">
+              {/* Dropdown Menu */}
               <div className="dropdown dropdown-end">
-                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                  <div className="w-10 rounded-full">
-                    <img alt="User Profile" src={user?.photoURL || "default-avatar.png"} />
+                <div tabIndex={0} role="button" className="m-1">
+                  <button>
+                    <img
+                      className="w-10 h-10 border rounded-full object-cover"
+                      src={user.photoURL}
+                      alt=""
+                    />
+                  </button>
+                </div>
+                <div
+                  tabIndex={0}
+                  className="dropdown-content menu z-[1] w-72 p-4 sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900"
+                >
+                  <div className="rounded-t-lg h-32 overflow-hidden">
+                    <img
+                      className="object-cover object-top w-full"
+                      src=""
+                      alt="Mountain"
+                    />
+                  </div>
+                  <div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
+                    <img
+                      className="object-cover object-center h-32"
+                      src={user.photoURL}
+                      alt="Woman looking front"
+                    />
+                  </div>
+                  <div className="text-center mt-2">
+                    <h2 className="font-semibold md:text-2xl text-sm">
+                      Name: {user.displayName}
+                    </h2>
+                    <p className="text-gray-500 md:text-lg text-sm">
+                      Email: {user.email}
+                    </p>
+                  </div>
+                  <div className="divider"></div>
+                  <div className="p-2">
+                    <Link
+                      to="/"
+                      className="w-full rounded-full bg-gray-900 hover:shadow-lg text-white px-6 py-2"
+                    >
+                      Dashboard
+                    </Link>
+                    <div className="p-2 mt-2">
+                      <button
+                        // onClick={handleSignOut}
+                        className="w-full rounded-full bg-gray-900 hover:shadow-lg text-white px-6 py-2"
+                      >
+                        Log Out
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           ) : (
-            <NavLink to={"/auth/login"} className="btn btn-sm hover:bg-indigo-500 hover:text-white bg-green-300 text-indigo-700 rounded-md">
-              Join Now
-            </NavLink>
+            <Link to="/signin" className="btn btn-primary">
+              Sign In
+            </Link>
           )}
         </div>
       </div>
