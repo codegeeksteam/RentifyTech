@@ -27,6 +27,11 @@ export default function Navbar() {
         </NavLink>
       </div>
       <div>
+        <NavLink className="font-semibold" to={"/Faq"}>
+          FAQ
+        </NavLink>
+      </div>
+      <div>
         {user ? (
           <>
             <NavLink
