@@ -1,21 +1,23 @@
-import React from 'react';
+import React, { useState } from "react";
 import signUpImg from "../../assets/signUp.json";
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
-import Lottie from 'lottie-react';
+import { Link } from "react-router-dom";
+import Lottie from "lottie-react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignUp = () => {
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-      } = useForm();
-      const onSubmit = (data) => {
-        console.log(data);
-      }
-    return (
-        <div>
-      <div className="min-w-screen bg-gray-100 text-gray-900 flex justify-center">
+  const [showPassword, setShowPassword] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+  return (
+    <div>
+      <div className="min-w-screen bg-gray-100 text-gray-900 flex lg:h-[99vh] justify-center">
         <div className="max-w-screen-xl m-0 sm:m-10 shadow sm:rounded-lg flex justify-center flex-1">
           <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
             <div className="mt-12 flex flex-col items-center">
@@ -24,7 +26,7 @@ const SignUp = () => {
                 <div className="flex flex-col items-center">
                   <button
                     // onClick={handleGoogleSignIn}
-                    className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
+                    className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-violet-200 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
                   >
                     <div className="bg-white p-2 rounded-full">
                       <svg className="w-4" viewBox="0 0 533.5 544.3">
@@ -110,8 +112,7 @@ const SignUp = () => {
                     )}
                     <div className="relative">
                       <input
-                        /* type={showPassword ? "text" : "password"} */
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         name="password"
                         {...register("password", {
                           required: true,
@@ -138,15 +139,15 @@ const SignUp = () => {
                           Password must be only @$!#&*
                         </span>
                       )}
-                      {/* <button
-                    //     onClick={() => setShowPassword(!showPassword)}
-                    //     className="absolute right-8 bottom-3.5"
-                    //   >
-                    //     {showPassword ? <FaEyeSlash /> : <FaEye />}
-                    //   </button> */}
+                      <button
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-8 bottom-3.5"
+                      >
+                        {showPassword ? <FaEyeSlash /> : <FaEye />}
+                      </button>
                     </div>
                     {/* User Type Dropdown */}
-                    <div className="mb-4">
+                    {/* <div className="mb-4">
                       <select
                         id="userType"
                         className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 mt-3 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
@@ -164,7 +165,7 @@ const SignUp = () => {
                         </p>
                       )}
                       
-                    </div>
+                    </div> */}
                     <button className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                       <svg
                         className="w-6 h-6 -ml-2"
@@ -203,7 +204,7 @@ const SignUp = () => {
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default SignUp;
