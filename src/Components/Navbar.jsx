@@ -14,8 +14,7 @@ export default function Navbar() {
   const handleSignOut = () => {
     // similar log out function
     signOutUser()
-      .then(() => {
-      })
+      .then(() => {})
       .catch((error) => {
         console.log(error);
       });
@@ -163,7 +162,7 @@ export default function Navbar() {
                       Name: {user.displayName}
                     </h2>
                     <p className="text-gray-500 md:text-[15px] text-sm">
-                    <span className="font-bold">Email:</span> {user.email}
+                      <span className="font-bold">Email:</span> {user.email}
                     </p>
                   </div>
                   <div className="divider"></div>
