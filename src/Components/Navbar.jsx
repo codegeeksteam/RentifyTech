@@ -1,7 +1,8 @@
-/* eslint-disable no-unused-vars */
+// Desc: Navbar component for the application
 import { useEffect, useState } from "react";
-import { FiBell, FiShoppingCart } from "react-icons/fi";
+import { FiShoppingCart } from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
+import { CgProfile } from "react-icons/cg";
 import useAuth from "../Hooks/useAuth";
 // import useAuth from "../services/useAuth";
 // import useData from "../services/useData";
@@ -74,6 +75,7 @@ export default function Navbar() {
   }, []);
 
   const toggleDarkMode = () => {
+    // Dark Mode function
     setDarkMode((prevMode) => {
       const newMode = !prevMode;
       localStorage.setItem("theme", newMode ? "dark" : "light");
@@ -185,6 +187,7 @@ export default function Navbar() {
             </div>
           ) : (
             <Link to="/signIn" className="btn btn-primary">
+              <CgProfile size={15} />
               Sign In
             </Link>
           )}
