@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import signUpImg from "../../assets/signUp.json";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const { signInGoogle, createUser, updateMyProfile } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const {
     register,
@@ -14,6 +18,53 @@ const SignUp = () => {
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
+    createUser(data.email, data.password).then((res) => {
+      console.log(res.user);
+      updateMyProfile(data.name, data.photoURL)
+        .then(() => {
+            const userInfo = {
+              name: data?.name,
+              email: data?.email,
+              photo: data?.photoURL,
+              phone: data?.phone,
+              role: data?.userType,
+            };
+            console.log(userInfo);
+            navigate("/");
+            // axiosPublic.post("/users", userInfo).then((res) => {
+            //   if (res.data.insertedId) {
+            //     reset();
+            //     Swal.fire({
+            //       title: "success!",
+            //       text: "Sign Up Successful!",
+            //       icon: "success",
+            //     });
+            //     navigate("/");
+            //   }
+            // });
+        })
+        .catch((error) => console.log(error));
+    });
+  };
+
+  const handleGoogleSignIn = () => {
+    signInGoogle()
+      .then((res) => {
+        console.log(res.user);
+        Swal.fire({
+          title: "success!",
+          text: "Sign Up Successful!",
+          icon: "success",
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "ERROR!",
+          text: `${error.message}`,
+          icon: "error",
+        });
+      });
   };
   return (
     <div>
@@ -25,7 +76,7 @@ const SignUp = () => {
               <div className="w-full flex-1 mt-8">
                 <div className="flex flex-col items-center">
                   <button
-                    // onClick={handleGoogleSignIn}
+                    onClick={handleGoogleSignIn}
                     className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-violet-200 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
                   >
                     <div className="bg-white p-2 rounded-full">
