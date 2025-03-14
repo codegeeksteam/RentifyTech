@@ -13,49 +13,51 @@ const SignIn = () => {
   const location = useLocation();
   const from = location?.state || "/";
   console.log(from);
-  const { signIn, signInWithGoogle } = useAuth();
+  const { singInUser, signInGoogle} = useAuth();
 
-  const handleGoogleSignIn = async () => {
-      // Google Signin
-    try {
-    await signInWithGoogle();
-      Swal.fire({
-        title: "success!",
-        text: "Sign In Successful!",
-        icon: "success",
+  const handleGoogleSignIn = () => {
+    signInGoogle()
+      .then((res) => {
+        console.log(res.user);
+        Swal.fire({
+          title: "success!",
+          text: "Sign Up Successful!",
+          icon: "success",
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "ERROR!",
+          text: `${error.message}`,
+          icon: "error",
+        });
       });
-      navigate(from, { replace: true });
-    } catch (error) {
-      Swal.fire({
-        title: "ERROR!",
-        text: `${error.message}`,
-        icon: "error",
-      });
-    }
   };
 
-  const handleSignIn = async (e) => {
+  const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log({ email, password });
-    try {
-      //User Login
-      await signIn(email, password);
-      Swal.fire({
-        title: "success!",
-        text: "Sign In Successful!",
-        icon: "success",
+    console.log(email, password);
+    singInUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+        Swal.fire({
+          title: "success!",
+          text: "Sign In Successful!",
+          icon: "success",
+        });
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "ERROR!",
+          text: `${error.message}`,
+          icon: "error",
+        });
       });
-      navigate(from, { replace: true });
-    } catch (error) {
-      Swal.fire({
-        title: "ERROR!",
-        text: `${error.message}`,
-        icon: "error",
-      });
-    }
   };
   return (
     <div>
