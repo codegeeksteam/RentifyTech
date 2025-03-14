@@ -6,6 +6,7 @@ import { Link, NavLink } from "react-router-dom";
 
 export default function Navbar() {
   // const { logout, user } = useAuth();
+  //
   const { logout, user } = true;
   // const { setDarkMode, darkMode } = useData(); //this state value false?
   const { setDarkMode, darkMode } = false;
