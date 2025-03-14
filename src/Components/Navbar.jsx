@@ -1,6 +1,6 @@
-
-
 const Navbar = () => {
+  //  override
+  //  const [open, setOpen] = useState(false);
   return (
     <div>
       <div className="navbar bg-base-100 shadow-sm">
