@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 // import useData from "../services/useData";
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const { signOutUser, user } = useAuth();
   const navigate = useNavigate();
   const handleSignOut = () => {
