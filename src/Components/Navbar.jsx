@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
+import img from "../assets/download (2).jpeg";
 import { CgProfile } from "react-icons/cg";
 import useAuth from "../Hooks/useAuth";
 // import useAuth from "../services/useAuth";
@@ -141,12 +142,12 @@ export default function Navbar() {
                 </div>
                 <div
                   tabIndex={0}
-                  className="dropdown-content menu z-[1] w-72 p-4 sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900"
+                  className="dropdown-content menu z-[1] w-80 p-4 sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900"
                 >
                   <div className="rounded-t-lg h-32 overflow-hidden">
                     <img
                       className="object-cover object-top w-full"
-                      src=""
+                      src={img}
                       alt="Mountain"
                     />
                   </div>
@@ -161,8 +162,8 @@ export default function Navbar() {
                     <h2 className="font-semibold md:text-2xl text-sm">
                       Name: {user.displayName}
                     </h2>
-                    <p className="text-gray-500 md:text-lg text-sm">
-                      Email: {user.email}
+                    <p className="text-gray-500 md:text-[15px] text-sm">
+                    <span className="font-bold">Email:</span> {user.email}
                     </p>
                   </div>
                   <div className="divider"></div>
