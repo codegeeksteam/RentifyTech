@@ -86,7 +86,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="w-full top-0 sticky bg-white text-black z-50">
+    <div className="w-full top-0 sticky bg-black/50 backdrop-blur text-white z-50">
       <div className="navbar container mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -105,8 +105,8 @@ export default function Navbar() {
             </ul>
           </div>
           <Link to={"/"} className="text-3xl font-bold dark:text-gray-200">
-            <span className="text-indigo-400 ">Shop</span>
-            <span className="text-green-500 italic font-4xl ">Now</span>
+            <span className="text-white">Ren</span>
+            <span className="text-white ">Techify</span>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
@@ -123,7 +123,7 @@ export default function Navbar() {
             ></i>
           </button>
           {/* Notification Icon */}
-          <button className="btn btn-circle hidden md:block">
+          <button className="btn btn-md btn-circle hidden md:block">
             <FiShoppingCart className="text-xl mx-auto" />
           </button>
 
