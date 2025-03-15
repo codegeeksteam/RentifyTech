@@ -6,8 +6,6 @@ import img from "../assets/download (2).jpeg";
 import { CgProfile } from "react-icons/cg";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
-// import useAuth from "../services/useAuth";
-// import useData from "../services/useData";
 
 export default function Navbar() {
   const navigate = useNavigate();
