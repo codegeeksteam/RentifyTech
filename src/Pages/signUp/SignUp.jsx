@@ -22,26 +22,26 @@ const SignUp = () => {
       console.log(res.user);
       updateMyProfile(data.name, data.photoURL)
         .then(() => {
-            const userInfo = {
-              name: data?.name,
-              email: data?.email,
-              photo: data?.photoURL,
-              phone: data?.phone,
-              role: data?.userType,
-            };
-            console.log(userInfo);
-            navigate("/");
-            // axiosPublic.post("/users", userInfo).then((res) => {
-            //   if (res.data.insertedId) {
-            //     reset();
-            //     Swal.fire({
-            //       title: "success!",
-            //       text: "Sign Up Successful!",
-            //       icon: "success",
-            //     });
-            //     navigate("/");
-            //   }
-            // });
+          const userInfo = {
+            name: data?.name,
+            email: data?.email,
+            photo: data?.photoURL,
+            phone: data?.phone,
+            role: data?.userType,
+          };
+          console.log(userInfo);
+          navigate("/");
+          // axiosPublic.post("/users", userInfo).then((res) => {
+          //   if (res.data.insertedId) {
+          //     reset();
+          //     Swal.fire({
+          //       title: "success!",
+          //       text: "Sign Up Successful!",
+          //       icon: "success",
+          //     });
+          //     navigate("/");
+          //   }
+          // });
         })
         .catch((error) => console.log(error));
     });
@@ -95,7 +95,7 @@ const SignUp = () => {
                         <path
                           d="M272.1 107.7c38.8-.6 76.3 14 104.4 40.8l77.7-77.7C405 24.6 339.7-.8 272.1 0 169.2 0 75.1 58 28.9 150l90.4 70.1c21.5-64.5 81.8-112.4 152.8-112.4z"
                           fill="#ea4335"
-                         />
+                        />
                       </svg>
                     </div>
                     <span className="ml-4 text-lg px-5">
