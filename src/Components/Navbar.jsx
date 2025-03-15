@@ -6,12 +6,10 @@ import img from "../assets/download (2).jpeg";
 import { CgProfile } from "react-icons/cg";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
-// import useAuth from "../services/useAuth";
-// import useData from "../services/useData";
 
 export default function Navbar() {
-  const { signOutUser, user } = useAuth();
   const navigate = useNavigate();
+  const { signOutUser, user } = useAuth()
   const handleSignOut = () => {
     // similar log out function
     signOutUser()
@@ -104,7 +102,7 @@ export default function Navbar() {
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost pl-0 lg:hidden"
+              className="btn btn-ghost lg:hidden"
             >
               <i className="fa-solid fa-bars text-xl dark:text-gray-400"></i>
             </div>
