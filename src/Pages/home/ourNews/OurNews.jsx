@@ -31,12 +31,12 @@ function OurNews() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-between flex-grow">
         {ourNews.map((news) => (
           <div
-            key={news.name}
+            key={news.title}
             className="mid pb-4 cursor-pointer border-b-4 text-left border-t-0 hover:border rounded-lg"
           >
             <img
               src={news.img}
-              alt={news.name}
+              alt={news.title}
               className="w-full h-[300px] object-cover rounded-t-lg"
             />
 
