@@ -22,26 +22,26 @@ const SignUp = () => {
       console.log(res.user);
       updateMyProfile(data.name, data.photoURL)
         .then(() => {
-            const userInfo = {
-              name: data?.name,
-              email: data?.email,
-              photo: data?.photoURL,
-              phone: data?.phone,
-              role: data?.userType,
-            };
-            console.log(userInfo);
-            navigate("/");
-            // axiosPublic.post("/users", userInfo).then((res) => {
-            //   if (res.data.insertedId) {
-            //     reset();
-            //     Swal.fire({
-            //       title: "success!",
-            //       text: "Sign Up Successful!",
-            //       icon: "success",
-            //     });
-            //     navigate("/");
-            //   }
-            // });
+          const userInfo = {
+            name: data?.name,
+            email: data?.email,
+            photo: data?.photoURL,
+            phone: data?.phone,
+            role: data?.userType,
+          };
+          console.log(userInfo);
+          navigate("/");
+          // axiosPublic.post("/users", userInfo).then((res) => {
+          //   if (res.data.insertedId) {
+          //     reset();
+          //     Swal.fire({
+          //       title: "success!",
+          //       text: "Sign Up Successful!",
+          //       icon: "success",
+          //     });
+          //     navigate("/");
+          //   }
+          // });
         })
         .catch((error) => console.log(error));
     });
@@ -68,7 +68,7 @@ const SignUp = () => {
   };
   return (
     <div>
-      <div className="min-w-screen bg-gray-100 text-gray-900 flex lg:h-[99vh] justify-center">
+      <div className="min-w-screen bg-gray-100 text-gray-900 flex   justify-center">
         <div className="max-w-screen-xl m-0 sm:m-10 shadow sm:rounded-lg flex justify-center flex-1">
           <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
             <div className=" flex flex-col items-center">
