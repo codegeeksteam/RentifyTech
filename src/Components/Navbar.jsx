@@ -51,6 +51,14 @@ export default function Navbar() {
         </NavLink>
       </div>
       <div>
+        <NavLink className="font-semibold uppercase" to={"/about-us"}>
+          About
+        </NavLink>
+      </div>
+
+
+
+      <div>
         {user && (
           <NavLink
             className="hover:bg-transparent uppercase dark:text-gray-300 font-semibold transition-all duration-200 hover:focus:bg-transparent hover:text-[#0e9f6e]"
