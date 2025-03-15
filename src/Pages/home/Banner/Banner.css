@@ -1,0 +1,19 @@
+.banner-img-1 {
+    animation: bounce 1s infinite alternate;
+  }
+  
+  .banner-img-2 {
+    
+    animation: bounce 1.2s infinite alternate;
+  }
+  
+  
+  @keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+  
+    100% {
+        transform: translateY(-20px);
+    }
+  }
