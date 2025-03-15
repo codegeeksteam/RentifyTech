@@ -10,27 +10,6 @@ import Swal from "sweetalert2";
 // import useData from "../services/useData";
 
 export default function Navbar() {
-  const { signOutUser, user } = useAuth();
-  const navigate = useNavigate();
-  const handleSignOut = () => {
-    // similar log out function
-    signOutUser()
-        .then(() => {
-          Swal.fire({
-            title: "success!",
-            text: "User Log out successfully!",
-            icon: "success",
-          });
-          navigate('/')
-        })
-        .catch((error) => {
-          Swal.fire({
-            title: "ERROR!",
-            text: `${error.message}`,
-            icon: "error",
-          });
-        });
-  };
 
   // const { setDarkMode, darkMode } = useData(); //this state value false?
   const [darkMode, setDarkMode] = useState(false);
@@ -53,13 +32,6 @@ export default function Navbar() {
         </NavLink>
       </div>
       <div>
-        {user && (
-          <NavLink
-            className="hover:bg-transparent uppercase dark:text-gray-300 font-semibold transition-all duration-200 hover:focus:bg-transparent hover:text-[#0e9f6e]"
-            to={"/liked"}
-          >
-            Liked Gadgets
-          </NavLink>
         )}
       </div>
       <div>

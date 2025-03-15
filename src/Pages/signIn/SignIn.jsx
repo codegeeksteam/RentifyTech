@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import signInImg from '../../assets/signIn.json'
+import signInImg from "../../assets/signIn.json";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Lottie from "lottie-react";
 import useAuth from "../../Hooks/useAuth";
-
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,7 +12,7 @@ const SignIn = () => {
   const location = useLocation();
   const from = location?.state || "/";
   console.log(from);
-  const { singInUser, signInGoogle} = useAuth();
+  const { singInUser, signInGoogle } = useAuth();
 
   const handleGoogleSignIn = () => {
     signInGoogle()
@@ -64,7 +63,7 @@ const SignIn = () => {
       {/* <Helmet>
         <title>Sign In</title>
       </Helmet> */}
-      <div className="min-w-screen bg-gray-100 lg:h-[100vh] text-gray-900 flex justify-center">
+      <div className="min-w-screen bg-gray-100   text-gray-900 flex justify-center">
         <div className="max-w-screen-xl m-0 sm:m-10 bg-white shadow sm:rounded-lg flex justify-center flex-1">
           <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
             <div className="mt-12 flex flex-col items-center">
@@ -159,7 +158,7 @@ const SignIn = () => {
           </div>
           <div className="flex-1 bg-green-100 text-center hidden lg:flex">
             <div className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat">
-            <Lottie animationData={signInImg}></Lottie>
+              <Lottie animationData={signInImg}></Lottie>
             </div>
           </div>
         </div>
