@@ -14,7 +14,7 @@ const AboutUs = () => {
                 <h1 className='text-5xl font-bold'>About Us</h1>
                 <span className='divider'></span>
             </div>
-
+      {/* about us banner */}   
             <div className='relative'>
                 <div className='flex gap-15'>
                     <div className='w-1/2'>
@@ -39,10 +39,25 @@ const AboutUs = () => {
 
             </div>
 
+      {/* about us banner end */}
+</section>
 
-            </section>
+<div style={{backgroundImage: `url("https://i.ibb.co.com/0yPcrQcv/lonovo-think-x1-5-scaled.webp")`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat',objectFit: 'cover' }} className='my-20' >
+
+      <div className='py-28 w-11/12 mx-auto'>
+        <div className='w-6/12 space-y-5'>
+            <h3 className='text-3xl font-semibold text-white'>
+            Sustainable Electronics 
+            </h3>
+            <h1 className='text-5xl font-bold text-white'>Affordable Electronics Rental for Everyone</h1>
+            <p className='text-lg font-gray-600'>With years of experience and a passion for design, we specialize in creating stunning kitchens that combine functionality and style. From concept to delivery, our team of experts will work closely with you to bring your vision to life.</p>
+            <button className='btn bg-blue-500 text-white border-none text-xl font-bold'>Explore Products</button>
+      
+        </div>
+      </div>
 
 
+      </div>
 
 
 
