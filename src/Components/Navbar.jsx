@@ -1,24 +1,35 @@
 // Desc: Navbar component for the application
 import { useEffect, useState } from "react";
 import { FiShoppingCart } from "react-icons/fi";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import img from "../assets/download (2).jpeg";
 import { CgProfile } from "react-icons/cg";
 import useAuth from "../Hooks/useAuth";
+import Swal from "sweetalert2";
 // import useAuth from "../services/useAuth";
 // import useData from "../services/useData";
 
 export default function Navbar() {
   const { signOutUser, user } = useAuth();
-
+  const navigate = useNavigate();
   const handleSignOut = () => {
     // similar log out function
     signOutUser()
-      .then(() => {
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then(() => {
+          Swal.fire({
+            title: "success!",
+            text: "User Log out successfully!",
+            icon: "success",
+          });
+          navigate('/')
+        })
+        .catch((error) => {
+          Swal.fire({
+            title: "ERROR!",
+            text: `${error.message}`,
+            icon: "error",
+          });
+        });
   };
 
   // const { setDarkMode, darkMode } = useData(); //this state value false?
@@ -163,7 +174,7 @@ export default function Navbar() {
                       Name: {user.displayName}
                     </h2>
                     <p className="text-gray-500 md:text-[15px] text-sm">
-                    <span className="font-bold">Email:</span> {user.email}
+                      <span className="font-bold">Email:</span> {user.email}
                     </p>
                   </div>
                   <div className="divider"></div>
