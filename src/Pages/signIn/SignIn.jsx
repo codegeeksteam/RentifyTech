@@ -21,7 +21,7 @@ const SignIn = () => {
         console.log(res.user);
         Swal.fire({
           title: "success!",
-          text: "Sign Up Successful!",
+          text: "Sign In Successful!",
           icon: "success",
         });
         navigate("/");
