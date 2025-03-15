@@ -98,7 +98,7 @@ const SignUp = () => {
                          />
                       </svg>
                     </div>
-                    <span className="ml-4 text-lg   px-6">
+                    <span className="ml-4 text-lg px-5">
                       Sign Up with Google
                     </span>
                   </button>
