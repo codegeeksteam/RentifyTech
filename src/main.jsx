@@ -8,10 +8,12 @@ import AboutUs from "./Pages/aboutUs/AboutUs.jsx";
 import AuthProvider from "./Provider/AuthProvider.jsx";
 import SignUp from "./Pages/signUp/SignUp.jsx";
 import SignIn from "./Pages/signIn/SignIn.jsx";
+import Error from "./Pages/Erorr/Erorr.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement:<Error/>,
     children: [
       { path: "/", 
         element: <Home />
