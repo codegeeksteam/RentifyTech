@@ -10,7 +10,7 @@ const Footer = () => {
           <h3 className="text-xl font-bold mb-4 pb-2 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-12 after:h-0.5 after:bg-green-500">
             Gagete
           </h3>
-          <p className="text-black mb-4">
+          <p className="text-black mb-5">
             Your trusted source for the latest gadgets and technology solutions.
           </p>
 
