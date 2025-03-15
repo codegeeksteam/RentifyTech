@@ -25,13 +25,13 @@ const teamMembers = [
 const TeamCard = ({ member }) => {
   return (
     <div
-      className="rounded-xl shadow-lg p-6 transition-all duration-300 bg-white text-black hover:bg-blue-500"
+      className="rounded-xl shadow-lg p-6 transition-all duration-300 bg-white text-black hover:bg-blue-500 hover:text-white hover:shadow-xl hover:scale-100"
       
     >
       <img
         src={member.image}
         alt={member.name}
-        className="w-full  h-96 object-cover rounded-lg"
+        className="w-full  h-96 object-cover rounded-lg hover:scale-105 transition-all duration-300"
       />
       <h3 className="text-lg font-semibold mt-4">{member.name}</h3>
       <p className="text-sm">{member.role}</p>

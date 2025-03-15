@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../../Components/Navbar';
 import Footer from '../../Components/Footer';
 import Teamcard from './Teamcard';
+import LatestNews from './LatestNews';
 
 const AboutUs = () => {
     return (
@@ -61,6 +62,8 @@ const AboutUs = () => {
 
 
 <Teamcard/>
+
+<LatestNews/>
 
 
             <Footer/>
