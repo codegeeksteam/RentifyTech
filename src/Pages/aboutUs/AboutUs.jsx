@@ -1,6 +1,7 @@
 import React from 'react';
 import Navbar from '../../Components/Navbar';
 import Footer from '../../Components/Footer';
+import Teamcard from './Teamcard';
 
 const AboutUs = () => {
     return (
@@ -40,7 +41,7 @@ const AboutUs = () => {
             </div>
 
       {/* about us banner end */}
-</section>
+           </section>
 
 <div style={{backgroundImage: `url("https://i.ibb.co.com/0yPcrQcv/lonovo-think-x1-5-scaled.webp")`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat',objectFit: 'cover' }} className='my-20' >
 
@@ -56,9 +57,10 @@ const AboutUs = () => {
         </div>
       </div>
 
+ </div>
 
-      </div>
 
+<Teamcard/>
 
 
             <Footer/>
