@@ -94,7 +94,7 @@ const Footer = () => {
               <span className="text-green-500 mr-2">
                 <i className="fa fa-map-marker"></i>
               </span>
-              123 Tech Street, Digital City
+              123 Jamuna Future Park
             </p>
             <p className="flex items-center text-black mb-2">
               <span className="text-green-500 mr-2">
@@ -121,13 +121,9 @@ const Footer = () => {
       <div className="w-11/12 divider mx-auto pt-6 border-gray-800 text-center">
         <p className="text-black mb-4">
           &copy; {new Date().getFullYear()}
-          <span className="italic  text-xl font-bold">
-            {" "}
-            Code Geeks{" "}
-          </span>{" "}
-          All rights reserved.
+          <span className="italic  text-xl font-bold"> Code Geeks </span> All
+          rights reserved.
         </p>
-        
       </div>
     </footer>
   );
