@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import "../Erorr/Erorr.css";
+import '../Erorr/Erorr.css'
 
 const Error = () => {
   const navigate = useNavigate();
