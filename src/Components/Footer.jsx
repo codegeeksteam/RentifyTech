@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-300 pt-14 text-black py-12 px-6">
-      <div className="max-w-6xl mx-auto flex flex-wrap justify-between">
+    <footer className="bg-gray-100 pt-14 text-black py-12 px-6">
+      <div className=" w-11/12 mx-auto flex flex-wrap justify-between">
         {/* Company Info */}
         <div className="w-full md:w-1/4 mb-8 pr-4">
           <h3 className="text-xl font-bold mb-4 pb-2 relative after:content-[''] after:absolute after:left-0 after:bottom-0 after:w-12 after:h-0.5 after:bg-green-500">
-            Gagete
+            RenTechify
           </h3>
           <p className="text-black mb-5">
             Your trusted source for the latest gadgets and technology solutions.
@@ -118,18 +118,16 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom */}
-      <div className="max-w-6xl mx-auto pt-6 mt-6 border-t border-gray-800 text-center">
+      <div className="w-11/12 divider mx-auto pt-6 border-gray-800 text-center">
         <p className="text-black mb-4">
           &copy; {new Date().getFullYear()}
-          <span className="italic text-red-400 text-2xl font-extrabold">
+          <span className="italic  text-xl font-bold">
             {" "}
             Code Geeks{" "}
           </span>{" "}
           All rights reserved.
         </p>
-        <ul className="flex flex-wrap justify-center">
-          <li>Terms and Conditions</li>
-        </ul>
+        
       </div>
     </footer>
   );
