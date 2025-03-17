@@ -9,25 +9,25 @@ import Swal from "sweetalert2";
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const { signOutUser, user } = useAuth()
+  const { signOutUser, user } = useAuth();
   const handleSignOut = () => {
     // similar log out function
     signOutUser()
-        .then(() => {
-          Swal.fire({
-            title: "success!",
-            text: "User Log out successfully!",
-            icon: "success",
-          });
-          navigate('/')
-        })
-        .catch((error) => {
-          Swal.fire({
-            title: "ERROR!",
-            text: `${error.message}`,
-            icon: "error",
-          });
+      .then(() => {
+        Swal.fire({
+          title: "success!",
+          text: "User Log out successfully!",
+          icon: "success",
         });
+        navigate("/");
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "ERROR!",
+          text: `${error.message}`,
+          icon: "error",
+        });
+      });
   };
 
   // const { setDarkMode, darkMode } = useData(); //this state value false?
@@ -36,45 +36,43 @@ export default function Navbar() {
   const links = (
     <>
       <div>
-        <NavLink className=" font-semibold uppercase" to={"/"}>
-          Home
+        <NavLink className=" font-semibold uppercase cta" to={"/"}>
+          <span className="hover-underline-animation">Home</span>
         </NavLink>
       </div>
       <div>
-        <NavLink className="font-semibold uppercase " to={"/shop"}>
-          Shop
+        <NavLink className="font-semibold uppercase cta" to={"/shop"}>
+        <span className="hover-underline-animation">Shop</span>
         </NavLink>
       </div>
       <div>
-        <NavLink className="font-semibold uppercase" to={"/all-gadgets"}>
-          All Gadgets
+        <NavLink className="font-semibold uppercase cta" to={"/all-gadgets"}>
+        <span className="hover-underline-animation">All Gadgets</span>
         </NavLink>
       </div>
       <div>
-        <NavLink className="font-semibold uppercase" to={"/about-us"}>
-          About
+        <NavLink className="font-semibold uppercase cta" to={"/about-us"}>
+        <span className="hover-underline-animation">About</span>
         </NavLink>
       </div>
-
-
 
       <div>
         {user && (
           <NavLink
-            className="hover:bg-transparent uppercase dark:text-gray-300 font-semibold transition-all duration-200 hover:focus:bg-transparent hover:text-[#0e9f6e]"
+            className="hover:bg-transparent cta uppercase dark:text-gray-300 font-semibold"
             to={"/liked"}
           >
-            Liked Gadgets
+         <span className="hover-underline-animation">Liked Gadgets</span>
           </NavLink>
         )}
       </div>
       <div>
         {user && (
           <NavLink
-            className="hover:bg-transparent uppercase dark:text-gray-300 font-semibold transition-all duration-200 hover:focus:bg-transparent hover:text-[#0e9f6e]"
+            className="hover:bg-transparent uppercase dark:text-gray-300 font-semibold cta"
             to={"/my-gadgets"}
           >
-            My Gadgets
+          <span className="hover-underline-animation">My Gadgets</span>
           </NavLink>
         )}
       </div>
@@ -107,11 +105,7 @@ export default function Navbar() {
       <div className="navbar container mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost lg:hidden"
-            >
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <i className="fa-solid fa-bars text-xl dark:text-gray-400"></i>
             </div>
             <ul
@@ -204,7 +198,7 @@ export default function Navbar() {
               </div>
             </div>
           ) : (
-            <Link to="/signIn" className="btn btn-primary">
+            <Link to="/signIn" className="btn ">
               <CgProfile size={15} />
               Sign In
             </Link>

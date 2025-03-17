@@ -74,6 +74,7 @@ export default function Banner() {
                         </button>
                     </div>
                 </div>
+                
                 <div className="relative overflow-hidden rounded-3xl">
                     <img
                         src="https://ap-priotech.myshopify.com/cdn/shop/files/Mask_group_21.png?v=1689067967&width=1920"
