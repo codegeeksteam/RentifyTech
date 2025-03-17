@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const NormalBanner = () => {
   return (
     <div>
@@ -8,17 +10,31 @@ const NormalBanner = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-4">
         <div>
-          <img src="https://i.ibb.co.com/YT26cbmS/Screenshot-2.png" alt="" />
+          <Link to="/">
+            <img
+              className="h-50"
+              src="https://i.ibb.co.com/YT26cbmS/Screenshot-2.png"
+              alt=""
+            />
+          </Link>
         </div>
         <div>
-          <img src="https://i.ibb.co.com/nqQ8rxGb/Screenshot-22.png" alt="" />
+          <Link to="/">
+            <img
+              className="h-52"
+              src="https://i.ibb.co.com/nqQ8rxGb/Screenshot-22.png"
+              alt=""
+            />
+          </Link>
         </div>
         <div>
-          <img
-            className="h-54 w-96"
-            src="https://i.ibb.co.com/SSwszwF/div-card-two.webp"
-            alt=""
-          />
+          <Link to="/">
+            <img
+              className="h-50 w-96"
+              src="https://i.ibb.co.com/SSwszwF/div-card-two.webp"
+              alt=""
+            />
+          </Link>
         </div>
       </div>
       {/* / */}
