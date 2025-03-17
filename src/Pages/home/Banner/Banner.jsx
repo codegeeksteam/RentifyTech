@@ -33,7 +33,7 @@ export default function Banner() {
                 setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
                 setFade(false);
             }, 500); // Fade-out effect duration
-        }, 3000); // Change image every 3 seconds
+        }, 2000); // Change image every 3 seconds
 
         return () => clearInterval(interval); // Cleanup on unmount
     }, []);
