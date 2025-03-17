@@ -19,7 +19,6 @@ const NormalBanner = () => {
             src="https://i.ibb.co.com/SSwszwF/div-card-two.webp"
             alt=""
           />
-          <span className="-pt-30">k</span>
         </div>
       </div>
     </div>
