@@ -36,7 +36,7 @@ const features = [
               </div>
               <div>
                 <h3 className="text-xl font-semibold">{feature.title}</h3>
-                <p className="text-gray-600 text-sm mt-3">{feature.description}</p>
+                <p className="text-gray-600 text-sm mt-2">{feature.description}</p>
               </div>
             </div>
           ))}
