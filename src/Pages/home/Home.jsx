@@ -8,6 +8,7 @@ import Banner from "./Banner/Banner";
 import LattesrBanner from "./LatesrBanner/LatestBanner";
 import NormalBanner from "./LatesrBanner/NormalBanner";
 import Features from "./Features/Features";
+import ElectronicsRental from "./Secondary/SecondaryBAnner";
 
 const Home = () => {
   return (
@@ -15,7 +16,10 @@ const Home = () => {
       <Navbar></Navbar>
       <Banner></Banner>
       <Features/>
+
       <FeaturedProducts></FeaturedProducts>
+      <ElectronicsRental/>
+
       <Testimonials />
       <NormalBanner />
       <OurNews />
