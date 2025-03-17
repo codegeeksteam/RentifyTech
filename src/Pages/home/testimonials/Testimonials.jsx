@@ -27,9 +27,9 @@ function Testimonials() {
 
   return (
     <div className="container py-8 px-2 flex flex-col gap-4 mx-auto text-center">
-      <h1 className="text-3xl">Testimonials</h1>
-      <h3 className="text-2xl mb-3">
-        We don’t just Rent Products, <br />
+      <h1 className="text-4xl font-bold ">Testimonials</h1>
+      <h3 className="text-md mb-3 text-gray-600">
+        We don’t just Rent Products
         We Build Relationships!
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-between flex-grow">
