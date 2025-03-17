@@ -10,12 +10,14 @@ import NormalBanner from "./LatesrBanner/NormalBanner";
 import Features from "./Features/Features";
 import ElectronicsRental from "./Secondary/SecondaryBAnner";
 import Electronics from "./ElecronicsRental/Electronis";
+import RentalSection from "./RentalSection/RentalSection";
 
 const Home = () => {
   return (
     <div className="">
       <Navbar></Navbar>
       <Banner></Banner>
+      <RentalSection/>
       <Features/>
 
       <FeaturedProducts></FeaturedProducts>

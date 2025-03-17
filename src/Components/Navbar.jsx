@@ -204,7 +204,7 @@ export default function Navbar() {
               </div>
             </div>
           ) : (
-            <Link to="/signIn" className="btn btn-primary">
+            <Link to="/signIn" className="btn ">
               <CgProfile size={15} />
               Sign In
             </Link>
