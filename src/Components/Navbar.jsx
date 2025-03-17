@@ -9,25 +9,25 @@ import Swal from "sweetalert2";
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const { signOutUser, user } = useAuth()
+  const { signOutUser, user } = useAuth();
   const handleSignOut = () => {
     // similar log out function
     signOutUser()
-        .then(() => {
-          Swal.fire({
-            title: "success!",
-            text: "User Log out successfully!",
-            icon: "success",
-          });
-          navigate('/')
-        })
-        .catch((error) => {
-          Swal.fire({
-            title: "ERROR!",
-            text: `${error.message}`,
-            icon: "error",
-          });
+      .then(() => {
+        Swal.fire({
+          title: "success!",
+          text: "User Log out successfully!",
+          icon: "success",
         });
+        navigate("/");
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "ERROR!",
+          text: `${error.message}`,
+          icon: "error",
+        });
+      });
   };
 
   // const { setDarkMode, darkMode } = useData(); //this state value false?
@@ -55,8 +55,6 @@ export default function Navbar() {
         <span className="hover-underline-animation">About</span>
         </NavLink>
       </div>
-
-
 
       <div>
         {user && (
@@ -107,11 +105,7 @@ export default function Navbar() {
       <div className="navbar container mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost lg:hidden"
-            >
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <i className="fa-solid fa-bars text-xl dark:text-gray-400"></i>
             </div>
             <ul
@@ -204,7 +198,7 @@ export default function Navbar() {
               </div>
             </div>
           ) : (
-            <Link to="/signIn" className="btn btn-primary">
+            <Link to="/signIn" className="btn ">
               <CgProfile size={15} />
               Sign In
             </Link>

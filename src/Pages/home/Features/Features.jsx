@@ -27,9 +27,9 @@ export default function Features() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center  justify-between gap-6 ">
           {features.map((feature, index) => (
             <div key={index} className="flex items-center space-x-4">
-              <span className="text-4xl">{feature.icon}</span>
+              <span className="text-5xl">{feature.icon}</span>
               <div>
-                <h3 className="font-semibold text-xl">{feature.title}</h3>
+                <h3 className="font-semibold text-2xl">{feature.title}</h3>
                 <p className="text-gray-600">{feature.description}</p>
               </div>
             </div>
