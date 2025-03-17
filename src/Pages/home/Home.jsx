@@ -6,6 +6,7 @@ import FeaturedProducts from "./FeaturedProducts/FeaturedProducts";
 import OurNews from "./ourNews/OurNews";
 import Banner from "./Banner/Banner";
 import LattesrBanner from "./LatesrBanner/LatestBanner";
+import NormalBanner from "./LatesrBanner/NormalBanner";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <Banner></Banner>
       <FeaturedProducts></FeaturedProducts>
       <Testimonials />
+      <NormalBanner />
       <OurNews />
       <LattesrBanner />
       <Footer />
