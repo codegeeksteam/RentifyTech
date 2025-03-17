@@ -9,6 +9,7 @@ import LattesrBanner from "./LatesrBanner/LatestBanner";
 import NormalBanner from "./LatesrBanner/NormalBanner";
 import Features from "./Features/Features";
 import ElectronicsRental from "./Secondary/SecondaryBAnner";
+import Electronics from "./ElecronicsRental/Electronis";
 
 const Home = () => {
   return (
@@ -20,10 +21,13 @@ const Home = () => {
       <FeaturedProducts></FeaturedProducts>
       <ElectronicsRental/>
 
-      <Testimonials />
+      
       <NormalBanner />
-      <OurNews />
+     
       <LattesrBanner />
+      <Electronics/>
+      <Testimonials />
+      <OurNews />
       <Footer />
     </div>
   );
