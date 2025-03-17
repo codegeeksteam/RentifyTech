@@ -21,6 +21,7 @@ const NormalBanner = () => {
           />
         </div>
       </div>
+      {/* / */}
     </div>
   );
 };
