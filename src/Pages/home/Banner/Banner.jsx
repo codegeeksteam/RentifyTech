@@ -57,6 +57,10 @@ export default function Banner() {
                 </div>
             </div>
 
+
+
+            
+
             <div className="flex flex-col gap-4">
                 <div className="relative overflow-hidden rounded-3xl">
                     <img
