@@ -7,17 +7,27 @@ import OurNews from "./ourNews/OurNews";
 import Banner from "./Banner/Banner";
 import LattesrBanner from "./LatesrBanner/LatestBanner";
 import NormalBanner from "./LatesrBanner/NormalBanner";
+import Features from "./Features/Features";
+import ElectronicsRental from "./Secondary/SecondaryBAnner";
+import Electronics from "./ElecronicsRental/Electronis";
 
 const Home = () => {
   return (
     <div className="">
       <Navbar></Navbar>
       <Banner></Banner>
+      <Features/>
+
       <FeaturedProducts></FeaturedProducts>
-      <Testimonials />
+      <ElectronicsRental/>
+
+      
       <NormalBanner />
-      <OurNews />
+     
       <LattesrBanner />
+      <Electronics/>
+      <Testimonials />
+      <OurNews />
       <Footer />
     </div>
   );
