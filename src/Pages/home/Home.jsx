@@ -7,12 +7,14 @@ import OurNews from "./ourNews/OurNews";
 import Banner from "./Banner/Banner";
 import LattesrBanner from "./LatesrBanner/LatestBanner";
 import NormalBanner from "./LatesrBanner/NormalBanner";
+import Features from "./Features/Features";
 
 const Home = () => {
   return (
     <div className="">
       <Navbar></Navbar>
       <Banner></Banner>
+      <Features/>
       <FeaturedProducts></FeaturedProducts>
       <Testimonials />
       <NormalBanner />
