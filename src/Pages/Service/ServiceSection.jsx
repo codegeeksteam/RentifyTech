@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { FaTools, FaPencilRuler, FaCogs, FaBoxOpen, FaLeaf, FaUserTie } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
 
 const services = [
   { icon: <FaTools size={40} />, title: "Unmatched Quality", desc: "Our team of professionals will help you plan, design, and install your dream kitchen." },
