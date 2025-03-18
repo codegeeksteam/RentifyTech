@@ -26,7 +26,7 @@ const FeaturedProducts = () => {
                                 <h3 className="text-xl font-semibold text-gray-800">{product.name}</h3>
                                 <p className="text-gray-600 mt-2">{product.description}</p>
                                 <p className="text-gray-900 font-bold mt-4">{product.price}</p>
-                                <button className="mt-6 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition duration-300">
+                                <button className="mt-6 w-full bg-black text-white py-2 rounded hover:bg-blue-600 transition duration-300">
                                     Add to Cart
                                 </button>
                             </div>

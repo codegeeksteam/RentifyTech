@@ -22,10 +22,10 @@ function OurNews() {
 
   return (
     <div className="container py-8 px-2 flex flex-col gap-4 mx-auto text-center">
-      <h1 className="text-3xl">New Updates</h1>
-      <h3 className="text-2xl mb-3">
+      <h1 className="text-4xl font-bold">New Updates</h1>
+      <h3 className="text-md mb-3 text-gray-600">
         Stay updated with our news
-        <br />
+      
         and latest technologies
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-between flex-grow">
