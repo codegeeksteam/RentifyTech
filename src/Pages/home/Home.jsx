@@ -17,17 +17,15 @@ const Home = () => {
     <div className="">
       <Navbar></Navbar>
       <Banner></Banner>
-      <RentalSection/>
-      <Features/>
+      <RentalSection />
+      <Features />
 
       <FeaturedProducts></FeaturedProducts>
-      <ElectronicsRental/>
-
-      
       <NormalBanner />
-     
+      <ElectronicsRental />
+
       <LattesrBanner />
-      <Electronics/>
+      <Electronics />
       <Testimonials />
       <OurNews />
       <Footer />
