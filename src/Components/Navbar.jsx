@@ -1,11 +1,11 @@
 // Desc: Navbar component for the application
-import { useEffect, useState } from "react";
-import { FiShoppingCart } from "react-icons/fi";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import img from "../assets/download (2).jpeg";
-import { CgProfile } from "react-icons/cg";
-import useAuth from "../Hooks/useAuth";
-import Swal from "sweetalert2";
+import { useEffect, useState } from 'react';
+import { FiShoppingCart } from 'react-icons/fi';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import img from '../assets/download (2).jpeg';
+import { CgProfile } from 'react-icons/cg';
+import useAuth from '../Hooks/useAuth';
+import Swal from 'sweetalert2';
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -15,17 +15,17 @@ export default function Navbar() {
     signOutUser()
       .then(() => {
         Swal.fire({
-          title: "success!",
-          text: "User Log out successfully!",
-          icon: "success",
+          title: 'success!',
+          text: 'User Log out successfully!',
+          icon: 'success',
         });
-        navigate("/");
+        navigate('/');
       })
       .catch((error) => {
         Swal.fire({
-          title: "ERROR!",
+          title: 'ERROR!',
           text: `${error.message}`,
-          icon: "error",
+          icon: 'error',
         });
       });
   };
@@ -36,23 +36,23 @@ export default function Navbar() {
   const links = (
     <>
       <div>
-        <NavLink className=" font-semibold uppercase cta" to={"/"}>
+        <NavLink className=" font-semibold uppercase cta" to={'/'}>
           <span className="hover-underline-animation">Home</span>
         </NavLink>
       </div>
       <div>
-        <NavLink className="font-semibold uppercase cta" to={"/shop"}>
-        <span className="hover-underline-animation">Shop</span>
+        <NavLink className="font-semibold uppercase cta" to={'/shop'}>
+          <span className="hover-underline-animation">Shop</span>
         </NavLink>
       </div>
       <div>
-        <NavLink className="font-semibold uppercase cta" to={"/all-gadgets"}>
-        <span className="hover-underline-animation">All Gadgets</span>
+        <NavLink className="font-semibold uppercase cta" to={'/all-gadgets'}>
+          <span className="hover-underline-animation">All Gadgets</span>
         </NavLink>
       </div>
       <div>
-        <NavLink className="font-semibold uppercase cta" to={"/about-us"}>
-        <span className="hover-underline-animation">About</span>
+        <NavLink className="font-semibold uppercase cta" to={'/about-us'}>
+          <span className="hover-underline-animation">About</span>
         </NavLink>
       </div>
 
@@ -60,9 +60,9 @@ export default function Navbar() {
         {user && (
           <NavLink
             className="hover:bg-transparent cta uppercase dark:text-gray-300 font-semibold"
-            to={"/liked"}
+            to={'/liked'}
           >
-         <span className="hover-underline-animation">Liked Gadgets</span>
+            <span className="hover-underline-animation">Liked Gadgets</span>
           </NavLink>
         )}
       </div>
@@ -70,9 +70,9 @@ export default function Navbar() {
         {user && (
           <NavLink
             className="hover:bg-transparent uppercase dark:text-gray-300 font-semibold cta"
-            to={"/my-gadgets"}
+            to={'/my-gadgets'}
           >
-          <span className="hover-underline-animation">My Gadgets</span>
+            <span className="hover-underline-animation">My Gadgets</span>
           </NavLink>
         )}
       </div>
@@ -80,13 +80,13 @@ export default function Navbar() {
   );
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
+    const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
-      setDarkMode(savedTheme === "dark");
-      document.body.classList.toggle("dark", savedTheme === "dark");
-    } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+      setDarkMode(savedTheme === 'dark');
+      document.body.classList.toggle('dark', savedTheme === 'dark');
+    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
       setDarkMode(true);
-      document.body.classList.add("light");
+      document.body.classList.add('light');
     }
   }, []);
 
@@ -94,8 +94,8 @@ export default function Navbar() {
     // Dark Mode function
     setDarkMode((prevMode) => {
       const newMode = !prevMode;
-      localStorage.setItem("theme", newMode ? "dark" : "light");
-      document.body.classList.toggle("dark", newMode);
+      localStorage.setItem('theme', newMode ? 'dark' : 'light');
+      document.body.classList.toggle('dark', newMode);
       return newMode;
     });
   };
@@ -115,7 +115,7 @@ export default function Navbar() {
               {links}
             </ul>
           </div>
-          <Link to={"/"} className="text-3xl font-bold dark:text-gray-200">
+          <Link to={'/'} className="text-3xl font-bold dark:text-gray-200">
             <span className="text-white">Ren</span>
             <span className="text-white ">Techify</span>
           </Link>
@@ -128,14 +128,16 @@ export default function Navbar() {
             <i
               className={
                 darkMode
-                  ? "fa-solid fa-moon text-white text-xl"
-                  : "fa-regular fa-sun text-slate-700 text-xl"
+                  ? 'fa-solid fa-moon text-white text-xl'
+                  : 'fa-regular fa-sun text-slate-700 text-xl'
               }
             ></i>
           </button>
           {/* Notification Icon */}
           <button className="btn btn-md btn-circle hidden md:block">
-            <FiShoppingCart className="text-xl mx-auto" />
+            <Link to={'/cart'}>
+              <FiShoppingCart className="text-xl mx-auto" />
+            </Link>
           </button>
 
           {user ? (
