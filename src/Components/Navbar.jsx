@@ -52,10 +52,10 @@ export default function Navbar() {
       </div>
       <div>
         <NavLink className="font-semibold uppercase cta" to={'/about-us'}>
-          <span className="hover-underline-animation">About</span>
+        <span className="hover-underline-animation">About</span>
         </NavLink>
       </div>
-
+   {/***How are */}
       <div>
         {user && (
           <NavLink
