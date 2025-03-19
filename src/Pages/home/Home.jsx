@@ -11,6 +11,8 @@ import Features from "./Features/Features";
 import ElectronicsRental from "./Secondary/SecondaryBAnner";
 import Electronics from "./ElecronicsRental/Electronis";
 import RentalSection from "./RentalSection/RentalSection";
+import DesignGoalSection from "../../Components/DesignGoal/DesignGoalSection";
+import OurProcess from "../../Components/OurProcess/OurProcess";
 
 const Home = () => {
   return (
@@ -23,7 +25,6 @@ const Home = () => {
       <FeaturedProducts></FeaturedProducts>
       <NormalBanner />
       <ElectronicsRental />
-
       <LattesrBanner />
       <Electronics />
       <Testimonials />
