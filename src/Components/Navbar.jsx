@@ -55,7 +55,7 @@ export default function Navbar() {
         <span className="hover-underline-animation">About</span>
         </NavLink>
       </div>
-   {/***How are */}
+  
       <div>
         {user && (
           <NavLink
