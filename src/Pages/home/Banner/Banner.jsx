@@ -33,7 +33,7 @@ export default function Banner() {
                 setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
                 setFade(false);
             }, 500); // Fade-out effect duration
-        }, 2000); // Change image every 3 seconds
+        }, 3000); // Change image every 3 seconds
 
         return () => clearInterval(interval); // Cleanup on unmount
     }, []);
@@ -45,13 +45,13 @@ export default function Banner() {
                 <img
                     src={slides[currentIndex].src}
                     alt={`Slide ${currentIndex + 1}`}
-                    className={`w-full h-full object-cover rounded-lg transition-opacity duration-500 ease-in ${fade ? "opacity-0" : "opacity-100"}`}
+                    className={`w-full h-full object-cover rounded-lg transition-opacity duration-1000 ease-in ${fade ? "opacity-0" : "opacity-100"}`}
                 />
                 {/* Overlay for Title, Description, and Button */}
                 <div className="absolute inset-0 flex flex-col justify-center items-start p-10 bg-black/30 text-white">
-                    <h1 className="text-4xl font-bold">{slides[currentIndex].title}</h1>
+                    <h1 className="text-5xl font-bold">{slides[currentIndex].title}</h1>
                     <p className="text-lg mt-2">{slides[currentIndex].description}</p>
-                    <button className="mt-4 bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition">
+                    <button className="mt-4 uppercase font-medium bg-white text-black py-2 px-4 rounded-full hover:bg-gray-200 transition">
                         {slides[currentIndex].buttonText}
                     </button>
                 </div>
