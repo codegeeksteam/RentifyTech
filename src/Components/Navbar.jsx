@@ -75,7 +75,7 @@ export default function Navbar() {
         {user && (
           <NavLink
             className="hover:bg-transparent uppercase dark:text-gray-300 font-semibold cta"
-            to={'/my-gadgets'}
+            to={'/dashboard'}
           >
             <span className="hover-underline-animation">My Gadgets</span>
           </NavLink>
@@ -160,7 +160,7 @@ export default function Navbar() {
                 </div>
                 <div
                   tabIndex={0}
-                  className="dropdown-content menu z-[1] w-80 p-4 sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900"
+                  className="dropdown-content menu z-[1] w-72 p-4 sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900"
                 >
                   <div className="rounded-t-lg h-32 overflow-hidden">
                     <img
@@ -187,7 +187,7 @@ export default function Navbar() {
                   <div className="divider"></div>
                   <div className="p-2">
                     <Link
-                      to="/"
+                      to="dashboard"
                       className="w-full rounded-full bg-gray-900 hover:shadow-lg text-white px-6 py-2"
                     >
                       Dashboard
