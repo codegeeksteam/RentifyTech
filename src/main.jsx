@@ -10,6 +10,7 @@ import SignUp from './Pages/signUp/SignUp.jsx';
 import SignIn from './Pages/signIn/SignIn.jsx';
 import Error from './Pages/Erorr/Erorr.jsx';
 import Cart from './Pages/cart/Cart.jsx';
+import Contact from './Pages/contactUs/contact.jsx';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: '/about-us',
         element: <AboutUs />,
+      },
+      {
+        path: '/contact-us',
+        element: <Contact></Contact>,
       },
       {
         path: '/cart',

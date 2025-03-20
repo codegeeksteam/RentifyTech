@@ -12,6 +12,7 @@ import ElectronicsRental from "./Secondary/SecondaryBAnner";
 import Electronics from "./ElecronicsRental/Electronis";
 import RentalSection from "./RentalSection/RentalSection";
 
+
 const Home = () => {
   return (
     <div className="">
@@ -19,11 +20,9 @@ const Home = () => {
       <Banner></Banner>
       <RentalSection />
       <Features />
-
       <FeaturedProducts></FeaturedProducts>
       <NormalBanner />
       <ElectronicsRental />
-
       <LattesrBanner />
       <Electronics />
       <Testimonials />
