@@ -1,4 +1,6 @@
 import React from "react";
+import { CiLogout } from "react-icons/ci";
+import { FaHome } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 const UsersDashboard = ({handleSignOut}) => {
