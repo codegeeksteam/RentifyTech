@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const AgentDashboard = () => {
+const AgentDashboard = ({handleSignOut}) => {
   return (
     <nav className="flex-1 px-2 py-4 bg-gray-700">
       <NavLink>
@@ -39,6 +39,7 @@ const AgentDashboard = () => {
         </NavLink>
         <NavLink className="flex-2">
           <a
+          onClick={handleSignOut}
             href="#"
             className="flex items-center gap-3 px-4 py-2 text-gray-100 hover:bg-gray-900"
           >
