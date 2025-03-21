@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const UsersDashboard = () => {
+const UsersDashboard = ({handleSignOut}) => {
   return (
     <nav className="flex-1 px-2 py-4 bg-gray-700">
-      <NavLink>
+      <NavLink to={"/dashboard/myGadget"}>
         <a
           href="#"
           className="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-900"
@@ -23,7 +23,7 @@ const UsersDashboard = () => {
               d="M4 6h16M4 12h16M4 18h16"
             />
           </svg>
-          User Dashboard
+        My Gadget
         </a>
       </NavLink>
       <div className="divider divider-neutral"></div>
@@ -39,6 +39,7 @@ const UsersDashboard = () => {
         </NavLink>
         <NavLink className="flex-2">
           <a
+          onClick={handleSignOut}
             href="#"
             className="flex items-center gap-3 px-4 py-2 text-gray-100 hover:bg-gray-900"
           >
