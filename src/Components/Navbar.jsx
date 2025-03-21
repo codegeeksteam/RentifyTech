@@ -1,10 +1,10 @@
-import { useEffect, useState, useRef } from 'react';
-import { FiShoppingCart } from 'react-icons/fi';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
-import img from '../assets/download (2).jpeg';
-import { CgProfile } from 'react-icons/cg';
-import useAuth from '../Hooks/useAuth';
-import Swal from 'sweetalert2';
+import { useEffect, useState, useRef } from "react";
+import { FiShoppingCart } from "react-icons/fi";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import img from "../assets/download (2).jpeg";
+import { CgProfile } from "react-icons/cg";
+import useAuth from "../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -17,37 +17,37 @@ export default function Navbar() {
     signOutUser()
       .then(() => {
         Swal.fire({
-          title: 'Success!',
-          text: 'User logged out successfully!',
-          icon: 'success',
+          title: "Success!",
+          text: "User logged out successfully!",
+          icon: "success",
         });
-        navigate('/');
+        navigate("/");
       })
       .catch((error) => {
         Swal.fire({
-          title: 'ERROR!',
+          title: "ERROR!",
           text: `${error.message}`,
-          icon: 'error',
+          icon: "error",
         });
       });
   };
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
+    const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
-      setDarkMode(savedTheme === 'dark');
-      document.body.classList.toggle('dark', savedTheme === 'dark');
-    } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+      setDarkMode(savedTheme === "dark");
+      document.body.classList.toggle("dark", savedTheme === "dark");
+    } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
       setDarkMode(true);
-      document.body.classList.add('light');
+      document.body.classList.add("light");
     }
   }, []);
 
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => {
       const newMode = !prevMode;
-      localStorage.setItem('theme', newMode ? 'dark' : 'light');
-      document.body.classList.toggle('dark', newMode);
+      localStorage.setItem("theme", newMode ? "dark" : "light");
+      document.body.classList.toggle("dark", newMode);
       return newMode;
     });
   };
@@ -59,39 +59,29 @@ export default function Navbar() {
         setDropdownOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
   const links = (
     <>
-      <NavLink className="font-semibold uppercase cta" to={'/'}>
+      <NavLink className="font-semibold uppercase cta" to={"/"}>
         <span className="hover-underline-animation">Home</span>
       </NavLink>
-      <NavLink className="font-semibold uppercase cta" to={'/shop'}>
+      <NavLink className="font-semibold uppercase cta" to={"/shop"}>
         <span className="hover-underline-animation">Shop</span>
       </NavLink>
-      <NavLink className="font-semibold uppercase cta" to={'/all-gadgets'}>
+      <NavLink className="font-semibold uppercase cta" to={"/all-gadgets"}>
         <span className="hover-underline-animation">All Gadgets</span>
       </NavLink>
-      <NavLink className="font-semibold uppercase cta" to={'/about-us'}>
+      <NavLink className="font-semibold uppercase cta" to={"/about-us"}>
         <span className="hover-underline-animation">About</span>
       </NavLink>
-      <NavLink className="font-semibold uppercase cta" to={'/contact-us'}>
+      <NavLink className="font-semibold uppercase cta" to={"/contact-us"}>
         <span className="hover-underline-animation">Contact</span>
       </NavLink>
-      {user && (
-        <>
-          <NavLink className="font-semibold uppercase cta" to={'/liked'}>
-            <span className="hover-underline-animation">Liked Gadgets</span>
-          </NavLink>
-          <NavLink className="font-semibold uppercase cta" to={'/dashboard'}>
-            <span className="hover-underline-animation">My Gadgets</span>
-          </NavLink>
-        </>
-      )}
     </>
   );
 
@@ -110,7 +100,7 @@ export default function Navbar() {
               {links}
             </ul>
           </div>
-          <Link to={'/'} className="text-3xl font-bold dark:text-gray-200">
+          <Link to={"/"} className="text-3xl font-bold dark:text-gray-200">
             <span className="text-white">Ren</span>
             <span className="text-white">Techify</span>
           </Link>
@@ -125,14 +115,14 @@ export default function Navbar() {
             <i
               className={
                 darkMode
-                  ? 'fa-solid fa-moon text-white text-xl'
-                  : 'fa-regular fa-sun text-slate-700 text-xl'
+                  ? "fa-solid fa-moon text-white text-xl"
+                  : "fa-regular fa-sun text-slate-700 text-xl"
               }
             ></i>
           </button>
 
           <button className="btn btn-md btn-circle hidden md:block">
-            <Link to={'/cart'}>
+            <Link to={"/cart"}>
               <FiShoppingCart className="text-xl mx-auto" />
             </Link>
           </button>
@@ -150,10 +140,18 @@ export default function Navbar() {
               {isDropdownOpen && (
                 <div className="absolute right-0 mt-4 w-72 bg-white shadow-xl rounded-lg text-gray-900 z-50">
                   <div className="rounded-t-lg h-32 overflow-hidden">
-                    <img className="object-cover w-full" src={img} alt="Background" />
+                    <img
+                      className="object-cover w-full"
+                      src={img}
+                      alt="Background"
+                    />
                   </div>
                   <div className="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
-                    <img className="object-cover h-32" src={user.photoURL} alt="User" />
+                    <img
+                      className="object-cover h-32"
+                      src={user.photoURL}
+                      alt="User"
+                    />
                   </div>
                   <div className="text-center mt-2">
                     <h2 className="font-semibold md:text-2xl text-sm">
