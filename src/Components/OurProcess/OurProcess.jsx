@@ -38,7 +38,7 @@ const OurProcess = () => {
             whileHover={{ scale: 1.05 }}
             className="relative bg-gradient-to-r from-gray-200 to-transparent p-8 rounded-lg shadow-lg w-full md:w-1/3 h-56 flex flex-col justify-center items-start text-left"
           >
-            <span className="absolute top-6 right-6 text-gray-400 text-7xl font-bold opacity-50">
+            <span className="absolute top-6 right-6 text-7xl font-bold opacity-50"style={{ WebkitTextStroke: "1px rgba(0, 0, 0, 0.2)", color: "transparent" }}>
               {step.number}
             </span>
             <h3 className="text-xl font-bold text-black relative z-10">{step.title}</h3>
