@@ -12,6 +12,8 @@ import Error from './Pages/Erorr/Erorr.jsx';
 import Cart from './Pages/cart/Cart.jsx';
 import Contact from './Pages/contactUs/contact.jsx';
 import Dashboard from './Pages/Dashboard/Dashboard.jsx';
+import ProductDetailsPage from './Pages/productDetails/ProductDetailsPage.jsx';
+import AllGadgetsPage from './Pages/allProducts/AllGadgetsPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +35,14 @@ const router = createBrowserRouter([
         element: <Cart />,
       },
       {
+        path: '/all-gadgets',
+        element: <AllGadgetsPage/>
+      },
+      {
+        path: '/cam-sony-a7iii',
+        element: <ProductDetailsPage />,
+      },
+      {
         path: '/signIn',
         element: <SignIn />,
       },
@@ -43,12 +53,10 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "dashboard",
+    path: 'dashboard',
     element: <Dashboard />,
-    children: [
-    {},
-    ],
-  }
+    children: [{}],
+  },
 ]);
 
 createRoot(document.getElementById('root')).render(
