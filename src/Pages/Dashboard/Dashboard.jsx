@@ -28,8 +28,7 @@ const Dashboard = () => {
         <div>
             <DashboardNavbar />
         </div>
-        <div className="m-2 p-3 bg-white rounded-lg border">
-          hello
+        <div className="m-2 p-3 bg-white rounded-lg">
           <Outlet />
         </div>
     </div>
