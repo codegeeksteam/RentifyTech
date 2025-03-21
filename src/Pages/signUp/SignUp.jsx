@@ -1,18 +1,23 @@
 import React, { useState } from "react";
 import signUpImg from "../../assets/signUp.json";
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const SignUp = () => {
   const navigate = useNavigate();
   const { signInGoogle, createUser, updateMyProfile } = useAuth();
+  const axiosPublic = useAxiosPublic();
   const [showPassword, setShowPassword] = useState(false);
+  const location = useLocation();
+  const from = location?.state || "/";
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -29,21 +34,25 @@ const SignUp = () => {
             phone: data?.phone,
             role: data?.userType,
           };
-          console.log(userInfo);
-          navigate("/");
-          // axiosPublic.post("/users", userInfo).then((res) => {
-          //   if (res.data.insertedId) {
-          //     reset();
-          //     Swal.fire({
-          //       title: "success!",
-          //       text: "Sign Up Successful!",
-          //       icon: "success",
-          //     });
-          //     navigate("/");
-          //   }
-          // });
+          axiosPublic.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              reset();
+              Swal.fire({
+                title: "success!",
+                text: "Sign Up Successful!",
+                icon: "success",
+              });
+              navigate("/");
+            }
+          });
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          Swal.fire({
+            title: "ERROR!",
+            text: `${error.message}`,
+            icon: "error",
+          });
+        });
     });
   };
 
@@ -51,12 +60,21 @@ const SignUp = () => {
     signInGoogle()
       .then((res) => {
         console.log(res.user);
-        Swal.fire({
-          title: "success!",
-          text: "Sign Up Successful!",
-          icon: "success",
+        const userInfo = {
+          name: res.user?.displayName,
+          email: res.user?.email,
+          role: "User",
+        };
+        axiosPublic.post("/users", userInfo).then((res) => {
+          if (res.data.insertedId) {
+            Swal.fire({
+              title: "success!",
+              text: "Sign Up Successful!",
+              icon: "success",
+            });
+            navigate(from, { replace: true });
+          }
         });
-        navigate("/");
       })
       .catch((error) => {
         Swal.fire({
@@ -207,14 +225,13 @@ const SignUp = () => {
                       >
                         <option value="">Select user type</option>
                         <option value="User">User</option>
-                        <option value="Delivery Man">Agent</option>
+                        <option value="Agent">Agent</option>
                       </select>
-                      {errors.userType &&  (
+                      {errors.userType && (
                         <p className="text-red-500 text-sm mt-1">
                           {errors.userType.message}
                         </p>
                       )}
-                      
                     </div>
                     <button className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                       <svg
