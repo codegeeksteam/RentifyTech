@@ -11,7 +11,8 @@ const AllGadgetsPage = () => {
       name: 'Professional DSLR Camera',
       brand: 'Canon',
       category: 'Photography',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://images.squarespace-cdn.com/content/v1/579bbd35b3db2bfbd63eb3ae/c8c56199-41fd-436f-acaf-0ca67487d511/canon6dreviewwithsamplephotos.jpg',
       price: 49.99,
       rating: 4.8,
       reviews: 124,
@@ -22,7 +23,8 @@ const AllGadgetsPage = () => {
       name: 'Wireless Microphone Set',
       brand: 'Rode',
       category: 'Audio',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://www.ryans.com/storage/products/main/rode-wireless-pro-2-person-24ghz-wireless-11703397432.webp',
       price: 29.99,
       rating: 4.6,
       reviews: 87,
@@ -33,7 +35,8 @@ const AllGadgetsPage = () => {
       name: 'Ultra-wide Lens 16-35mm',
       brand: 'Sony',
       category: 'Photography',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://digitalshopbd.com/public/uploads/all/pOotuMppVUMDbf4csF1DeYOgsO2z1cz3EsneGRGH.jpg',
       price: 34.99,
       rating: 4.9,
       reviews: 56,
@@ -44,7 +47,8 @@ const AllGadgetsPage = () => {
       name: 'Portable LED Light Panel',
       brand: 'Aputure',
       category: 'Lighting',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://www.glazerscamera.com/cdn/shop/products/55202-_HeroAssetTemplate_1200x1200.jpg?v=1637773438',
       price: 24.99,
       rating: 4.7,
       reviews: 93,
@@ -55,7 +59,8 @@ const AllGadgetsPage = () => {
       name: '4K Video Camera',
       brand: 'Panasonic',
       category: 'Video',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://www.startech.com.bd/image/cache/catalog/camera/video-camera/panasonic/ag-cx6/ag-cx6-01-500x500.webp',
       price: 59.99,
       rating: 4.5,
       reviews: 42,
@@ -66,7 +71,8 @@ const AllGadgetsPage = () => {
       name: 'Professional Tripod',
       brand: 'Manfrotto',
       category: 'Accessories',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://cameraclix.com.au/cdn/shop/products/mkbfra4-bh-det13_1800x1800.jpg?v=1627603072',
       price: 19.99,
       rating: 4.4,
       reviews: 118,
@@ -77,7 +83,8 @@ const AllGadgetsPage = () => {
       name: 'Gaming Laptop',
       brand: 'Alienware',
       category: 'Computers',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://sm.ign.com/ign_pk/cover/a/alienware-/alienware-x16_dxsk.jpg',
       price: 89.99,
       rating: 4.9,
       reviews: 74,
@@ -88,7 +95,8 @@ const AllGadgetsPage = () => {
       name: 'Drone with 4K Camera',
       brand: 'DJI',
       category: 'Drones',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://diamu.com.bd/wp-content/uploads/2022/05/DJI-Mini-3-Pro-5-600x600.jpg',
       price: 79.99,
       rating: 4.7,
       reviews: 105,
@@ -99,7 +107,8 @@ const AllGadgetsPage = () => {
       name: 'Condenser Microphone',
       brand: 'Audio-Technica',
       category: 'Audio',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://www.audio-technica.com/media/catalog/product/cache/177161fc218aa2dd413f2b73f6832b88/a/t/atm10a_01.png',
       price: 22.99,
       rating: 4.6,
       reviews: 67,
@@ -110,7 +119,8 @@ const AllGadgetsPage = () => {
       name: 'Mirrorless Camera',
       brand: 'Sony',
       category: 'Photography',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://digitalshopbd.com/public/uploads/all/E9msTmFIWkMEKdnv1yjYOLTIQ18QlVKTVvblKaZn.jpg',
       price: 54.99,
       rating: 4.8,
       reviews: 91,
@@ -121,7 +131,8 @@ const AllGadgetsPage = () => {
       name: 'Studio Headphones',
       brand: 'Sennheiser',
       category: 'Audio',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTj8PMN47Ifaki5et84sqQ-Zwr1lWw7v0p9kg&s',
       price: 24.99,
       rating: 4.5,
       reviews: 78,
@@ -132,7 +143,8 @@ const AllGadgetsPage = () => {
       name: 'Ring Light Kit',
       brand: 'Neewer',
       category: 'Lighting',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://ca.neewer.com/cdn/shop/collections/56201274_1130981433769478_1291467037715470866_n_d97dec4b-8cb8-4c4e-ab02-6c0311223b83.webp',
       price: 16.99,
       rating: 4.3,
       reviews: 145,
@@ -143,7 +155,8 @@ const AllGadgetsPage = () => {
       name: '360 Degree Camera',
       brand: 'Insta360',
       category: 'Photography',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://cdn.fstoppers.com/styles/large-16-9/s3/lead/2024/04/dsc09112-copy.jpg',
       price: 44.99,
       rating: 4.7,
       reviews: 62,
@@ -154,7 +167,8 @@ const AllGadgetsPage = () => {
       name: 'MacBook Pro',
       brand: 'Apple',
       category: 'Computers',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://www.apple.com/newsroom/images/product/mac/standard/Apple-MacBook-Pro-M2-Pro-and-M2-Max-hero-230117.jpg.news_app_ed.jpg',
       price: 99.99,
       rating: 4.9,
       reviews: 156,
@@ -165,7 +179,8 @@ const AllGadgetsPage = () => {
       name: 'Gimbal Stabilizer',
       brand: 'Zhiyun',
       category: 'Video',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://www.cined.com/content/uploads/2023/07/ZHIYUN-CRANE-4-gimbal2.jpg',
       price: 32.99,
       rating: 4.4,
       reviews: 83,
@@ -176,7 +191,7 @@ const AllGadgetsPage = () => {
       name: 'Wireless Lavalier Mic',
       brand: 'Rode',
       category: 'Audio',
-      image: '/api/placeholder/300/300',
+      image: 'https://assets.cathayphoto.com.sg/product/SR_3453_1.jpg',
       price: 27.99,
       rating: 4.6,
       reviews: 94,
@@ -187,7 +202,8 @@ const AllGadgetsPage = () => {
       name: 'Professional Monitor',
       brand: 'BenQ',
       category: 'Computers',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://www.techlandbd.com/image/cache/catalog/Benq/benq-rd280u-29-inch-4k-hdr-programming-monitor-01-400x280h.jpg',
       price: 65.99,
       rating: 4.8,
       reviews: 71,
@@ -198,7 +214,8 @@ const AllGadgetsPage = () => {
       name: 'Telephoto Lens',
       brand: 'Canon',
       category: 'Photography',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://www.computervillage.com.bd/image/cache/catalog/uploads/products/photos/item_Canon-EF-100-400mm-f-4.5-5.6L-IS-II-USM-Telephoto-Zoom-Lens-price-__1653149777-550x350h.jpeg',
       price: 39.99,
       rating: 4.7,
       reviews: 108,
@@ -210,7 +227,8 @@ const AllGadgetsPage = () => {
       name: 'Smartphone Gimbal',
       brand: 'DJI',
       category: 'Accessories',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://adminapi.applegadgetsbd.com/storage/media/large/4905-85049.jpg',
       price: 69.99,
       rating: 4.6,
       reviews: 56,
@@ -221,7 +239,8 @@ const AllGadgetsPage = () => {
       name: 'Noise Cancelling Headphones',
       brand: 'Bose',
       category: 'Audio',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://sm.pcmag.com/pcmag_me/review/b/bose-quiet/bose-quietcomfort-ultra-headphones_bknf.jpg',
       price: 119.99,
       rating: 4.8,
       reviews: 145,
@@ -232,7 +251,8 @@ const AllGadgetsPage = () => {
       name: 'Smartwatch Series 6',
       brand: 'Apple',
       category: 'Wearables',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://cdn.mos.cms.futurecdn.net/4LipsXNLPxqeoULL3RQV86-1200-80.jpg',
       price: 399.99,
       rating: 4.9,
       reviews: 312,
@@ -243,7 +263,8 @@ const AllGadgetsPage = () => {
       name: 'Bluetooth Speaker',
       brand: 'JBL',
       category: 'Audio',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://gadgetstudiobd.com/wp-content/uploads/2023/01/jbl-boombox-3-portable-bluetooth-speaker7-e1740992565152.webp',
       price: 49.99,
       rating: 4.7,
       reviews: 89,
@@ -254,7 +275,8 @@ const AllGadgetsPage = () => {
       name: 'Smart Home Hub',
       brand: 'Amazon',
       category: 'Smart Home',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://i.guim.co.uk/img/media/d063ed41b7d29f7f190dc13f5544ed87298d54e3/405_476_4645_2787/master/4645.jpg',
       price: 89.99,
       rating: 4.6,
       reviews: 205,
@@ -265,7 +287,8 @@ const AllGadgetsPage = () => {
       name: 'Digital Drawing Tablet',
       brand: 'Wacom',
       category: 'Accessories',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://i5.walmartimages.com/seo/Wacom-One-Digital-Drawing-Tablet-13-3in-Graphics-Display-19in-Length-x-14in-Width-x-5in-Height_3ee336e9-f1be-46e2-8535-f973e828f5aa_1.68a3a405dd701708614f40a7cb5c726d.jpeg',
       price: 129.99,
       rating: 4.7,
       reviews: 112,
@@ -276,7 +299,8 @@ const AllGadgetsPage = () => {
       name: 'VR Headset',
       brand: 'Oculus',
       category: 'Virtual Reality',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://i5.walmartimages.com/seo/LPT-Oculus-Quest-2-Advanced-All-In-One-Virtual-Reality-Headset-256-GB-for-Christmas-Holiday_16a9974e-a5b0-4cad-a98e-730148409bef.3e8858a1d3beb01ff2fbc79a880beedf.jpeg',
       price: 299.99,
       rating: 4.8,
       reviews: 185,
@@ -287,7 +311,8 @@ const AllGadgetsPage = () => {
       name: '4K Action Camera',
       brand: 'GoPro',
       category: 'Video',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://computerimporter.com/image/cache/catalog/products/action-cam/gopro2-400x400.jpg',
       price: 199.99,
       rating: 4.9,
       reviews: 67,
@@ -298,7 +323,8 @@ const AllGadgetsPage = () => {
       name: 'Mini Drone',
       brand: 'DJI',
       category: 'Drones',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://digitalshopbd.com/public/uploads/all/xvVLkN4WkSO3X1lmnZxFQXRxgmHPcmmJYfcBEmzk.jpg',
       price: 99.99,
       rating: 4.7,
       reviews: 118,
@@ -309,7 +335,8 @@ const AllGadgetsPage = () => {
       name: 'Gaming Headset',
       brand: 'SteelSeries',
       category: 'Audio',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://cdn.shopify.com/s/files/1/0460/2567/0805/products/STEELSERIES-ARCTIS-3-GAMING-HEADSET-BLACK.jpg',
       price: 79.99,
       rating: 4.6,
       reviews: 99,
@@ -320,7 +347,8 @@ const AllGadgetsPage = () => {
       name: 'Laptop Cooling Pad',
       brand: 'Cooler Master',
       category: 'Computers',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://laptopbd.net/wp-content/uploads/2022/04/download-1-33.jpg',
       price: 39.99,
       rating: 4.4,
       reviews: 121,
@@ -331,7 +359,8 @@ const AllGadgetsPage = () => {
       name: 'Wireless Router',
       brand: 'Netgear',
       category: 'Computers',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://i0.wp.com/netgearstore.com.bd/wp-content/uploads/2021/09/pf-69bcb2d0-XR1000F1.webp',
       price: 69.99,
       rating: 4.7,
       reviews: 87,
@@ -342,7 +371,8 @@ const AllGadgetsPage = () => {
       name: 'Smart Thermostat',
       brand: 'Nest',
       category: 'Smart Home',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://mobileimages.lowes.com/productimages/891566e6-bb0d-43c1-9fae-ac87a775349b/67783427.jpeg',
       price: 129.99,
       rating: 4.6,
       reviews: 54,
@@ -353,7 +383,8 @@ const AllGadgetsPage = () => {
       name: 'Electric Scooter',
       brand: 'Xiaomi',
       category: 'Vehicles',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://xiaomistores.co.za/wp-content/uploads/2023/05/BHR4854GL_wr_05.jpg',
       price: 499.99,
       rating: 4.9,
       reviews: 65,
@@ -364,7 +395,8 @@ const AllGadgetsPage = () => {
       name: 'Bluetooth Earbuds',
       brand: 'Sony',
       category: 'Audio',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://www.gadstyle.com/wp-content/uploads/2024/10/sony-wf-c510-truly-wireless-in-ear-bluetooth-earbuds-1.webp',
       price: 89.99,
       rating: 4.8,
       reviews: 112,
@@ -375,7 +407,8 @@ const AllGadgetsPage = () => {
       name: 'Smart Mirror',
       brand: 'HiMirror',
       category: 'Smart Home',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://media.wired.com/photos/5eebfa29e8f495017d8cec03/1:1/w_1800,h_1800,c_limit/Gear-HiMirror-Slide-SOURCE-HiMirror.jpg',
       price: 199.99,
       rating: 4.7,
       reviews: 78,
@@ -386,7 +419,8 @@ const AllGadgetsPage = () => {
       name: 'Smart Glasses',
       brand: 'Bose',
       category: 'Wearables',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://static3.nordic.pictures/38954985-thickbox_default/bose-frames-tenor-smartglasses-bluetooth.jpg',
       price: 249.99,
       rating: 4.6,
       reviews: 56,
@@ -397,7 +431,8 @@ const AllGadgetsPage = () => {
       name: 'Portable Power Bank',
       brand: 'Anker',
       category: 'Accessories',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://down-sg.img.susercontent.com/file/sg-11134207-7rd5c-lvzsez9apnre18',
       price: 29.99,
       rating: 4.6,
       reviews: 134,
@@ -408,7 +443,8 @@ const AllGadgetsPage = () => {
       name: 'Smart Coffee Maker',
       brand: 'Nespresso',
       category: 'Smart Home',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://www.nespresso.com/ecom/medias/sys_master/public/10386920505374/M-0350-PDP-Background.jpg',
       price: 179.99,
       rating: 4.7,
       reviews: 65,
@@ -419,7 +455,8 @@ const AllGadgetsPage = () => {
       name: 'Smart Ring',
       brand: 'Oura',
       category: 'Wearables',
-      image: '/api/placeholder/300/300',
+      image:
+        'https://pyxis.nymag.com/v1/imgs/c01/736/96c58e4d2174f35e9b8b49103bdbcd7d73-ode-oura-ring-secondary.jpg',
       price: 299.99,
       rating: 4.8,
       reviews: 120,
@@ -652,7 +689,10 @@ const AllGadgetsPage = () => {
                         </span>
                       </div>
                     </div>
-                    <Link to={'/cam-sony-a7iii'} className="text-lg font-medium mb-2 text-black">
+                    <Link
+                      to={'/cam-sony-a7iii'}
+                      className="text-lg font-medium mb-2 text-black"
+                    >
                       {gadget.name}
                     </Link>
                     <div className="flex justify-between items-center">
