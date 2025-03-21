@@ -273,10 +273,10 @@ const ProductDetailsPage = () => {
           <div className="mt-12 border-t border-gray-200 pt-8">
             <div className="border-b border-gray-200">
               <div className="flex -mb-px space-x-8">
-                <button className="text-black border-b-2 border-black font-medium py-2">
+                <button className="text-black text-2xl border-b-2 border-gray-500 font-medium py-2">
                   Description
                 </button>
-                <button className="text-gray-500 hover:text-black py-2">
+                {/* <button className="text-gray-500 hover:text-black py-2">
                   Specifications
                 </button>
                 <button className="text-gray-500 hover:text-black py-2">
@@ -284,7 +284,7 @@ const ProductDetailsPage = () => {
                 </button>
                 <button className="text-gray-500 hover:text-black py-2">
                   Rental Policy
-                </button>
+                </button> */}
               </div>
             </div>
 
