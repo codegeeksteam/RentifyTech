@@ -6,7 +6,7 @@ const Gallery = () => {
       <div className="space-y-6 relative border-1 pb-[1400px]">
         <h2 className="text-4xl mt-3 ml-3 font-bold tracking-wide">GALLERY</h2><hr />
         <div className="absolute top-[550px] left-[600px]">
-          <h1 className="font-semibold opacity-80 text-[#f495bf] text-4xl w-1/2">✨ Tech You Desire,<span className="text-[#31D2f7]">Moments You</span><span className="text-[#fff100]">Create</span> ✨</h1>
+          <h1 className="font-semibold opacity-80 text-[#f495bf] text-4xl w-1/2">✨ Tech You Desire, <br /><span className="text-[#31D2f7]">Moments You <br /> </span><span className="text-[#fff100]">Create.</span></h1>
         </div>
 
         {/* Image Grid */}
