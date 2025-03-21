@@ -164,7 +164,7 @@ export default function Navbar() {
                   <div className="divider"></div>
                   <div className="p-2">
                     <Link
-                      to="/dashboard"
+                      to="/dashboard/myGadget"
                       className="w-full rounded-full bg-gray-900 text-white px-6 py-2 block text-center"
                     >
                       Dashboard
