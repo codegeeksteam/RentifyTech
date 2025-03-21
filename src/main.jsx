@@ -13,6 +13,7 @@ import Cart from './Pages/cart/Cart.jsx';
 import Contact from './Pages/contactUs/contact.jsx';
 import Dashboard from './Pages/Dashboard/Dashboard.jsx';
 import ProductDetailsPage from './Pages/productDetails/ProductDetailsPage.jsx';
+import AllGadgetsPage from './Pages/allProducts/AllGadgetsPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: '/cart',
         element: <Cart />,
+      },
+      {
+        path: '/all-gadgets',
+        element: <AllGadgetsPage/>
       },
       {
         path: '/cam-sony-a7iii',
