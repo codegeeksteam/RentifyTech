@@ -5,6 +5,9 @@ import img from "../assets/download (2).jpeg";
 import { CgProfile } from "react-icons/cg";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
+import useAdmin from "../Hooks/useAdmin";
+import useAgent from "../Hooks/useAgent";
+import useUser from "../Hooks/useUser";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -12,6 +15,9 @@ export default function Navbar() {
   const [darkMode, setDarkMode] = useState(false);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const [isAdmin] = useAdmin();
+  const [isAgent] = useAgent();
+  const [isUser] = useUser();
 
   const handleSignOut = () => {
     signOutUser()
@@ -163,12 +169,24 @@ export default function Navbar() {
                   </div>
                   <div className="divider"></div>
                   <div className="p-2">
-                    <Link
-                      to="/dashboard"
+                    {isAdmin && (<Link
+                      to="/dashboard/allUsers"
                       className="w-full rounded-full bg-gray-900 text-white px-6 py-2 block text-center"
                     >
                       Dashboard
-                    </Link>
+                    </Link>)}
+                    {isAgent && (<Link
+                      to="/dashboard/myAll"
+                      className="w-full rounded-full bg-gray-900 text-white px-6 py-2 block text-center"
+                    >
+                      Dashboard
+                    </Link>)}
+                    {isUser && (<Link
+                      to="/dashboard/myGadget"
+                      className="w-full rounded-full bg-gray-900 text-white px-6 py-2 block text-center"
+                    >
+                      Dashboard
+                    </Link>)}
                     <button
                       onClick={handleSignOut}
                       className="w-full mt-2 rounded-full bg-gray-900 text-white px-6 py-2"
