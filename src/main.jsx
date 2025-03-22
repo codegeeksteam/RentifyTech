@@ -15,8 +15,12 @@ import Dashboard from "./Pages/Dashboard/Dashboard.jsx";
 import ProductDetailsPage from "./Pages/productDetails/ProductDetailsPage.jsx";
 import AllGadgetsPage from "./Pages/allProducts/AllGadgetsPage.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import PrivateRoute from "./Route/PrivateRoute.jsx";
 import MyGadgets from "./Pages/Dashboard/User-Dashboard/MyGadgets.jsx";
+import UserRoute from "./Route/UserRoute.jsx";
+import AgentRoute from "./Route/AgentRoute.jsx";
+import MyAll from "./Pages/Dashboard/Agent-Dashboard/MyAll.jsx";
+import AdminRoute from "./Route/AdminRoute.jsx";
+import AllUsers from "./Pages/Dashboard/Admin-Dashboard/AllUsers.jsx";
 
 const queryClient = new QueryClient();
 
@@ -61,6 +65,21 @@ const router = createBrowserRouter([
     path: "dashboard",
     element: <Dashboard />,
     children: [
+      //User Route
+      {
+        path: "myGadget",
+        element: <UserRoute><MyGadgets /></UserRoute>,
+      },
+      // Agent Route
+      {
+        path: "myAll",
+        element: <AgentRoute><MyAll /></AgentRoute>,
+      },
+      // Admin Route
+      {
+        path: "allUsers",
+        element: <AdminRoute><AllUsers /></AdminRoute>,
+      },
     ],
   },
 ]);
