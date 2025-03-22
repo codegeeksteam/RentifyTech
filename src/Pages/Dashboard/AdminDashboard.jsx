@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 const AdminDashboard = ( {handleSignOut}) => {
   return (
     <nav className="flex-1 px-2 py-4 bg-gray-700">
-      <NavLink>
+      <NavLink to={"/dashboard/allUsers"}>
         <a
           href="#"
           className="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-900"
