@@ -11,6 +11,7 @@ import Features from "./Features/Features";
 import ElectronicsRental from "./Secondary/SecondaryBAnner";
 import Electronics from "./ElecronicsRental/Electronis";
 import OurProcess from "../../Components/OurProcess/OurProcess";
+import ServiceSection from "../Service/ServiceSection";
 
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
       <Banner></Banner>
       <OurProcess />
       <Features />
+      <ServiceSection />
       <FeaturedProducts></FeaturedProducts>
       <NormalBanner />
       <ElectronicsRental />
