@@ -9,7 +9,6 @@ import useUser from "../../Hooks/useUser";
 import AdminDashboard from "./AdminDashboard";
 import AgentDashboard from "./AgentDashboard";
 
-
 const Dashboard = () => {
   const navigate = useNavigate();
   const { signOutUser, user } = useAuth();
@@ -21,8 +20,8 @@ const Dashboard = () => {
     signOutUser()
       .then(() => {
         Swal.fire({
-          title: "success!",
-          text: "User Log out successfully!",
+          title: "Success!",
+          text: "User logged out successfully!",
           icon: "success",
         });
         navigate("/");
@@ -39,27 +38,24 @@ const Dashboard = () => {
   return (
     <div className="flex h-screen bg-gray-100">
       {/* sidebar */}
-      <div className="hidden md:flex flex-col w-64 bg-gray-800">
+      <div className="w-64 bg-gray-800 hidden md:flex flex-col lg:w-72">
         <div className="flex items-center justify-center h-16 bg-gray-900">
           <span className="text-white font-bold uppercase">RentifyTech</span>
         </div>
         <div className="flex flex-col flex-1 overflow-y-auto">
           {/* Admin Dashboard */}
-          {isAdmin && (<AdminDashboard handleSignOut={handleSignOut} />)}
+          {isAdmin && <AdminDashboard handleSignOut={handleSignOut} />}
           {/* Agent Dashboard */}
-          {isAgent && (<AgentDashboard handleSignOut={handleSignOut} />)}
+          {isAgent && <AgentDashboard handleSignOut={handleSignOut} />}
           {/* User Dashboard */}
-          {isUser && (<UsersDashboard handleSignOut={handleSignOut} />)}
+          {isUser && <UsersDashboard handleSignOut={handleSignOut} />}
         </div>
       </div>
 
       {/* main content */}
-      <div className="flex flex-col flex-1 overflow-y-auto">
-        <div className="sticky top-0">
-          <div className="">
-            {" "}
-            <DashboardNavbar user={user} />
-          </div>
+      <div className="flex flex-1 flex-col overflow-y-auto w-full md:w-auto">
+        <div className="sticky top-0 z-10">
+          <DashboardNavbar user={user} />
         </div>
         <div className="m-2 p-3 min-h-screen bg-white rounded-lg">
           <Outlet />
