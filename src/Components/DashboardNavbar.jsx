@@ -12,9 +12,6 @@ const DashboardNavbar = ({ user }) => {
             placeholder="Search"
             className="input input-bordered lg:w-80 md:w-40"
           />
-          <button className="btn btn-square">
-            <FaSearch />
-          </button>
         </div>
       </div>
       <div className="flex gap-5 items-center">
