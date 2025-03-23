@@ -21,6 +21,7 @@ import AgentRoute from "./Route/AgentRoute.jsx";
 import MyAll from "./Pages/Dashboard/Agent-Dashboard/MyAll.jsx";
 import AdminRoute from "./Route/AdminRoute.jsx";
 import AllUsers from "./Pages/Dashboard/Admin-Dashboard/AllUsers.jsx";
+import AddCategory from "./Pages/Dashboard/Admin-Dashboard/AddCategory.jsx";
 
 const queryClient = new QueryClient();
 
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: "allUsers",
         element: <AdminRoute><AllUsers /></AdminRoute>,
+      },
+      {
+        path: "addCategory",
+        element: <AdminRoute><AddCategory /></AdminRoute>,
       },
     ],
   },
