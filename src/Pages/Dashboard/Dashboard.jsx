@@ -61,7 +61,7 @@ const Dashboard = () => {
             <DashboardNavbar user={user} />
           </div>
         </div>
-        <div className="m-2 p-3 bg-white rounded-lg">
+        <div className="m-2 p-3 min-h-screen bg-white rounded-lg">
           <Outlet />
         </div>
       </div>
