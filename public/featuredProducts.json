@@ -1,44 +1,68 @@
 [
-    {
-      "id": 1,
-      "name": "Wireless Headphones",
-      "description": "High-quality sound with noise cancellation.",
-      "price": "$199.99",
-      "imageUrl": "https://www.pngarts.com/files/9/Wireless-Headphones-PNG-Free-Download.png"
-    },
-    {
-      "id": 2,
-      "name": "Smart Watch",
-      "description": "Track your fitness and stay connected.",
-      "price": "$249.99",
-      "imageUrl": "https://www.pngall.com/wp-content/uploads/15/Apple-Watch-No-Background.png"
-    },
-    {
-      "id": 3,
-      "name": "Laptop Backpack",
-      "description": "Durable and stylish backpack for professionals.",
-      "price": "$59.99",
-      "imageUrl": "https://www.pngmart.com/files/22/Laptop-Bag-PNG-Isolated-Pic.png"
-    },
-    {
-      "id": 4,
-      "name": "Bluetooth Speaker",
-      "description": "Portable speaker with 20-hour battery life.",
-      "price": "$89.99",
-      "imageUrl": "https://www.pngall.com/wp-content/uploads/4/Portable-Speaker.png"
-    },
-    {
-      "id": 5,
-      "name": "Gaming Keyboard",
-      "description": "Mechanical keyboard with RGB lighting.",
-      "price": "$129.99",
-      "imageUrl": "https://pngimg.com/d/keyboard_PNG101839.png"
-    },
-    {
-      "id": 6,
-      "name": "4K Monitor",
-      "description": "27-inch 4K UHD display for professionals.",
-      "price": "$399.99",
-      "imageUrl": "https://ssl-product-images.www8-hp.com/digmedialib/prodimg/lowres/c08894694.png"
-    }
-  ]
+  {
+    "id": 21,
+    "name": "Smartwatch Series 6",
+    "brand": "Apple",
+    "category": "Wearables",
+    "image": "https://cdn.mos.cms.futurecdn.net/4LipsXNLPxqeoULL3RQV86-1200-80.jpg",
+    "price": 399.99,
+    "rating": 4.9,
+    "reviews": 312,
+    "available": true
+  },
+  {
+    "id": 24,
+    "name": "Digital Drawing Tablet",
+    "brand": "Wacom",
+    "category": "Accessories",
+    "image": "https://i5.walmartimages.com/seo/Wacom-One-Digital-Drawing-Tablet-13-3in-Graphics-Display-19in-Length-x-14in-Width-x-5in-Height_3ee336e9-f1be-46e2-8535-f973e828f5aa_1.68a3a405dd701708614f40a7cb5c726d.jpeg",
+    "price": 129.99,
+    "rating": 4.7,
+    "reviews": 112,
+    "available": true
+  },
+  {
+    "id": 17,
+    "name": "Professional Monitor",
+    "brand": "BenQ",
+    "category": "Computers",
+    "image": "https://www.techlandbd.com/image/cache/catalog/Benq/benq-rd280u-29-inch-4k-hdr-programming-monitor-01-400x280h.jpg",
+    "price": 65.99,
+    "rating": 4.8,
+    "reviews": 71,
+    "available": true
+  },
+  {
+    "id": 20,
+    "name": "Noise Cancelling Headphones",
+    "brand": "Bose",
+    "category": "Audio",
+    "image": "https://sm.pcmag.com/pcmag_me/review/b/bose-quiet/bose-quietcomfort-ultra-headphones_bknf.jpg",
+    "price": 119.99,
+    "rating": 4.8,
+    "reviews": 145,
+    "available": true
+  },
+  {
+    "id": 25,
+    "name": "VR Headset",
+    "brand": "Oculus",
+    "category": "Virtual Reality",
+    "image": "https://i5.walmartimages.com/seo/LPT-Oculus-Quest-2-Advanced-All-In-One-Virtual-Reality-Headset-256-GB-for-Christmas-Holiday_16a9974e-a5b0-4cad-a98e-730148409bef.3e8858a1d3beb01ff2fbc79a880beedf.jpeg",
+    "price": 299.99,
+    "rating": 4.8,
+    "reviews": 185,
+    "available": true
+  },
+  {
+    "id": 18,
+    "name": "Telephoto Lens",
+    "brand": "Canon",
+    "category": "Photography",
+    "image": "https://www.computervillage.com.bd/image/cache/catalog/uploads/products/photos/item_Canon-EF-100-400mm-f-4.5-5.6L-IS-II-USM-Telephoto-Zoom-Lens-price-__1653149777-550x350h.jpeg",
+    "price": 39.99,
+    "rating": 4.7,
+    "reviews": 108,
+    "available": true
+  }
+]

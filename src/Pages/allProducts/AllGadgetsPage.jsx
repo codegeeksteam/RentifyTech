@@ -656,14 +656,14 @@ const AllGadgetsPage = () => {
               {currentGadgets.map((gadget) => (
                 <div
                   key={gadget.id}
-                  className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                  className="bg-white border border-gray-200 rounded-lg shadow-sm transition-shadow group"
                 >
-                  <div className="relative">
+                  <div className="relative overflow-hidden">
                     <Link to={'/cam-sony-a7iii'}>
                       <img
                         src={gadget.image}
                         alt={gadget.name}
-                        className="rounded-t-lg w-full h-48 object-cover"
+                        className="group-hover:scale-105 transition-transform duration-300 ease-in-out rounded-t-lg w-full h-48 object-cover"
                       />
                     </Link>
                     {!gadget.available && (
