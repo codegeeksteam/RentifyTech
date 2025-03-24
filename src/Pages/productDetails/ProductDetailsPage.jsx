@@ -320,7 +320,7 @@ const ProductDetailsPage = () => {
           </div>
 
           {/* Related Products Section (placeholder) */}
-          <div className="mt-12 border-t border-gray-200 pt-8">
+          <div className="my-12 border-t border-gray-200 pt-8">
             <h2 className="text-2xl font-bold mb-6">You Might Also Like</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
               {[1, 2, 3, 4].map((item) => (
