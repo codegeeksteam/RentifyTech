@@ -11,6 +11,7 @@ import Features from "./Features/Features";
 import ElectronicsRental from "./Secondary/SecondaryBAnner";
 import Electronics from "./ElecronicsRental/Electronis";
 import RentalSection from "./RentalSection/RentalSection";
+import OurProcess from "../../Components/OurProcess/OurProcess";
 
 
 const Home = () => {
@@ -18,7 +19,7 @@ const Home = () => {
     <div className="">
       <Navbar></Navbar>
       <Banner></Banner>
-      <RentalSection />
+      <OurProcess />
       <Features />
       <FeaturedProducts></FeaturedProducts>
       <NormalBanner />
