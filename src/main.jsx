@@ -10,7 +10,6 @@ import SignUp from "./Pages/signUp/SignUp.jsx";
 import SignIn from "./Pages/signIn/SignIn.jsx";
 import Error from "./Pages/Erorr/Erorr.jsx";
 import Cart from "./Pages/cart/Cart.jsx";
-import Contact from "./Pages/contactUs/contact.jsx";
 import Dashboard from "./Pages/Dashboard/Dashboard.jsx";
 import ProductDetailsPage from "./Pages/productDetails/ProductDetailsPage.jsx";
 import AllGadgetsPage from "./Pages/allProducts/AllGadgetsPage.jsx";
@@ -22,6 +21,7 @@ import MyAll from "./Pages/Dashboard/Agent-Dashboard/MyAll.jsx";
 import AdminRoute from "./Route/AdminRoute.jsx";
 import AllUsers from "./Pages/Dashboard/Admin-Dashboard/AllUsers.jsx";
 import AddCategory from "./Pages/Dashboard/Admin-Dashboard/AddCategory.jsx";
+import Contact from "./Pages/contactUs/Contact.jsx";
 
 const queryClient = new QueryClient();
 
