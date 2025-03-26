@@ -1,6 +1,6 @@
-/* eslint-disable no-unused-vars */
+ /* eslint-disable no-unused-vars */
 import { FaTools, FaPencilRuler, FaCogs, FaBoxOpen, FaLeaf, FaUserTie } from "react-icons/fa";
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 const services = [
   { icon: <FaTools size={40} />, title: "Unmatched Quality", desc: "Our team of professionals will help you plan, design, and install your dream kitchen." },
@@ -60,9 +60,9 @@ const ServiceSection = () => {
             <motion.div 
               key={index} 
               variants={itemVariants}
-              whileHover={{ scale: 1.1, rotate: 3 }}
+              whileHover={{ scale: 1.15, rotateX: 15, rotateY: 15, boxShadow: "0px 20px 30px rgba(0,0,0,0.3)" }}
               whileTap={{ scale: 0.9 }}
-              className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300"
+              className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 perspective-1000"
             >
               <motion.div 
                 initial={{ opacity: 0, rotateY: 90 }}

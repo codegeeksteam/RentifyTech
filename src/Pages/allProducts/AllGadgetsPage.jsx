@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Footer from '../../Components/Footer';
 import Navbar from '../../Components/Navbar';
 import { Link } from 'react-router-dom';
+import './AllGadgets.css'
 
 const AllGadgetsPage = () => {
   // Hardcoded gadget data - 38 Gadgets with variation
@@ -641,7 +642,7 @@ const AllGadgetsPage = () => {
             {filteredGadgets.length} results
           </div>
 
-          {/* gadget Grid */}
+          {/* gadget Grid with 3D animations */}
           {filteredGadgets.length === 0 ? (
             <div className="text-center py-12">
               <h3 className="text-lg font-medium text-gray-900 mb-2">
@@ -656,15 +657,37 @@ const AllGadgetsPage = () => {
               {currentGadgets.map((gadget) => (
                 <div
                   key={gadget.id}
-                  className="bg-white border border-gray-200 rounded-lg shadow-sm transition-shadow group"
+                  className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 group perspective-1000"
                 >
-                  <div className="relative overflow-hidden">
+                  <div className="relative overflow-hidden h-48">
                     <Link to={'/cam-sony-a7iii'}>
-                      <img
-                        src={gadget.image}
-                        alt={gadget.name}
-                        className="group-hover:scale-105 transition-transform duration-300 ease-in-out rounded-t-lg w-full h-48 object-cover"
-                      />
+                      <div className="relative w-full h-full preserve-3d group-hover:rotate-y-10 group-hover:scale-105 transition-all duration-500 ease-out">
+                        <img
+                          src={gadget.image}
+                          alt={gadget.name}
+                          className="absolute w-full h-full object-cover rounded-t-lg backface-hidden"
+                          style={{
+                            transformStyle: 'preserve-3d',
+                            transform: 'translateZ(20px)',
+                            filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.1))'
+                          }}
+                        />
+                        {/* Reflection effect */}
+                        <div 
+                          className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-30 group-hover:opacity-50 transition-opacity duration-300"
+                          style={{
+                            transform: 'rotateX(90deg) translateZ(-20px)',
+                            transformOrigin: 'bottom center'
+                          }}
+                        />
+                        {/* Floating shadow */}
+                        <div 
+                          className="absolute -bottom-4 left-1/4 w-1/2 h-2 bg-black rounded-full blur-md opacity-10 group-hover:opacity-20 transition-all duration-300"
+                          style={{
+                            transform: 'translateZ(-30px)',
+                          }}
+                        />
+                      </div>
                     </Link>
                     {!gadget.available && (
                       <div className="absolute top-2 right-2 bg-black text-white text-xs font-semibold px-2 py-1 rounded">
