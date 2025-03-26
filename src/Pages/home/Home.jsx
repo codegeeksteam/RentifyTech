@@ -10,7 +10,7 @@ import NormalBanner from "./LatesrBanner/NormalBanner";
 import Features from "./Features/Features";
 import ElectronicsRental from "./Secondary/SecondaryBAnner";
 import Electronics from "./ElecronicsRental/Electronis";
-import RentalSection from "./RentalSection/RentalSection";
+import ServiceSection from "../Service/ServiceSection";
 import OurProcess from "../../Components/OurProcess/OurProcess";
 
 
@@ -23,6 +23,7 @@ const Home = () => {
       <Features />
       <FeaturedProducts></FeaturedProducts>
       <NormalBanner />
+      <ServiceSection />
       <ElectronicsRental />
       <LattesrBanner />
       <Electronics />
