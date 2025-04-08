@@ -1,4 +1,5 @@
 import Footer from '../../Components/Footer';
+import HelmetTitle from '../../Components/HelmetTitle';
 import Navbar from '../../Components/Navbar';
 
 function Cart() {
@@ -47,6 +48,7 @@ function Cart() {
   const total = subtotal + tax + serviceFee;
   return (
     <div>
+      <HelmetTitle title={'Cart'} />
       <Navbar />
       <section className="min-h-[50vh]">
         <div className="min-h-screen bg-white">

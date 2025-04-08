@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import Footer from '../../Components/Footer';
 import Navbar from '../../Components/Navbar';
 import { Link } from 'react-router-dom';
-import './AllGadgets.css'
+import './AllGadgets.css';
+import HelmetTitle from '../../Components/HelmetTitle';
 
 const AllGadgetsPage = () => {
   // Hardcoded gadget data - 38 Gadgets with variation
@@ -551,6 +552,7 @@ const AllGadgetsPage = () => {
 
   return (
     <>
+      <HelmetTitle title={'All Gadgets'} />
       <Navbar />
       <div className="min-h-screen bg-white">
         <div className="max-w-6xl mx-auto p-4 md:p-6">
@@ -669,19 +671,19 @@ const AllGadgetsPage = () => {
                           style={{
                             transformStyle: 'preserve-3d',
                             transform: 'translateZ(20px)',
-                            filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.1))'
+                            filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.1))',
                           }}
                         />
                         {/* Reflection effect */}
-                        <div 
+                        <div
                           className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-30 group-hover:opacity-50 transition-opacity duration-300"
                           style={{
                             transform: 'rotateX(90deg) translateZ(-20px)',
-                            transformOrigin: 'bottom center'
+                            transformOrigin: 'bottom center',
                           }}
                         />
                         {/* Floating shadow */}
-                        <div 
+                        <div
                           className="absolute -bottom-4 left-1/4 w-1/2 h-2 bg-black rounded-full blur-md opacity-10 group-hover:opacity-20 transition-all duration-300"
                           style={{
                             transform: 'translateZ(-30px)',

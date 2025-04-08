@@ -1,11 +1,24 @@
-import React from "react";
-import Footer from "../../Components/Footer";
-import Navbar from "../../Components/Navbar";
+
+import React from 'react';
+import Footer from '../../Components/Footer';
+import Navbar from '../../Components/Navbar';
+import HelmetTitle from '../../Components/HelmetTitle';
 
 const Contact = () => {
   return (
     <div>
-      <Navbar />
+      <HelmetTitle title={'Contact'}/>
+        <Navbar></Navbar>
+         <div className="flex justify-center items-center min-h-screen bg-white">
+      <div className="flex bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-4xl">
+        {/* Left Section - Image */}
+        <div className="w-1/2">
+          <img
+            src="/contact-image.jpg"
+            alt="Virtual Banking"
+            className="w-full h-full object-cover"
+          />
+        </div>
 
       <div className="flex justify-center items-center min-h-screen bg-white px-4 py-10">
         <div className="flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-6xl">
