@@ -98,7 +98,7 @@ const AboutUs = () => {
           </div>
         </div>
         {/* about us banner end */}
-      </section>
+      </div>
 
       {/* Hero background section */}
       <div
