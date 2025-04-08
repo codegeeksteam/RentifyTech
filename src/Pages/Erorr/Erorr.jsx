@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import '../Erorr/Erorr.css'
+import HelmetTitle from "../../Components/HelmetTitle";
 
 const Error = () => {
   const navigate = useNavigate();
   return (
     <div className="bg-white min-h-[calc(100vh-100px)] justify-center">
+      <HelmetTitle title={'Error'}/>
       <center className="mt-24 m-auto">
         <svg
           className="emoji-404 "

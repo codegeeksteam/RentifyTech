@@ -1,14 +1,24 @@
 import { useEffect, useState, useRef } from "react";
-import { FiShoppingCart, FiSun, FiMoon, FiHome, FiShoppingBag, FiGrid, FiInfo, FiPhone } from "react-icons/fi";
+import {
+  FiShoppingCart,
+  FiSun,
+  FiMoon,
+  FiHome,
+  FiShoppingBag,
+  FiGrid,
+  FiInfo,
+  FiPhone,
+} from "react-icons/fi";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import img from "../assets/download (2).jpeg";
-import { HiMenu, HiX } from "react-icons/hi"; 
+import { HiMenu, HiX } from "react-icons/hi";
 import useAuth from "../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAdmin from "../Hooks/useAdmin";
 import useAgent from "../Hooks/useAgent";
 import useUser from "../Hooks/useUser";
+import { FaNewspaper } from "react-icons/fa";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -60,19 +70,32 @@ export default function Navbar() {
   const navLinks = (
     <>
       <NavLink className="font-semibold uppercase cta" to={"/"}>
-        <span className="hover-underline-animation flex gap-1 items-center"><FiHome /> Home</span>
+        <span className="hover-underline-animation flex gap-1 items-center">
+          <FiHome /> Home
+        </span>
       </NavLink>
-      <NavLink className="font-semibold uppercase cta" to={"/shop"}>
+      {/* <NavLink className="font-semibold uppercase cta" to={"/shop"}>
         <span className="hover-underline-animation flex gap-1 items-center"><FiShoppingBag /> Shop</span>
-      </NavLink>
+      </NavLink> */}
       <NavLink className="font-semibold uppercase cta" to={"/all-gadgets"}>
-        <span className="hover-underline-animation flex gap-1 items-center"><FiGrid /> All Gadgets</span>
+        <span className="hover-underline-animation flex gap-1 items-center">
+          <FiGrid /> All Gadgets
+        </span>
+      </NavLink>
+      <NavLink className="font-semibold uppercase cta" to={"/blogs"}>
+        <span className="hover-underline-animation flex gap-1 items-center">
+          <FaNewspaper /> Blog
+        </span>
       </NavLink>
       <NavLink className="font-semibold uppercase cta" to={"/about-us"}>
-        <span className="hover-underline-animation flex gap-1 items-center"><FiInfo /> About</span>
+        <span className="hover-underline-animation flex gap-1 items-center">
+          <FiInfo /> About
+        </span>
       </NavLink>
       <NavLink className="font-semibold uppercase cta" to={"/contact-us"}>
-        <span className="hover-underline-animation flex gap-1 items-center"><FiPhone /> Contact</span>
+        <span className="hover-underline-animation flex gap-1 items-center">
+          <FiPhone /> Contact
+        </span>
       </NavLink>
     </>
   );
@@ -80,7 +103,6 @@ export default function Navbar() {
   return (
     <div className="w-full top-0 sticky bg-black/50 backdrop-blur text-white z-50">
       <div className="navbar container mx-auto flex justify-between items-center">
-        
         {/* Mobile Menu Button */}
         <div className="lg:hidden">
           <button onClick={() => setMenuOpen(!isMenuOpen)}>
@@ -110,7 +132,11 @@ export default function Navbar() {
           {user ? (
             <div className="relative" ref={dropdownRef}>
               <button onClick={() => setDropdownOpen(!isDropdownOpen)}>
-                <img className="w-10 h-10 border rounded-full object-cover" src={user.photoURL} alt="Profile" />
+                <img
+                  className="w-10 h-10 border rounded-full object-cover"
+                  src={user.photoURL}
+                  alt="Profile"
+                />
               </button>
 
               {isDropdownOpen && (
@@ -135,10 +161,27 @@ export default function Navbar() {
                   </div>
                   <div className="divider"></div>
                   <div className="flex flex-col gap-2">
-                    {isAdmin && <Link to="/dashboard/allUsers" className="btn btn-sm">Dashboard</Link>}
-                    {isAgent && <Link to="/dashboard/myAll" className="btn btn-sm">Dashboard</Link>}
-                    {isUser && <Link to="/dashboard/myGadget" className="btn btn-sm">Dashboard</Link>}
-                    <button onClick={handleSignOut} className="btn btn-sm bg-red-500 text-white">Log Out</button>
+                    {isAdmin && (
+                      <Link to="/dashboard/allUsers" className="btn btn-sm">
+                        Dashboard
+                      </Link>
+                    )}
+                    {isAgent && (
+                      <Link to="/dashboard/myAll" className="btn btn-sm">
+                        Dashboard
+                      </Link>
+                    )}
+                    {isUser && (
+                      <Link to="/dashboard/myGadget" className="btn btn-sm">
+                        Dashboard
+                      </Link>
+                    )}
+                    <button
+                      onClick={handleSignOut}
+                      className="btn btn-sm bg-red-500 text-white"
+                    >
+                      Log Out
+                    </button>
                   </div>
                 </div>
               )}

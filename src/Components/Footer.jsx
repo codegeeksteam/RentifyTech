@@ -40,9 +40,10 @@ const Footer = () => {
           <ul>
             {[
               { name: "Home", path: "/" },
+              { name: "Blog", path: "/blogs" },
               { name: "Products", path: "/products" },
               { name: "About Us", path: "/about-us" },
-              { name: "Blog", path: "/blog" },
+           
               { name: "Contact", path: "/contact" },
             ].map((link) => (
               <li key={link.name} className="mb-2">
