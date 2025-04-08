@@ -13,22 +13,22 @@ import Electronics from "./ElecronicsRental/Electronis";
 import ServiceSection from "../Service/ServiceSection";
 import OurProcess from "../../Components/OurProcess/OurProcess";
 
-
 const Home = () => {
   return (
     <div className="">
       <Navbar></Navbar>
       <Banner></Banner>
+      <FeaturedProducts></FeaturedProducts>
       <OurProcess />
       <Features />
-      <FeaturedProducts></FeaturedProducts>
+
       <NormalBanner />
-      <ServiceSection />
+      {/* <ServiceSection /> */}
       <ElectronicsRental />
-      <LattesrBanner />
+      {/* <LattesrBanner /> */}
       <Electronics />
       <Testimonials />
-      <OurNews />
+      {/* <OurNews />  FIXME: I create a new blog page  */}
       <Footer />
     </div>
   );
