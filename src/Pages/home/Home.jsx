@@ -28,7 +28,7 @@ const Home = () => {
       {/* <LattesrBanner /> */}
       <Electronics />
       <Testimonials />
-      {/* <OurNews /> */} FIXME: I create a new blog page 
+      {/* <OurNews />  FIXME: I create a new blog page  */}
       <Footer />
     </div>
   );
