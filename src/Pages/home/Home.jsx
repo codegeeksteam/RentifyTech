@@ -14,23 +14,23 @@ import ServiceSection from "../Service/ServiceSection";
 import OurProcess from "../../Components/OurProcess/OurProcess";
 import HelmetTitle from "../../Components/HelmetTitle";
 
-
 const Home = () => {
   return (
     <div className="">
       <HelmetTitle title={'Home'}/>
       <Navbar></Navbar>
       <Banner></Banner>
+      <FeaturedProducts></FeaturedProducts>
       <OurProcess />
       <Features />
-      <FeaturedProducts></FeaturedProducts>
+
       <NormalBanner />
-      <ServiceSection />
+      {/* <ServiceSection /> */}
       <ElectronicsRental />
-      <LattesrBanner />
+      {/* <LattesrBanner /> */}
       <Electronics />
       <Testimonials />
-      <OurNews />
+      {/* <OurNews />  FIXME: I create a new blog page  */}
       <Footer />
     </div>
   );
