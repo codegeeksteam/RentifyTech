@@ -22,6 +22,7 @@ import AdminRoute from "./Route/AdminRoute.jsx";
 import AllUsers from "./Pages/Dashboard/Admin-Dashboard/AllUsers.jsx";
 import AddCategory from "./Pages/Dashboard/Admin-Dashboard/AddCategory.jsx";
 import Contact from "./Pages/contactUs/Contact.jsx";
+import Blogs from "./Pages/Blogs/Blogs.jsx";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "/contact-us",
         element: <Contact></Contact>,
+      },
+      {
+        path: "/blogs",
+        element: <Blogs />,
       },
       {
         path: "/cart",
@@ -69,21 +74,37 @@ const router = createBrowserRouter([
       //User Route
       {
         path: "myGadget",
-        element: <UserRoute><MyGadgets /></UserRoute>,
+        element: (
+          <UserRoute>
+            <MyGadgets />
+          </UserRoute>
+        ),
       },
       // Agent Route
       {
         path: "myAll",
-        element: <AgentRoute><MyAll /></AgentRoute>,
+        element: (
+          <AgentRoute>
+            <MyAll />
+          </AgentRoute>
+        ),
       },
       // Admin Route
       {
         path: "allUsers",
-        element: <AdminRoute><AllUsers /></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <AllUsers />
+          </AdminRoute>
+        ),
       },
       {
         path: "addCategory",
-        element: <AdminRoute><AddCategory /></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <AddCategory />
+          </AdminRoute>
+        ),
       },
     ],
   },
