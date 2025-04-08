@@ -1,10 +1,12 @@
 import React from 'react';
 import Footer from '../../Components/Footer';
 import Navbar from '../../Components/Navbar';
+import HelmetTitle from '../../Components/HelmetTitle';
 
 const Contact = () => {
   return (
     <div>
+      <HelmetTitle title={'Contact'}/>
         <Navbar></Navbar>
          <div className="flex justify-center items-center min-h-screen bg-white">
       <div className="flex bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-4xl">

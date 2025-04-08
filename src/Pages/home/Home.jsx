@@ -12,11 +12,13 @@ import ElectronicsRental from "./Secondary/SecondaryBAnner";
 import Electronics from "./ElecronicsRental/Electronis";
 import ServiceSection from "../Service/ServiceSection";
 import OurProcess from "../../Components/OurProcess/OurProcess";
+import HelmetTitle from "../../Components/HelmetTitle";
 
 
 const Home = () => {
   return (
     <div className="">
+      <HelmetTitle title={'Home'}/>
       <Navbar></Navbar>
       <Banner></Banner>
       <OurProcess />

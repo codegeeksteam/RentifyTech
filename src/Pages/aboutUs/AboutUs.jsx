@@ -4,11 +4,13 @@ import Footer from '../../Components/Footer';
 import Teamcard from './Teamcard';
 import LatestNews from './LatestNews';
 import Gallery from './Gallery';
+import HelmetTitle from '../../Components/HelmetTitle';
 
 
 const AboutUs = () => {
     return (
         <div>
+            <HelmetTitle title={'About'}/>
             <Navbar />
 
             <section className='w-11/12 mx-auto pb-20'>
