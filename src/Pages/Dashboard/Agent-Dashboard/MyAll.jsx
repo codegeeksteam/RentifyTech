@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { AuthContext } from '../../../Provider/AuthProvider';
 
 const MyAll = () => {
   const [gadgets, setGadgets] = useState([]); // State to store the gadgets
@@ -7,13 +8,12 @@ const MyAll = () => {
   const [error, setError] = useState(null); // State to store error messages
   const axiosSecure = useAxiosSecure(); // Get the axiosSecure instance
 
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     // Function to fetch gadgets
     const fetchGadgets = async () => {
       try {
-        const response = await axiosSecure.get(
-          '/gadgets/seller/kmahi@agent.com',
-        );
+        const response = await axiosSecure.get(`/gadgets/seller/${user.email}`);
         setGadgets(response.data); // Store the fetched gadgets
         setLoading(false); // Set loading to false once data is fetched
       } catch (err) {
@@ -75,7 +75,7 @@ const MyAll = () => {
                   </div>
                 </div>
               </div>
-              <div className='flex items-center justify-between pt-3 *:cursor-pointer *:btn'>
+              <div className="flex items-center justify-between pt-3 *:cursor-pointer *:btn">
                 <button>Update</button>
                 <button>View</button>
                 <button>Delete</button>
