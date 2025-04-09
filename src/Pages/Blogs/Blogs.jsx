@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Navbar from "../../Components/Navbar";
+import HelmetTitle from "../../Components/HelmetTitle";
 
 function OurNews() {
   const [filter, setFilter] = useState("All");
@@ -281,6 +282,7 @@ function OurNews() {
   const featuredPosts = ourNews.filter((post) => post.featured);
   return (
     <div className="bg-gray-50 min-h-screen">
+      <HelmetTitle title={"About"} />
       <Navbar />
 
       {/* Hero Section */}
