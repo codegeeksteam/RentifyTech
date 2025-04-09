@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const MyAll = () => {
   const [gadgets, setGadgets] = useState([]); // State to store the gadgets
@@ -76,7 +77,7 @@ const MyAll = () => {
                 </div>
               </div>
               <div className="flex items-center justify-between pt-3 *:cursor-pointer *:btn">
-                <button>Update</button>
+                <Link to={`/update-gadget/${gadget._id}`}>Update</Link>
                 <button>View</button>
                 <button>Delete</button>
               </div>

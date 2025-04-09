@@ -24,6 +24,7 @@ import AddCategory from './Pages/Dashboard/Admin-Dashboard/AddCategory.jsx';
 import Contact from './Pages/contactUs/Contact.jsx';
 import Blogs from './Pages/Blogs/Blogs.jsx';
 import AddProduct from './Pages/addProduct/AddProduct.jsx';
+import UpdateProduct from './Pages/updateProduct/UpdateProduct.jsx';
 
 const queryClient = new QueryClient();
 
@@ -49,6 +50,12 @@ const router = createBrowserRouter([
       {
         path: '/add-gadget',
         element: <AddProduct />,
+      },
+      {
+        path: '/update-gadget/:id',
+        element: <UpdateProduct />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:4000/gadget/${params.id}`),
       },
       {
         path: '/cart',

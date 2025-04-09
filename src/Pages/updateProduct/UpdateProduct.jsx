@@ -1,13 +1,14 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Navbar from '../../Components/Navbar';
 import Footer from '../../Components/Footer';
 import toast, { Toaster } from 'react-hot-toast';
 import { AuthContext } from '../../Provider/AuthProvider';
 import useAxiosPublic from '../../Hooks/useAxiosPublic';
-import { useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import HelmetTitle from '../../Components/HelmetTitle';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
-function AddProduct() {
+function UpdateProduct() {
   const [formData, setFormData] = useState({
     name: '',
     brand: '',
@@ -26,11 +27,16 @@ function AddProduct() {
       quantity: 1,
       nextAvailable: 'Immediately',
     },
-    specifications: [{ name: '', value: '' }],
-    includes: [''],
+    specifications: [],
+    includes: [],
   });
 
   const [images, setImages] = useState([]);
+  const [newImages, setNewImages] = useState([]);
+  const [isUploading, setIsUploading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const categories = [
     'Cameras',
     'Audio Equipment',
@@ -39,6 +45,51 @@ function AddProduct() {
     'Computers',
     'Drones',
   ];
+  const axiosSecure = useAxiosSecure();
+  const gadgetData = useLoaderData();
+  useEffect(() => {
+    // Function to fetch gadget
+    const fetchGadget = async () => {
+      try {
+        const response = await axiosSecure.get(`/gadget/${gadgetData._id}`);
+        const gadget = response.data;
+
+        // Initialize form data with fetched gadget data
+        setFormData({
+          name: gadget.name || '',
+          brand: gadget.brand || '',
+          category: gadget.category || '',
+          description: gadget.description || '',
+          usageGuide: gadget.usageGuide || '',
+          rentalPolicy: gadget.rentalPolicy || '',
+          pricing: {
+            hourly: gadget.pricing?.hourly || '',
+            daily: gadget.pricing?.daily || '',
+            weekly: gadget.pricing?.weekly || '',
+            deposit: gadget.pricing?.deposit || '',
+          },
+          availability: {
+            status: gadget.availability?.status || 'In Stock',
+            quantity: gadget.availability?.quantity || 1,
+            nextAvailable: gadget.availability?.nextAvailable || 'Immediately',
+          },
+          specifications: gadget.specifications || [],
+          includes: gadget.includes || [],
+        });
+
+        // Initialize images from fetched gadget
+        setImages(gadget.images || []);
+
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching gadget:', err);
+        setError('Failed to load gadget.');
+        setLoading(false);
+      }
+    };
+
+    fetchGadget();
+  }, [axiosSecure]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -59,65 +110,54 @@ function AddProduct() {
     }
   };
 
-  // const handleImageUpload = (e) => {
-  //   // In a real implementation, you would handle file uploads here
-  //   // For now, we'll just store the file names
-  //   const newImages = [...images];
-  //   for (let i = 0; i < e.target.files.length; i++) {
-  //     newImages.push(e.target.files[i].name);
-  //   }
-  //   setImages(newImages);
-  // };
-
-  const [isUploading, setIsUploading] = useState(false);
   const handleImageUpload = async (e) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
 
-    // Show loading indicator or message
     setIsUploading(true);
 
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
+    try {
+      // Process all files first
+      const uploadPromises = Array.from(files).map(async (file) => {
+        const formData = new FormData();
+        formData.append('image', file);
+        formData.append('key', '749ef71fc1cc2413552fce9e7178e027');
 
-      // Create FormData object to send to ImgBB
-      const formData = new FormData();
-      formData.append('image', file);
-      formData.append('key', '749ef71fc1cc2413552fce9e7178e027'); // Replace with your actual ImgBB API key
-
-      try {
-        // Upload to ImgBB
         const response = await fetch('https://api.imgbb.com/1/upload', {
           method: 'POST',
           body: formData,
         });
 
         const data = await response.json();
-
-        if (data.success) {
-          // Add the image URL to your state
-          setImages((prevImages) => [...prevImages, data.data.url]);
-        } else {
-          console.error('Upload failed:', data.error);
-          alert(
-            `Failed to upload ${file.name}: ${
-              data.error?.message || 'Unknown error'
-            }`,
-          );
+        if (!data.success) {
+          throw new Error(data.error?.message || 'Upload failed');
         }
-      } catch (error) {
-        console.error('Upload error:', error);
-        alert(`Error uploading ${file.name}: ${error.message}`);
-      }
+        return data.data.url;
+      });
+
+      // Wait for all uploads to complete
+      const uploadedUrls = await Promise.all(uploadPromises);
+
+      // Update state once with all new URLs
+      setNewImages((prev) => [...prev, ...uploadedUrls]);
+    } catch (error) {
+      console.error('Upload error:', error);
+      toast.error(`Error uploading images: ${error.message}`);
+    } finally {
+      setIsUploading(false);
     }
-    setIsUploading(false);
-    // files.reset()
   };
 
-  const removeImage = (index) => {
-    const newImages = [...images];
-    newImages.splice(index, 1);
-    setImages(newImages);
+  const removeImage = (index, isNewImage = false) => {
+    if (isNewImage) {
+      const updatedNewImages = [...newImages];
+      updatedNewImages.splice(index, 1);
+      setNewImages(updatedNewImages);
+    } else {
+      const updatedImages = [...images];
+      updatedImages.splice(index, 1);
+      setImages(updatedImages);
+    }
   };
 
   const addSpecification = () => {
@@ -169,48 +209,61 @@ function AddProduct() {
       includes: newIncludes,
     });
   };
-
-  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const axiosPublic = useAxiosPublic();
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend
-    const gadgetInfo = {
-      ...formData,
-      images,
-      seller: {
-        name: user.displayName,
-        email: user.email,
-        image: user.photoURL,
-      },
-    };
-    console.log(gadgetInfo);
 
-    // Make the API request to submit the gadget info
-    axiosPublic
-      .post('/gadgets', gadgetInfo) // Call the post method on axiosPublic
+    // Combine existing and new images
+    const allImages = [...images, ...newImages];
+
+    if (allImages.length === 0) {
+      toast.error('Please upload at least one image');
+      return;
+    }
+
+    // Prepare data for submission
+    const updateData = {
+      ...formData,
+      images: allImages,
+    };
+    console.log(updateData);
+
+    // Send update request to the server
+    axiosSecure
+      .put(`/update-gadget/${gadgetData._id}`, updateData)
       .then((res) => {
-        if (res.data.insertedId) {
-          // Reset form and show success message
-          // reset(); // Ensure reset is defined
-          toast.success('Product submitted successfully!');
+        if (res.data) {
+          toast.success('Product updated successfully!');
           navigate('/dashboard/myAll'); // Redirect to success page
+        } else {
+          toast.error('Failed to update product.');
         }
       })
-      .catch((error) => {
-        // Handle errors and display error message
-        toast.error(error.message);
+      .catch((err) => {
+        console.error('Error updating product:', err);
+        toast.error(`Error updating product: ${err.message}`);
       });
   };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        Loading product data...
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div className="text-red-600 p-4 text-center">{error}</div>;
+  }
 
   return (
     <>
       <Toaster />
-      <HelmetTitle title={'Add Gadget'} />
+      <HelmetTitle title={'Update Gadget'} />
       <Navbar />
       <div className="max-w-4xl mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-6">Add New Gadget</h1>
+        <h1 className="text-3xl font-bold mb-6">Update Gadget</h1>
 
         <form onSubmit={handleSubmit} className="space-y-8">
           {/* Basic Information */}
@@ -312,7 +365,7 @@ function AddProduct() {
                 accept=".webp,.png,.jpg,.jpeg" // Added the specific image types
                 multiple
                 onChange={handleImageUpload}
-                disabled={images.length > 5 || isUploading}
+                disabled={images.length + newImages.length > 5 || isUploading}
                 className={`w-full p-2 disabled:opacity-40 disabled:cursor-not-allowed border cursor-pointer border-gray-300 rounded focus:ring-2 focus:ring-black focus:border-black`}
               />
               <p className="text-sm text-gray-500 mt-1">
@@ -326,7 +379,7 @@ function AddProduct() {
               </div>
             )}
 
-            {images.length > 0 && (
+            {images.length + newImages.length > 0 && (
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
                 {images.map((imageUrl, index) => (
                   <div key={index} className="relative">
@@ -340,6 +393,24 @@ function AddProduct() {
                     <button
                       type="button"
                       onClick={() => removeImage(index)}
+                      className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600"
+                    >
+                      ×
+                    </button>
+                  </div>
+                ))}
+                {newImages.map((imageUrl, index) => (
+                  <div key={`new-${index}`} className="relative">
+                    <div className="aspect-square bg-gray-100 rounded overflow-hidden border border-gray-200">
+                      <img
+                        src={imageUrl}
+                        alt={`New product image ${index + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => removeImage(index, true)}
                       className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600"
                     >
                       ×
@@ -554,12 +625,20 @@ function AddProduct() {
           </div>
 
           {/* Submit Button */}
-          <div className="flex justify-end">
+          <div className="flex justify-end gap-4">
+            <button
+              onClick={() => {
+                navigate('/dashboard/myAll');
+              }}
+              className="bg-gray-200 text-black py-3 px-8 rounded-lg font-medium border border-gray-200  hover:border-gray-100 hover:text-black/70 hover:bg-gray-100 cursor-pointer focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+            >
+              Cancel
+            </button>
             <button
               type="submit"
               className="bg-black text-white py-3 px-8 rounded-lg font-medium hover:bg-white hover:text-black  hover:border-black border cursor-pointer focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
             >
-              Add Product
+              Update Product
             </button>
           </div>
         </form>
@@ -569,4 +648,4 @@ function AddProduct() {
   );
 }
 
-export default AddProduct;
+export default UpdateProduct;
