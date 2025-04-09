@@ -1,79 +1,84 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import MainLayout from "./Layout/Main/MainLayout.jsx";
-import Home from "./Pages/home/Home.jsx";
-import AboutUs from "./Pages/aboutUs/AboutUs.jsx";
-import AuthProvider from "./Provider/AuthProvider.jsx";
-import SignUp from "./Pages/signUp/SignUp.jsx";
-import SignIn from "./Pages/signIn/SignIn.jsx";
-import Error from "./Pages/Erorr/Erorr.jsx";
-import Cart from "./Pages/cart/Cart.jsx";
-import Dashboard from "./Pages/Dashboard/Dashboard.jsx";
-import ProductDetailsPage from "./Pages/productDetails/ProductDetailsPage.jsx";
-import AllGadgetsPage from "./Pages/allProducts/AllGadgetsPage.jsx";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import MyGadgets from "./Pages/Dashboard/User-Dashboard/MyGadgets.jsx";
-import UserRoute from "./Route/UserRoute.jsx";
-import AgentRoute from "./Route/AgentRoute.jsx";
-import MyAll from "./Pages/Dashboard/Agent-Dashboard/MyAll.jsx";
-import AdminRoute from "./Route/AdminRoute.jsx";
-import AllUsers from "./Pages/Dashboard/Admin-Dashboard/AllUsers.jsx";
-import AddCategory from "./Pages/Dashboard/Admin-Dashboard/AddCategory.jsx";
-import Contact from "./Pages/contactUs/Contact.jsx";
-import Blogs from "./Pages/Blogs/Blogs.jsx";
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import MainLayout from './Layout/Main/MainLayout.jsx';
+import Home from './Pages/home/Home.jsx';
+import AboutUs from './Pages/aboutUs/AboutUs.jsx';
+import AuthProvider from './Provider/AuthProvider.jsx';
+import SignUp from './Pages/signUp/SignUp.jsx';
+import SignIn from './Pages/signIn/SignIn.jsx';
+import Error from './Pages/Erorr/Erorr.jsx';
+import Cart from './Pages/cart/Cart.jsx';
+import Dashboard from './Pages/Dashboard/Dashboard.jsx';
+import ProductDetailsPage from './Pages/productDetails/ProductDetailsPage.jsx';
+import AllGadgetsPage from './Pages/allProducts/AllGadgetsPage.jsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import MyGadgets from './Pages/Dashboard/User-Dashboard/MyGadgets.jsx';
+import UserRoute from './Route/UserRoute.jsx';
+import AgentRoute from './Route/AgentRoute.jsx';
+import MyAll from './Pages/Dashboard/Agent-Dashboard/MyAll.jsx';
+import AdminRoute from './Route/AdminRoute.jsx';
+import AllUsers from './Pages/Dashboard/Admin-Dashboard/AllUsers.jsx';
+import AddCategory from './Pages/Dashboard/Admin-Dashboard/AddCategory.jsx';
+import Contact from './Pages/contactUs/Contact.jsx';
+import Blogs from './Pages/Blogs/Blogs.jsx';
+import AddProduct from './Pages/addProduct/AddProduct.jsx';
 
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <MainLayout />,
     errorElement: <Error />,
     children: [
-      { path: "/", element: <Home /> },
+      { path: '/', element: <Home /> },
       {
-        path: "/about-us",
+        path: '/about-us',
         element: <AboutUs />,
       },
       {
-        path: "/contact-us",
+        path: '/contact-us',
         element: <Contact></Contact>,
       },
       {
-        path: "/blogs",
+        path: '/blogs',
         element: <Blogs />,
       },
       {
-        path: "/cart",
+        path: '/add-gadget',
+        element: <AddProduct />,
+      },
+      {
+        path: '/cart',
         element: <Cart />,
       },
       {
-        path: "/all-gadgets",
+        path: '/all-gadgets',
         element: <AllGadgetsPage />,
       },
       {
-        path: "/cam-sony-a7iii",
+        path: '/cam-sony-a7iii',
         element: <ProductDetailsPage />,
       },
       {
-        path: "/signIn",
+        path: '/signIn',
         element: <SignIn />,
       },
       {
-        path: "/signUp",
+        path: '/signUp',
         element: <SignUp />,
       },
     ],
   },
   {
-    path: "dashboard",
+    path: 'dashboard',
     element: <Dashboard />,
     children: [
       //User Route
       {
-        path: "myGadget",
+        path: 'myGadget',
         element: (
           <UserRoute>
             <MyGadgets />
@@ -82,7 +87,7 @@ const router = createBrowserRouter([
       },
       // Agent Route
       {
-        path: "myAll",
+        path: 'myAll',
         element: (
           <AgentRoute>
             <MyAll />
@@ -91,7 +96,7 @@ const router = createBrowserRouter([
       },
       // Admin Route
       {
-        path: "allUsers",
+        path: 'allUsers',
         element: (
           <AdminRoute>
             <AllUsers />
@@ -99,7 +104,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "addCategory",
+        path: 'addCategory',
         element: (
           <AdminRoute>
             <AddCategory />
@@ -110,12 +115,12 @@ const router = createBrowserRouter([
   },
 ]);
 
-createRoot(document.getElementById("root")).render(
+createRoot(document.getElementById('root')).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
         <RouterProvider router={router} />
       </AuthProvider>
     </QueryClientProvider>
-  </StrictMode>
+  </StrictMode>,
 );
