@@ -7,6 +7,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import HelmetTitle from "../../Components/HelmetTitle";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -86,6 +87,7 @@ const SignUp = () => {
   };
   return (
     <div>
+      <HelmetTitle title={'Sign up'}/>
       <div className="min-w-screen bg-gray-100 text-gray-900 flex justify-center">
         <div className="max-w-screen-xl m-0 sm:m-10 shadow sm:rounded-lg flex justify-center flex-1">
           <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">

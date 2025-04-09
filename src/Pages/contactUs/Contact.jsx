@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import emailjs from "@emailjs/browser";
 import Footer from '../../Components/Footer';
 import Navbar from '../../Components/Navbar';
+import HelmetTitle from '../../Components/HelmetTitle';
 
 const Contact = () => {
   const form = useRef();
@@ -22,6 +23,7 @@ const Contact = () => {
 
   return (
     <div>
+      <HelmetTitle title={'About'}/>
       <Navbar />
       <div className="flex justify-center items-center min-h-screen bg-white">
         <div className="flex bg-white rounded-tl-[100px] rounded-br-[100px] shadow-2xl overflow-hidden w-full max-w-4xl">
@@ -70,7 +72,9 @@ const Contact = () => {
             {/* Contact Info */}
             <div className="mt-8">
               <p className="font-semibold">Contact</p>
-              <p className="text-blue-600">hi@green.com</p>
+              <a href="mailto:codegeeksteam@gmail.com" className="text-lg text-blue-600 transition">
+                codegeeksteam@gmail.com
+              </a>
               <p className="font-semibold mt-4">Based in</p>
               <p>New York, California, Ohio</p>
 
