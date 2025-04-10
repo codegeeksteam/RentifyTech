@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { AuthContext } from '../../../Provider/AuthProvider';
+import { Link } from 'react-router-dom';
 
 const MyAll = () => {
   const [gadgets, setGadgets] = useState([]); // State to store the gadgets
@@ -59,7 +60,7 @@ const MyAll = () => {
                     {gadget.name}
                   </h3>
                   <p className="text-sm text-gray-600 mb-3">
-                    {gadget.description}
+                    {gadget.brand}
                   </p>
                   <div className="flex justify-between items-center">
                     <button
@@ -76,9 +77,18 @@ const MyAll = () => {
                 </div>
               </div>
               <div className="flex items-center justify-between pt-3 *:cursor-pointer *:btn">
-                <button>Update</button>
-                <button>View</button>
+                <Link to={`/update-gadget/${gadget._id}`}>Update</Link>
+                <Link to={`/gadget/${gadget._id}`}>View</Link>
                 <button>Delete</button>
+              </div>
+
+              <div
+                className={`${
+                  gadget?.approvalStatus === 'Published' && 'hidden'
+                  // gadget.brand || 'hidden'
+                } bg-red-500 text-white text-center py-1 mt-3 rounded-full`}
+              >
+                <p className="text-xs uppercase">Unpublished</p>
               </div>
             </div>
           ))}
