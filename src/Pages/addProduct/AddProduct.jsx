@@ -13,8 +13,8 @@ function AddProduct() {
     approvalStatus: 'Published',
     // Published, Unpublished - admin duty
     reviews: {
-      average: 4.1,
-      count: 31,
+      average: 0,
+      count: 0,
     },
     brand: '',
     category: '',
