@@ -282,7 +282,7 @@ function OurNews() {
   const featuredPosts = ourNews.filter((post) => post.featured);
   return (
     <div className="bg-gray-50 min-h-screen">
-      <HelmetTitle title={"About"} />
+      <HelmetTitle title={"Blog"} />
       <Navbar />
 
       {/* Hero Section */}
