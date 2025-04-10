@@ -5,7 +5,7 @@ import HelmetTitle from "../../Components/HelmetTitle";
 function OurNews() {
   const [filter, setFilter] = useState("All");
   const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   const categories = [
     "All",
@@ -32,7 +32,7 @@ useEffect(() => {
     } catch (error) {
       console.error('Error fetching blogs:', error);
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   };
 
