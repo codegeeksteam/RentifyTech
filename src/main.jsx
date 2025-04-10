@@ -25,6 +25,9 @@ import Contact from './Pages/contactUs/Contact.jsx';
 import Blogs from './Pages/Blogs/Blogs.jsx';
 import AddProduct from './Pages/addProduct/AddProduct.jsx';
 import UpdateProduct from './Pages/updateProduct/UpdateProduct.jsx';
+import NewAll from './Pages/allProducts/NewAll.jsx';
+import AllDeep from './Pages/allProducts/AllDeep.jsx';
+import NewDetails from './Pages/productDetails/NewDetails.jsx';
 
 const queryClient = new QueryClient();
 
@@ -63,11 +66,16 @@ const router = createBrowserRouter([
       },
       {
         path: '/all-gadgets',
-        element: <AllGadgetsPage />,
+        // element: <AllGadgetsPage />,
+        element: <AllDeep />,
+        // element: <NewAll />,
       },
       {
-        path: '/cam-sony-a7iii',
-        element: <ProductDetailsPage />,
+        path: '/gadget/:id',
+        // element: <ProductDetailsPage />,
+        element: <NewDetails />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:4000/gadget/${params.id}`),
       },
       {
         path: '/signIn',

@@ -10,6 +10,12 @@ import HelmetTitle from '../../Components/HelmetTitle';
 function AddProduct() {
   const [formData, setFormData] = useState({
     name: '',
+    approvalStatus: 'Published',
+    // Published, Unpublished - admin duty
+    reviews: {
+      average: 4.1,
+      count: 31,
+    },
     brand: '',
     category: '',
     description: '',
@@ -32,12 +38,31 @@ function AddProduct() {
 
   const [images, setImages] = useState([]);
   const categories = [
-    'Cameras',
+    '3D Printers',
     'Audio Equipment',
-    'Lighting',
+    'Cables & Adapters',
     'Camera Accessories',
+    'Cameras',
     'Computers',
     'Drones',
+    'Gaming Consoles',
+    'GPS & Navigation',
+    'Lighting',
+    'Mobile Phones',
+    'Monitors & Displays',
+    'Mounts & Rigs',
+    'Networking Equipment',
+    'Others',
+    'Power Banks & Charging Equipment',
+    'Printers & Scanners',
+    'Projectors',
+    'Smart Home Devices',
+    'Storage Devices',
+    'Streaming Equipment',
+    'Tablets',
+    'Testing & Measurement Tools',
+    'Virtual Reality Gear',
+    'Wearables',
   ];
 
   const handleChange = (e) => {
@@ -83,7 +108,7 @@ function AddProduct() {
       // Create FormData object to send to ImgBB
       const formData = new FormData();
       formData.append('image', file);
-      formData.append('key', '749ef71fc1cc2413552fce9e7178e027'); // Replace with your actual ImgBB API key
+      formData.append('key', 'a461f6bdc62a52f34f2878ce602b88a9'); // ImgBB API key
 
       try {
         // Upload to ImgBB

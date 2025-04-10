@@ -60,7 +60,7 @@ const MyAll = () => {
                     {gadget.name}
                   </h3>
                   <p className="text-sm text-gray-600 mb-3">
-                    {gadget.description}
+                    {gadget.brand}
                   </p>
                   <div className="flex justify-between items-center">
                     <button
@@ -78,8 +78,17 @@ const MyAll = () => {
               </div>
               <div className="flex items-center justify-between pt-3 *:cursor-pointer *:btn">
                 <Link to={`/update-gadget/${gadget._id}`}>Update</Link>
-                <button>View</button>
+                <Link to={`/gadget/${gadget._id}`}>View</Link>
                 <button>Delete</button>
+              </div>
+
+              <div
+                className={`${
+                  gadget?.approvalStatus === 'Published' && 'hidden'
+                  // gadget.brand || 'hidden'
+                } bg-red-500 text-white text-center py-1 mt-3 rounded-full`}
+              >
+                <p className="text-xs uppercase">Unpublished</p>
               </div>
             </div>
           ))}

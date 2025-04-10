@@ -38,12 +38,31 @@ function UpdateProduct() {
   const [error, setError] = useState(null);
 
   const categories = [
-    'Cameras',
+    '3D Printers',
     'Audio Equipment',
-    'Lighting',
+    'Cables & Adapters',
     'Camera Accessories',
+    'Cameras',
     'Computers',
     'Drones',
+    'Gaming Consoles',
+    'GPS & Navigation',
+    'Lighting',
+    'Mobile Phones',
+    'Monitors & Displays',
+    'Mounts & Rigs',
+    'Networking Equipment',
+    'Others',
+    'Power Banks & Charging Equipment',
+    'Printers & Scanners',
+    'Projectors',
+    'Smart Home Devices',
+    'Storage Devices',
+    'Streaming Equipment',
+    'Tablets',
+    'Testing & Measurement Tools',
+    'Virtual Reality Gear',
+    'Wearables',
   ];
   const axiosSecure = useAxiosSecure();
   const gadgetData = useLoaderData();
@@ -58,6 +77,16 @@ function UpdateProduct() {
         setFormData({
           name: gadget.name || '',
           brand: gadget.brand || '',
+          approvalStatus: gadget?.approvalStatus || 'Published',
+          // Published, Unpublished - admin duty
+          userFeedback: {
+            ratings: gadget.userFeedback?.ratings || [],
+            reviews: gadget.userFeedback?.reviews || [],
+          },
+          reviews: {
+            average: gadget?.reviews?.average || 0,
+            count: gadget?.reviews?.count || 0,
+          },
           category: gadget.category || '',
           description: gadget.description || '',
           usageGuide: gadget.usageGuide || '',
@@ -121,7 +150,7 @@ function UpdateProduct() {
       const uploadPromises = Array.from(files).map(async (file) => {
         const formData = new FormData();
         formData.append('image', file);
-        formData.append('key', '749ef71fc1cc2413552fce9e7178e027');
+        formData.append('key', 'a461f6bdc62a52f34f2878ce602b88a9');
 
         const response = await fetch('https://api.imgbb.com/1/upload', {
           method: 'POST',
@@ -247,14 +276,24 @@ function UpdateProduct() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-64">
-        Loading product data...
-      </div>
+      <>
+        <HelmetTitle title={'All Gadgets'} />
+        <Navbar />
+        <div className="flex justify-center items-center h-64">Loading...</div>;
+        <Footer />
+      </>
     );
   }
 
   if (error) {
-    return <div className="text-red-600 p-4 text-center">{error}</div>;
+    return (
+      <>
+        <HelmetTitle title={'All Gadgets'} />
+        <Navbar />
+        <div className="h-[50vh] p-5 text-red-600 text-center">{error}</div>;
+        <Footer />
+      </>
+    );
   }
 
   return (
