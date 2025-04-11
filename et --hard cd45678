@@ -1,0 +1,94 @@
+[33mfab487d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32msirazul[m[33m, [m[1;31morigin/development[m[33m)[m Merge pull request #163 from codegeeksteam/wasee11
+[33m9d8b0a7[m Merge branch 'development' into wasee11
+[33m636db6e[m change the meet our team member and modily some padding and margin
+[33m446c74d[m Merge pull request #162 from codegeeksteam/khaled-mahi
+[33m4826079[m  now blogs dat acme from database
+[33me235beb[m style update
+[33mac1b2ce[m all gadgets and single gadget made dynamic
+[33m94b820f[m update gadget done
+[33m639c00e[m blog helmet update
+[33md1f7644[m fav icon logo
+[33m3f50367[m Merge pull request #155 from codegeeksteam/shahriar-araf
+[33me7e103a[m added contact us page
+[33m09c53d5[m added updated contact us page
+[33mcf1c3cd[m Merge pull request #160 from codegeeksteam/wasee11
+[33mc9443f2[m Merge pull request #159 from codegeeksteam/khaled-mahi
+[33me3aa901[m modify in blogs page
+[33mc1ef317[m add a countdown and some edit in banner to look good countdown
+[33m270f851[m gadget fetching made dynamic by agent email
+[33m1ad996c[m agent dashboard show agents gadgets and add gadget button
+[33m19ce5c2[m Merge pull request #158 from codegeeksteam/wasee11
+[33m1f126c8[m add product done
+[33mf39b830[m modify in blog section
+[33md38ef47[m Merge pull request #157 from codegeeksteam/development
+[33mdb2b780[m Merge pull request #156 from codegeeksteam/sirazul
+[33ma41bca2[m[33m ([m[1;31morigin/sirazul[m[33m)[m contact us solve
+[33m549fc6b[m added updated contact us page
+[33m479c974[m Merge pull request #154 from codegeeksteam/sirazul
+[33ma7a1c03[m error solve and setup
+[33m3a43b6b[m Merge pull request #153 from codegeeksteam/khaled-mahi
+[33m39eb157[m Merge branch 'development' into khaled-mahi
+[33me8fbc98[m Merge pull request #145 from codegeeksteam/wasee11
+[33m98c4ef8[m favicon and helmet added
+[33m4534c97[m  make it responsive , modify testimonial , modify some code for responsive ,
+[33m95f412a[m delete shop and add blog in navbar and create a blog page and modify the footer section
+[33mf64c01c[m Merge pull request #152 from codegeeksteam/development
+[33m5f8a4ab[m Merge pull request #151 from codegeeksteam/sirazul
+[33m67510cf[m added and removed
+[33m6c5ac1e[m Merge pull request #150 from codegeeksteam/shahriar-araf
+[33m165f233[m added updated contact us page
+[33m60674e1[m Merge pull request #149 from codegeeksteam/development
+[33m4480574[m Merge pull request #148 from codegeeksteam/sirazul
+[33mfe1160a[m added and update
+[33m8496d31[m Merge pull request #147 from codegeeksteam/development
+[33md0b8325[m Merge pull request #146 from codegeeksteam/khaled-mahi
+[33m01ec2c3[m featured products card designed as all products card
+[33m80a3a97[m Merge branch 'development' of https://github.com/codegeeksteam/RentifyTech into khaled-mahi
+[33m5d5cc53[m Merge pull request #143 from codegeeksteam/development
+[33m55d534f[m Merge pull request #142 from codegeeksteam/sirazul
+[33mb079250[m update a navbar and dashboard
+[33m5d29ce4[m Merge pull request #141 from codegeeksteam/development
+[33mfd8f2d0[m Merge pull request #140 from codegeeksteam/sirazul
+[33mf45181b[m update a dashboard content
+[33mbcd53de[m Merge pull request #139 from codegeeksteam/development
+[33m0468d61[m Merge pull request #138 from codegeeksteam/sirazul
+[33mdea59eb[m update dashboard navbar and added
+[33m5ac2510[m Merge pull request #137 from codegeeksteam/sirazul
+[33m0aee84b[m update a home page
+[33mfad02db[m Merge pull request #136 from codegeeksteam/development
+[33md981c48[m Merge pull request #135 from codegeeksteam/sirazul
+[33m8c7c87b[m added agent dashboard react icons
+[33mb0af084[m Merge pull request #134 from codegeeksteam/sirazul
+[33m1572bc0[m added dashboard setup and creat a more route and creat a hooks
+[33ma3c5a59[m Merge pull request #133 from codegeeksteam/development
+[33ma288cba[m Merge pull request #132 from codegeeksteam/sirazul
+[33mbecc098[m added loading and admin-loading and agent-loading
+[33m2d9ef14[m Merge pull request #131 from codegeeksteam/sirazul
+[33m552532d[m added isAdmin and isAgent and creat a useAxiosSecure
+[33m5f17770[m Merge pull request #130 from codegeeksteam/development
+[33mda1d824[m Merge pull request #129 from codegeeksteam/sirazul
+[33md75dade[m added post jwt and update auth provider
+[33mba07f0a[m Merge pull request #128 from codegeeksteam/development
+[33m2c694a7[m Merge pull request #127 from codegeeksteam/sirazul
+[33maa116b3[m added navbar modify and more section update and our process
+[33md0f9e3d[m Merge pull request #126 from codegeeksteam/development
+[33ma087c78[m Merge pull request #125 from codegeeksteam/sirazul
+[33m4790f93[m added route and navbar modify and dashboard update
+[33mfc853e2[m Merge pull request #124 from codegeeksteam/sirazul
+[33m5bf1627[m modify dashboard navbar
+[33m6793cdc[m Merge pull request #123 from codegeeksteam/development
+[33m5ee1e5a[m Merge pull request #122 from codegeeksteam/sirazul
+[33mb01e19e[m added user role and setup
+[33m9363b0f[m Merge pull request #121 from codegeeksteam/development
+[33mea16dfd[m style change in product details page
+[33md5dc86b[m Merge pull request #120 from codegeeksteam/khaled-mahi
+[33m295ba06[m slight style change in productDetails page
+[33mdb75b3f[m Merge pull request #119 from codegeeksteam/development
+[33m364afe3[m Merge pull request #118 from codegeeksteam/sirazul
+[33m12bdc97[m added react icons and update a dashboard
+[33m6af04da[m Merge pull request #117 from codegeeksteam/development
+[33mf20a81d[m Merge pull request #116 from codegeeksteam/sirazul
+[33m6b6ea20[m modify navbar profile dropdown
+[33mb27f2c1[m Merge pull request #115 from codegeeksteam/development
+[33m8d5ec67[m Merge pull request #114 from codegeeksteam/sirazul
+[33m9084fb3[m added dashboard navbar and setup navigation

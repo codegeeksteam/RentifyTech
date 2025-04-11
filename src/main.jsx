@@ -11,8 +11,6 @@ import SignIn from './Pages/signIn/SignIn.jsx';
 import Error from './Pages/Erorr/Erorr.jsx';
 import Cart from './Pages/cart/Cart.jsx';
 import Dashboard from './Pages/Dashboard/Dashboard.jsx';
-import ProductDetailsPage from './Pages/productDetails/ProductDetailsPage.jsx';
-import AllGadgetsPage from './Pages/allProducts/AllGadgetsPage.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import MyGadgets from './Pages/Dashboard/User-Dashboard/MyGadgets.jsx';
 import UserRoute from './Route/UserRoute.jsx';
@@ -52,16 +50,27 @@ const router = createBrowserRouter([
         element: <AddProduct />,
       },
       {
+        path: '/update-gadget/:id',
+        element: <UpdateProduct />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:4000/gadget/${params.id}`),
+      },
+      {
         path: '/cart',
         element: <Cart />,
       },
       {
         path: '/all-gadgets',
-        element: <AllGadgetsPage />,
+        // element: <AllGadgetsPage />,
+        element: <AllDeep />,
+        // element: <NewAll />,
       },
       {
-        path: '/cam-sony-a7iii',
-        element: <ProductDetailsPage />,
+        path: '/gadget/:id',
+        // element: <ProductDetailsPage />,
+        element: <NewDetails />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:4000/gadget/${params.id}`),
       },
       {
         path: '/signIn',
