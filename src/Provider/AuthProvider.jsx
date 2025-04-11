@@ -2,6 +2,7 @@
 import {
     createUserWithEmailAndPassword,
     onAuthStateChanged,
+    sendPasswordResetEmail,
     signInWithEmailAndPassword,
     signInWithPopup,
     signOut,
@@ -46,6 +47,11 @@ import {
         photoURL: photo,
       });
     };
+
+    // 
+    const forgetPassword = (auth, email) => {
+      return sendPasswordResetEmail(auth, email);
+    };
   
     useEffect(() => {
       const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
@@ -78,6 +84,7 @@ import {
       signInGoogle,
       signOutUser,
       updateMyProfile,
+      forgetPassword
     };
     return (
       <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
