@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaGreaterThan } from "react-icons/fa6";
 import OfferCountdownTimer from "../../../Components/OfferCoundDown/OfferCoundDown";
+import { Link } from "react-router-dom";
+import { ThemeContext } from "../../../Provider/ThemeProvider";
 
 export default function Banner() {
   const slides = [
@@ -26,6 +28,7 @@ export default function Banner() {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fade, setFade] = useState(false);
+  const {darkMode} = useContext(ThemeContext);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -41,7 +44,8 @@ export default function Banner() {
 
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-6 bg-gray-200">
+      {darkMode? (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-6">
         {/* Left: Auto-Sliding Banner */}
         <div className="col-span-2 h-[550px] overflow-hidden rounded-3xl shadow-lg relative">
           <img
@@ -71,9 +75,9 @@ export default function Banner() {
               <p className="font-medium text-lg uppercase">Super Thin</p>
               <h1 className="font-semibold text-4xl">Smart door lock</h1>
               <br />
-              <button className="underline hover:text-blue-600 flex items-center gap-3">
+              <Link className="underline hover:text-blue-600 flex items-center gap-3">
                 Discover More <FaGreaterThan />
-              </button>
+              </Link>
             </div>
           </div>
           <div className="relative overflow-hidden rounded-3xl">
@@ -86,17 +90,71 @@ export default function Banner() {
               <p className="font-medium text-lg uppercase">Sale 20% Off</p>
               <h1 className="font-semibold text-4xl">Smart Wireless Speaker</h1>
               <br />
-              <button className="underline hover:text-blue-600 flex items-center gap-3">
+              <Link className="underline hover:text-blue-600 flex items-center gap-3">
                 Discover More <FaGreaterThan />
-              </button>
+              </Link>
             </div>
           </div>
         </div>
       </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-6 bg-gray-200">
+        {/* Left: Auto-Sliding Banner */}
+        <div className="col-span-2 h-[550px] overflow-hidden rounded-3xl shadow-lg relative">
+          <img
+            src={slides[currentIndex].src}
+            alt={`Slide ${currentIndex + 1}`}
+            className={`w-full h-full object-cover rounded-lg transition-opacity duration-1000 ease-in ${
+              fade ? "opacity-0" : "opacity-100"
+            }`}
+          />
+          {/* Overlay for Title, Description, and Button */}
+          <div className="absolute inset-0 flex flex-col justify-center items-start p-10 bg-black/30 text-white">
+            <h1 className="text-5xl font-bold">{slides[currentIndex].title}</h1>
+            <p className="text-lg mt-2">{slides[currentIndex].description}</p>
+            <button className="mt-4 uppercase font-medium bg-white text-black py-2 px-4 rounded-full hover:bg-gray-200 transition">
+              {slides[currentIndex].buttonText}
+            </button>
+          </div>
+        </div>
+        <div className="flex flex-col gap-4">
+          <div className="relative overflow-hidden rounded-3xl">
+            <img
+              src="https://ap-priotech.myshopify.com/cdn/shop/files/Mask_group_20.png?v=1689067332&width=1920"
+              alt="Top Image"
+              className="rounded-3xl h-[267px] w-full shadow-md object-cover transition-transform duration-500 ease-in-out transform hover:scale-110"
+            />
+            <div className="absolute top-15 left-10 text-white">
+              <p className="font-medium text-lg uppercase">Super Thin</p>
+              <h1 className="font-semibold text-4xl">Smart door lock</h1>
+              <br />
+              <Link className="underline hover:text-blue-600 flex items-center gap-3">
+                Discover More <FaGreaterThan />
+              </Link>
+            </div>
+          </div>
+          <div className="relative overflow-hidden rounded-3xl">
+            <img
+              src="https://ap-priotech.myshopify.com/cdn/shop/files/Mask_group_21.png?v=1689067967&width=1920"
+              alt="Bottom Image"
+              className="rounded-3xl h-[267px] w-full shadow-md object-cover transition-transform duration-500 ease-in-out transform hover:scale-110"
+            />
+            <div className="absolute top-15 left-10 text-white">
+              <p className="font-medium text-lg uppercase">Sale 20% Off</p>
+              <h1 className="font-semibold text-4xl">Smart Wireless Speaker</h1>
+              <br />
+              <Link className="underline hover:text-blue-600 flex items-center gap-3">
+                Discover More <FaGreaterThan />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+      )}
+      
       <div className="fixed top-1/2 right-4 transform -translate-y-1/2 z-40">
         <OfferCountdownTimer />
       </div>
-      ;
     </div>
   );
 }

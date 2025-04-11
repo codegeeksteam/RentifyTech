@@ -3,6 +3,7 @@ import emailjs from "@emailjs/browser";
 import Footer from '../../Components/Footer';
 import Navbar from '../../Components/Navbar';
 import HelmetTitle from '../../Components/HelmetTitle';
+import { Link } from 'react-router-dom';
 
 const Contact = () => {
   const form = useRef();
@@ -25,8 +26,8 @@ const Contact = () => {
     <div>
       <HelmetTitle title={'About'}/>
       <Navbar />
-      <div className="flex justify-center items-center min-h-screen bg-white">
-        <div className="flex bg-white rounded-tl-[100px] rounded-br-[100px] shadow-2xl overflow-hidden w-full max-w-4xl">
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="flex rounded-tl-[100px] rounded-br-[100px] shadow-2xl overflow-hidden w-full max-w-4xl">
           {/* Left Section - Image */}
           <div className="w-1/2">
             <img
@@ -38,34 +39,34 @@ const Contact = () => {
 
           {/* Right Section - Form and Contact Info */}
           <div className="w-1/2 p-10">
-            <h2 className="text-3xl font-bold text-black mb-6">Contact Us</h2>
+            <h2 className="text-3xl font-bold mb-6">Contact Us</h2>
             <form ref={form} onSubmit={sendEmail}>
               <input
                 type="text"
                 name="user_name"
                 placeholder="Full Name"
-                className="w-full border-b-2 border-gray-300 mb-4 focus:outline-none focus:border-black"
+                className="w-full placeholder-gray-400 border-b-2 border-gray-300 mb-4 focus:outline-none focus:border-black"
                 required
               />
               <input
                 type="email"
                 name="user_email"
                 placeholder="E-mail"
-                className="w-full border-b-2 border-gray-300 mb-4 focus:outline-none focus:border-black"
+                className="w-full placeholder-gray-400 border-b-2 border-gray-300 mb-4 focus:outline-none focus:border-black"
                 required
               />
               <textarea
                 name="message"
                 placeholder="Message"
-                className="w-full border-b-2 border-gray-300 mb-4 focus:outline-none focus:border-black h-24"
+                className="w-full placeholder-gray-400 border-b-2 border-gray-300 mb-4 focus:outline-none focus:border-black h-24"
                 required
               />
-              <button
+              <Link
                 type="submit"
                 className="bg-white text-black border border-black hover:bg-black hover:text-white py-2 px-6 rounded"
               >
                 SEND MASSAGE
-              </button>
+              </Link>
               {status && <p className="mt-4 text-center text-lg font-medium">{status}</p>}
             </form>
 

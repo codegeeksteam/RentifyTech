@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import {useState, useRef, useContext } from "react";
 import {
   FiShoppingCart,
   FiSun,
@@ -19,11 +19,12 @@ import useAdmin from "../Hooks/useAdmin";
 import useAgent from "../Hooks/useAgent";
 import useUser from "../Hooks/useUser";
 import { FaNewspaper } from "react-icons/fa";
+import { ThemeContext } from "../Provider/ThemeProvider";
 
 export default function Navbar() {
   const navigate = useNavigate();
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   const { signOutUser, user } = useAuth();
-  const [darkMode, setDarkMode] = useState(false);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const [isMenuOpen, setMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
@@ -48,23 +49,6 @@ export default function Navbar() {
           icon: "error",
         });
       });
-  };
-
-  useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-      setDarkMode(savedTheme === "dark");
-      document.body.classList.toggle("dark", savedTheme === "dark");
-    }
-  }, []);
-
-  const toggleDarkMode = () => {
-    setDarkMode((prevMode) => {
-      const newMode = !prevMode;
-      localStorage.setItem("theme", newMode ? "dark" : "light");
-      document.body.classList.toggle("dark", newMode);
-      return newMode;
-    });
   };
 
   const navLinks = (
@@ -120,10 +104,10 @@ export default function Navbar() {
         <div className="hidden lg:flex space-x-6 items-center">{navLinks}</div>
 
         {/* Dark Mode Toggle & Profile */}
-        <div className="flex items-center gap-4">
-          <button onClick={toggleDarkMode}>
+        <div className="flex bg-transparent items-center gap-4">
+          <Link className="bg-transparent" onClick={toggleDarkMode}>
             {darkMode ? <FiMoon size={22} /> : <FiSun size={22} />}
-          </button>
+          </Link>
 
           <Link to={"/cart"} className="hidden md:block">
             <FiShoppingCart size={22} />
@@ -176,12 +160,12 @@ export default function Navbar() {
                         Dashboard
                       </Link>
                     )}
-                    <button
+                    <Link
                       onClick={handleSignOut}
                       className="btn btn-sm bg-red-500 text-white"
                     >
                       Log Out
-                    </button>
+                    </Link>
                   </div>
                 </div>
               )}
