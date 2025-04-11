@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../../Components/Navbar";
 import HelmetTitle from "../../Components/HelmetTitle";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 function OurNews() {
   const [filter, setFilter] = useState("All");
@@ -24,7 +25,7 @@ function OurNews() {
 useEffect(() => {
   const fetchBlogs = async () => {
     try {
-      const response = await fetch('/posts');
+      const response = await fetch('https://rentify-tech-server.vercel.app/posts');
       if (!response.ok) {
         throw new Error('Failed to fetch blogs');
       }
