@@ -45,7 +45,7 @@ const FeaturedProducts = () => {
         {featuredProducts.length === 0 ? (
           <div className="text-center py-12">
             <h3 className="text-lg font-medium text-gray-900 mb-2">
-              No Gadgets found
+              No Gadgets found.
             </h3>
             <p className="text-gray-500">
               Try adjusting your search or filter criteria
