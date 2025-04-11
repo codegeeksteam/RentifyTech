@@ -26,7 +26,6 @@ import AddProduct from './Pages/addProduct/AddProduct.jsx';
 import Contact from './Pages/contactUs/contact.jsx';
 import ThemeProvider from './Provider/ThemeProvider.jsx';
 import UpdateProduct from './Pages/updateProduct/UpdateProduct.jsx';
-import NewAll from './Pages/allProducts/NewAll.jsx';
 import AllDeep from './Pages/allProducts/AllDeep.jsx';
 import NewDetails from './Pages/productDetails/NewDetails.jsx';
 

@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import Navbar from "../../Components/Navbar";
 import HelmetTitle from "../../Components/HelmetTitle";
 import { Link } from "react-router-dom";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 function OurNews() {
+  const axiosSecure = useAxiosSecure()
   const [filter, setFilter] = useState("All");
   const [blogs, setBlogs] = useState([]);
   // const [loading, setLoading] = useState(true);
@@ -24,7 +26,7 @@ function OurNews() {
 useEffect(() => {
   const fetchBlogs = async () => {
     try {
-      const response = await fetch('/posts');
+      const response = await axiosSecure('/posts');
       if (!response.ok) {
         throw new Error('Failed to fetch blogs');
       }
