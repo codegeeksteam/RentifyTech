@@ -1,14 +1,14 @@
-import React from "react";
-import { CiLogout } from "react-icons/ci";
-import { FaHome } from "react-icons/fa";
-import { FiPlus } from "react-icons/fi";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import { CiLogout } from 'react-icons/ci';
+import { FaHome } from 'react-icons/fa';
+import { FiPlus } from 'react-icons/fi';
+import { NavLink } from 'react-router-dom';
 
-const AgentDashboard = ({handleSignOut}) => {
+const AgentDashboard = ({ handleSignOut }) => {
   return (
     <nav className="flex-1 px-2 py-4 bg-gray-700">
-      <NavLink to={"/dashboard/myAll"}>
-        <a
+      <NavLink to={'/dashboard/myAll'}>
+        <div
           href="#"
           className="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-900"
         >
@@ -27,35 +27,33 @@ const AgentDashboard = ({handleSignOut}) => {
             />
           </svg>
           Agent Dashboard
-        </a>
+        </div>
       </NavLink>
       <div className="divider divider-neutral"></div>
       <div className="flex flex-col justify-between bg-gray-700">
-        <NavLink to={"/"} className="flex-1">
-          <a
+        <NavLink to={'/'} className="flex-1">
+          <div
             href="#"
             className="flex items-center gap-3 px-4 py-2 text-gray-100 hover:bg-gray-900"
           >
             <FaHome />
             Home
-          </a>
+          </div>
         </NavLink>
-        <NavLink to={"/add-gadget"} className="flex-1">
-          <p
-            className="flex items-center gap-3 px-4 py-2 text-gray-100 hover:bg-gray-900"
-          >
+        <NavLink to={'/add-gadget'} className="flex-1">
+          <p className="flex items-center gap-3 px-4 py-2 text-gray-100 hover:bg-gray-900">
             <FiPlus />
             Add Gadget
           </p>
         </NavLink>
         <NavLink className="flex-2">
-          <a
-          onClick={handleSignOut}
+          <div
+            onClick={handleSignOut}
             href="#"
             className="flex items-center gap-3 px-4 py-2 text-gray-100 hover:bg-gray-900"
           >
             <CiLogout size={18} /> Logout
-          </a>
+          </div>
         </NavLink>
       </div>
     </nav>
