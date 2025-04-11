@@ -554,11 +554,11 @@ const AllGadgetsPage = () => {
     <>
       <HelmetTitle title={'All Gadgets'} />
       <Navbar />
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen">
         <div className="max-w-6xl mx-auto p-4 md:p-6">
           <header className="mb-6">
             <h1 className="text-3xl font-bold mb-2">Rental Gadgets</h1>
-            <p className="text-gray-600">
+            <p className="text-gray-450">
               Find the perfect equipment for your next project
             </p>
           </header>
@@ -585,7 +585,7 @@ const AllGadgetsPage = () => {
               </div>
               <input
                 type="text"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full pl-10 p-2.5"
+                className="border placeholder-gray-400 border-gray-300 text-sm rounded-lg focus:ring-black focus:border-black block w-full pl-10 p-2.5"
                 placeholder="Search Gadgets..."
                 value={searchTerm}
                 onChange={handleSearchChange}
@@ -597,13 +597,13 @@ const AllGadgetsPage = () => {
               <div className="sm:w-1/2">
                 <label
                   htmlFor="category"
-                  className="block mb-2 text-sm font-medium text-gray-900"
+                  className="block mb-2 text-sm font-medium"
                 >
                   Category
                 </label>
                 <select
                   id="category"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
+                  className="border border-gray-300 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
                   value={categoryFilter}
                   onChange={handleCategoryChange}
                 >
@@ -617,13 +617,13 @@ const AllGadgetsPage = () => {
               <div className="sm:w-1/2">
                 <label
                   htmlFor="sort"
-                  className="block mb-2 text-sm font-medium text-gray-900"
+                  className="block mb-2 text-sm font-medium"
                 >
                   Sort by
                 </label>
                 <select
                   id="sort"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
+                  className="border border-gray-300 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
                   value={sortBy}
                   onChange={handleSortChange}
                 >
@@ -638,7 +638,7 @@ const AllGadgetsPage = () => {
           </div>
 
           {/* Results Summary */}
-          <div className="mb-4 text-sm text-gray-600">
+          <div className="mb-4 text-sm text-gray-400">
             Showing {filteredGadgets.length === 0 ? 0 : indexOfFirstgadget + 1}-
             {Math.min(indexOfLastgadget, filteredGadgets.length)} of{' '}
             {filteredGadgets.length} results
@@ -647,10 +647,10 @@ const AllGadgetsPage = () => {
           {/* gadget Grid with 3D animations */}
           {filteredGadgets.length === 0 ? (
             <div className="text-center py-12">
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
+              <h3 className="text-lg font-medium mb-2">
                 No Gadgets found
               </h3>
-              <p className="text-gray-500">
+              <p className="text-gray-400">
                 Try adjusting your search or filter criteria
               </p>
             </div>
@@ -659,7 +659,7 @@ const AllGadgetsPage = () => {
               {currentGadgets.map((gadget) => (
                 <div
                   key={gadget.id}
-                  className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 group perspective-1000"
+                  className="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 group perspective-1000"
                 >
                   <div className="relative overflow-hidden h-48">
                     <Link to={'/cam-sony-a7iii'}>
@@ -692,40 +692,40 @@ const AllGadgetsPage = () => {
                       </div>
                     </Link>
                     {!gadget.available && (
-                      <div className="absolute top-2 right-2 bg-black text-white text-xs font-semibold px-2 py-1 rounded">
+                      <div className="absolute top-2 right-2 bg-black text-xs font-semibold px-2 py-1 rounded">
                         Out of Stock
                       </div>
                     )}
                   </div>
                   <div className="p-4">
                     <div className="flex justify-between items-start mb-1">
-                      <p className="text-xs text-gray-500">{gadget.brand}</p>
+                      <p className="text-xs text-gray-400">{gadget.brand}</p>
                       <div className="flex items-center">
                         <svg
-                          className="w-4 h-4 text-black"
+                          className="w-4 h-4"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
                         </svg>
-                        <span className="ml-1 text-xs text-gray-600">
+                        <span className="ml-1 text-xs text-gray-400">
                           {gadget.rating} ({gadget.reviews})
                         </span>
                       </div>
                     </div>
                     <Link
                       to={'/cam-sony-a7iii'}
-                      className="text-lg font-medium mb-2 text-black"
+                      className="text-lg font-medium mb-2"
                     >
                       {gadget.name}
                     </Link>
                     <div className="flex justify-between items-center">
                       <div>
-                        <span className="text-lg font-bold text-black">
+                        <span className="text-lg font-bold">
                           ${gadget.price}
                         </span>
-                        <span className="text-gray-500 text-sm"> / day</span>
+                        <span className="text-gray-400 text-sm"> / day</span>
                       </div>
                       <button
                         className={`px-3 py-1 rounded-md text-sm font-medium ${
@@ -750,13 +750,13 @@ const AllGadgetsPage = () => {
               <nav aria-label="Page navigation">
                 <ul className="flex items-center -space-x-px h-10">
                   <li>
-                    <button
+                    <Link
                       onClick={() => paginate(Math.max(1, currentPage - 1))}
                       disabled={currentPage === 1}
                       className={`flex items-center justify-center px-4 h-10 ml-0 leading-tight rounded-l-lg border ${
                         currentPage === 1
-                          ? 'text-gray-400 cursor-not-allowed bg-gray-100 border-gray-300'
-                          : 'text-gray-700 bg-white border-gray-300 hover:bg-gray-100'
+                          ? 'cursor-not-allowed border-2 border-gray-400'
+                          : 'border-2 border-gray-400 hover:bg-gray-500'
                       }`}
                     >
                       <span className="sr-only">Previous</span>
@@ -773,34 +773,34 @@ const AllGadgetsPage = () => {
                           clipRule="evenodd"
                         ></path>
                       </svg>
-                    </button>
+                    </Link>
                   </li>
 
                   {[...Array(totalPages)].map((_, index) => (
                     <li key={index}>
-                      <button
+                      <Link
                         onClick={() => paginate(index + 1)}
                         className={`flex items-center justify-center px-4 h-10 leading-tight border ${
                           currentPage === index + 1
-                            ? 'text-white bg-black border-black hover:bg-gray-800'
-                            : 'text-gray-700 bg-white border-gray-300 hover:bg-gray-100'
+                            ? 'border-black border-2 hover:bg-gray-500'
+                            : 'border-gray-300 hover:bg-gray-500'
                         }`}
                       >
                         {index + 1}
-                      </button>
+                      </Link>
                     </li>
                   ))}
 
                   <li>
-                    <button
+                    <Link
                       onClick={() =>
                         paginate(Math.min(totalPages, currentPage + 1))
                       }
                       disabled={currentPage === totalPages}
                       className={`flex items-center justify-center px-4 h-10 leading-tight rounded-r-lg border ${
                         currentPage === totalPages
-                          ? 'text-gray-400 cursor-not-allowed bg-gray-100 border-gray-300'
-                          : 'text-gray-700 bg-white border-gray-300 hover:bg-gray-100'
+                          ? 'cursor-not-allowed border-2 border-gray-400'
+                          : 'border-2 border-gray-400 hover:bg-gray-500'
                       }`}
                     >
                       <span className="sr-only">Next</span>
@@ -817,7 +817,7 @@ const AllGadgetsPage = () => {
                           clipRule="evenodd"
                         ></path>
                       </svg>
-                    </button>
+                    </Link>
                   </li>
                 </ul>
               </nav>
