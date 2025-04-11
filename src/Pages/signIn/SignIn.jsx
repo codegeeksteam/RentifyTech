@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import signInImg from "../../assets/signIn.json";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Lottie from "lottie-react";
@@ -13,7 +13,7 @@ const SignIn = () => {
   const location = useLocation();
   const from = location?.state || "/";
   console.log(from);
-  const { singInUser, signInGoogle } = useAuth();
+  const { singInUser, signInGoogle,forgetPassword } = useAuth();
 
   const handleGoogleSignIn = () => {
     signInGoogle()
@@ -34,6 +34,24 @@ const SignIn = () => {
         });
       });
   };
+  const handleForgetPassword = () => {
+    const email = event.target.email.value;
+    forgetPassword(email)
+     .then(() => {
+        Swal.fire({
+          title: "success!",
+          text: "Password Reset Link Sent!",
+          icon: "success",
+        });
+      })
+     .catch((error) => {
+        Swal.fire({
+          title: "ERROR!",
+          text: `${error.message}`,
+          icon: "error",
+        })
+     })
+  }
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -141,6 +159,10 @@ const SignIn = () => {
                       <span className="ml-2">Sign In</span>
                     </button>
                     <div className="flex flex-col mt-4 text-sm text-center dark:text-gray-300">
+                       
+                      <button className="text-red-600" onClick={handleForgetPassword}>
+                      Forget Password
+                       </button>
                       <p>
                         Don't have an account?
                         <NavLink to="/signUp">

@@ -27,7 +27,7 @@ const testimonials = [
 
 const TestimonialCard = ({ testimonial }) => {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+    <div className="p-6 rounded-lg border border-gray-400 shadow-md hover:shadow-lg transition-shadow duration-300">
       <div className="flex items-center mb-4">
         <img
           src={testimonial.img}
@@ -35,11 +35,11 @@ const TestimonialCard = ({ testimonial }) => {
           className="w-12 h-12 rounded-full object-cover mr-4"
         />
         <div>
-          <h3 className="font-semibold text-gray-800">{testimonial.name}</h3>
+          <h3 className="font-semibold">{testimonial.name}</h3>
           <p className="text-sm text-gray-500">{testimonial.profession}</p>
         </div>
       </div>
-      <p className="text-gray-600 italic">"{testimonial.testimonial}"</p>
+      <p className="text-gray-500 italic">"{testimonial.testimonial}"</p>
       <div className="mt-4 flex space-x-1">
         {[...Array(5)].map((_, i) => (
           <svg
@@ -58,13 +58,13 @@ const TestimonialCard = ({ testimonial }) => {
 
 const TestimonialSection = () => {
   return (
-    <section className="py-12 bg-gray-50">
+    <section className="py-12">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">
+          <h2 className="text-3xl font-bold mb-2">
             What Our Customers Say
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-500 max-w-2xl mx-auto">
             Don't just take our word for it - hear from our satisfied customers
           </p>
         </div>

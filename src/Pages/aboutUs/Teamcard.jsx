@@ -25,7 +25,7 @@ const teamMembers = [
 const TeamCard = ({ member }) => {
   return (
     <div
-      className="rounded-xl shadow-lg p-6 transition-all duration-300 bg-white text-black hover:bg-blue-500 hover:text-white hover:shadow-xl hover:scale-100"
+      className="rounded-xl shadow-lg p-6 border border-gray-400 transition-all duration-300 hover:bg-blue-500 hover:text-white hover:shadow-xl hover:scale-100"
       
     >
       <img
@@ -43,7 +43,7 @@ const TeamCard = ({ member }) => {
   );
 };
 
-const Teamcard= () => {
+const Teamcard = () => {
   return (
     <div className="w-11/12 mx-auto text-center py-10">
       <h2 className="text-5xl font-bold">Meet our team</h2>

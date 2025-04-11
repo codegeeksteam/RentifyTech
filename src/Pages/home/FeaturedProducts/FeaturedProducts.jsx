@@ -106,6 +106,7 @@ const FeaturedProducts = () => {
                   <Link
                     to={`/gadget/${gadget._id}`}
                     className="text-lg font-medium mb-2 text-black"
+
                   >
                     {gadget.name}
                   </Link>

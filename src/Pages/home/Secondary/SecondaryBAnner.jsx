@@ -56,7 +56,7 @@
 
 const ElectronicsRental = () => {
   return (
-    <section className="relative bg-gradient-to-br from-blue-50 to-gray-50 overflow-hidden">
+    <section className="relative overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-32 h-32 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70"></div>
       <div className="absolute bottom-0 right-0 w-32 h-32 bg-indigo-200 rounded-full mix-blend-multiply filter blur-xl opacity-70"></div>
@@ -81,7 +81,7 @@ const ElectronicsRental = () => {
               Sustainable Electronics
             </span>
 
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-6">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
                 Premium Electronics
               </span>
@@ -89,7 +89,7 @@ const ElectronicsRental = () => {
               Rental Made Simple
             </h1>
 
-            <p className="text-lg text-gray-600 mb-8">
+            <p className="text-lg text-gray-500 mb-8">
               Access the latest tech without the commitment. Our flexible rental
               plans give you high-end electronics when you need them, without
               the long-term costs.
@@ -97,7 +97,7 @@ const ElectronicsRental = () => {
 
             {/* Features grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-              <div className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <div className="p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                 <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
                   <svg
                     className="w-6 h-6 text-blue-600"
@@ -114,12 +114,12 @@ const ElectronicsRental = () => {
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Convenient</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-500">
                   Next-day delivery with easy returns. We handle the logistics.
                 </p>
               </div>
 
-              <div className="bg-white p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+              <div className="p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow">
                 <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mb-3">
                   <svg
                     className="w-6 h-6 text-indigo-600"
@@ -136,7 +136,7 @@ const ElectronicsRental = () => {
                   </svg>
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Cost Effective</h3>
-                <p className="text-gray-600">
+                <p className="text-gray-500">
                   Save up to 70% compared to buying. No maintenance costs.
                 </p>
               </div>

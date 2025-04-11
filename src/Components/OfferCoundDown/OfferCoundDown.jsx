@@ -33,7 +33,7 @@ const SoftMonochromeCountdownTimer = () => {
     // Timer to switch to compact mode after 5 seconds
     const modeChangeTimer = setTimeout(() => {
       setCompactMode(true);
-    }, 5000);
+    }, 3000);
 
     return () => {
       clearInterval(timer);
