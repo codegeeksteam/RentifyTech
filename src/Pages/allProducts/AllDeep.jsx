@@ -76,7 +76,9 @@ const AllDeep = () => {
         break;
     }
 
-    setFilteredGadgets(result);
+    setFilteredGadgets(
+      result.filter((gadget) => gadget.approvalStatus === 'Published'),
+    );
     setCurrentPage(1); // Reset to first page after filtering
   }, [searchTerm, categoryFilter, sortBy, allGadgetsData]);
 
@@ -87,9 +89,10 @@ const AllDeep = () => {
   //   indexOfFirstgadget,
   //   indexOfLastgadget,
   // );
-  const currentGadgets = filteredGadgets
-    .filter((gadget) => gadget.approvalStatus === 'Published')
-    .slice(indexOfFirstgadget, indexOfLastgadget);
+  const currentGadgets = filteredGadgets.slice(
+    indexOfFirstgadget,
+    indexOfLastgadget,
+  );
 
   // Calculate total pages
   const totalPages = Math.ceil(filteredGadgets.length / GadgetsPerPage);
