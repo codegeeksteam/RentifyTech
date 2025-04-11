@@ -24,7 +24,7 @@ function OurNews() {
 useEffect(() => {
   const fetchBlogs = async () => {
     try {
-      const response = await fetch('http://localhost:4000/posts');
+      const response = await fetch('/posts');
       if (!response.ok) {
         throw new Error('Failed to fetch blogs');
       }
