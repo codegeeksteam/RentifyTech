@@ -21,9 +21,10 @@ import MyAll from './Pages/Dashboard/Agent-Dashboard/MyAll.jsx';
 import AdminRoute from './Route/AdminRoute.jsx';
 import AllUsers from './Pages/Dashboard/Admin-Dashboard/AllUsers.jsx';
 import AddCategory from './Pages/Dashboard/Admin-Dashboard/AddCategory.jsx';
-import Contact from './Pages/contactUs/Contact.jsx';
 import Blogs from './Pages/Blogs/Blogs.jsx';
 import AddProduct from './Pages/addProduct/AddProduct.jsx';
+import Contact from './Pages/contactUs/contact.jsx';
+import ThemeProvider from './Provider/ThemeProvider.jsx';
 
 const queryClient = new QueryClient();
 
@@ -118,9 +119,11 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <AuthProvider>
-        <RouterProvider router={router} />
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   </StrictMode>,
 );

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Navbar from "../../Components/Navbar";
 import HelmetTitle from "../../Components/HelmetTitle";
+import { Link } from "react-router-dom";
 
 function OurNews() {
   const [filter, setFilter] = useState("All");
@@ -281,7 +282,7 @@ function OurNews() {
   // Get featured posts
   const featuredPosts = ourNews.filter((post) => post.featured);
   return (
-    <div className="bg-gray-50 min-h-screen">
+    <div className="min-h-screen">
       <HelmetTitle title={"About"} />
       <Navbar />
 
@@ -299,14 +300,14 @@ function OurNews() {
       {/* Featured Posts */}
       {featuredPosts.length > 0 && (
         <div className="container mx-auto px-4 py-12">
-          <h2 className="text-2xl font-bold mb-6 text-gray-800">
+          <h2 className="text-2xl font-bold mb-6">
             Featured Posts
           </h2>
           <div className="flex overflow-x-auto gap-6 pb-4 scrollbar-hide">
             {featuredPosts.map((post) => (
               <div
                 key={post._id}
-                className="min-w-[300px] md:min-w-[400px] bg-white rounded-lg shadow-md overflow-hidden flex-shrink-0"
+                className="min-w-[300px] md:min-w-[400px] rounded-lg shadow-md overflow-hidden flex-shrink-0"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -314,7 +315,7 @@ function OurNews() {
                     alt={post.title}
                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                   />
-                  <div className="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                  <div className="absolute top-4 left-4 bg-blue-600 text-xs font-bold px-3 py-1 rounded-full">
                     Featured
                   </div>
                 </div>
@@ -323,17 +324,17 @@ function OurNews() {
                     <span className="text-blue-600 text-sm font-medium">
                       {post.category}
                     </span>
-                    <span className="text-gray-500 text-sm">{post.date}</span>
+                    <span className="text-gray-400 text-sm">{post.date}</span>
                   </div>
                   <h3 className="text-lg font-bold mb-2 line-clamp-2">
                     {post.title}
                   </h3>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                  <p className="text-gray-400 text-sm mb-4 line-clamp-2">
                     {post.description}
                   </p>
-                  <button className="text-blue-600 font-medium hover:text-blue-800 transition flex items-center">
+                  <Link className="text-blue-600 font-medium hover:text-blue-800 transition flex items-center">
                     Read More <span className="ml-1">→</span>
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -366,7 +367,7 @@ function OurNews() {
           {filteredPosts.map((post) => (
             <div
               key={post._id}
-              className="bg-white rounded-lg shadow-md overflow-hidden"
+              className="rounded-lg shadow-md overflow-hidden"
             >
               <img
                 src={post.img}
@@ -378,17 +379,17 @@ function OurNews() {
                   <span className="text-blue-600 text-sm font-medium">
                     {post.category}
                   </span>
-                  <span className="text-gray-500 text-sm">{post.date}</span>
+                  <span className="text-gray-400 text-sm">{post.date}</span>
                 </div>
                 <h3 className="text-lg font-bold mb-2 line-clamp-2">
                   {post.title}
                 </h3>
-                <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                <p className="text-gray-400 text-sm mb-4 line-clamp-2">
                   {post.description}
                 </p>
-                <button className="text-blue-600 font-medium hover:text-blue-800 transition flex items-center">
+                <Link className="text-blue-600 font-medium hover:text-blue-800 transition flex items-center">
                   Read More <span className="ml-1">→</span>
-                </button>
+                </Link>
               </div>
             </div>
           ))}

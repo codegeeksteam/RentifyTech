@@ -25,7 +25,7 @@ const teamMembers = [
 const TeamCard = ({ member }) => {
   return (
     <div
-      className="rounded-xl shadow-lg p-6 transition-all duration-300 bg-white text-black hover:bg-blue-500 hover:text-white hover:shadow-xl hover:scale-100"
+      className="rounded-xl shadow-lg p-6 border border-gray-400 transition-all duration-300 hover:bg-blue-500 hover:text-white hover:shadow-xl hover:scale-100"
       
     >
       <img

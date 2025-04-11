@@ -23,7 +23,7 @@ const newsData = [
 
 const NewsCard = ({ date, category, title, image }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
+    <div className="rounded-lg shadow-md overflow-hidden">
       <img src={image} alt={title} className="w-full h-56 object-cover" />
       <div className="p-4">
         <p className="text-sm text-gray-500">{date} • {category}</p>
@@ -37,8 +37,8 @@ const LatestNews = () => {
   return (
     <section className="w-11/12 mx-auto py-10">
       <div className="text-center mb-8">
-        <h2 className="text-5xl font-bold">Our Latest news</h2>
-        <span className="divider " ></span>
+        <h2 className="text-5xl font-bold">Our Latest news</h2><br />
+        <hr className='text-gray-400' /><br />
       </div>
       <div className="grid md:grid-cols-3 gap-6">
         {newsData.map((news, index) => (
