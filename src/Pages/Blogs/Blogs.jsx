@@ -24,7 +24,7 @@ function OurNews() {
 useEffect(() => {
   const fetchBlogs = async () => {
     try {
-      const response = await fetch('http://localhost:4000/posts');
+      const response = await fetch('https://rentify-tech-server.vercel.app/posts');
       if (!response.ok) {
         throw new Error('Failed to fetch blogs');
       }
@@ -50,8 +50,14 @@ const ourNews = blogs;
   // Get featured posts
   const featuredPosts = ourNews.filter((post) => post.featured);
   return (
+<<<<<<< HEAD
     <div className="min-h-screen">
       <HelmetTitle title={"About"} />
+=======
+
+    <div className="bg-gray-100 min-h-screen">
+      <HelmetTitle title={"Blog"} />
+>>>>>>> 1051fe93f3211a7f57eec6fb6156efb894c46ef4
       <Navbar />
 
       {/* Hero Section */}

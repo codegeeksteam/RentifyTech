@@ -7,6 +7,10 @@ import LatestNews from './LatestNews';
 import Gallery from './Gallery';
 import HelmetTitle from '../../Components/HelmetTitle';
 import { Link } from 'react-router-dom';
+<<<<<<< HEAD
+=======
+import Team from './NewteamCard';
+>>>>>>> 1051fe93f3211a7f57eec6fb6156efb894c46ef4
 
 
 const AboutUs = () => {

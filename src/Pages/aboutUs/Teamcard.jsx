@@ -43,7 +43,7 @@ const TeamCard = ({ member }) => {
   );
 };
 
-const Teamcard= () => {
+const Teamcard = () => {
   return (
     <div className="w-11/12 mx-auto text-center py-10">
       <h2 className="text-5xl font-bold">Meet our team</h2>
