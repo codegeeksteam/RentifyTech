@@ -1,88 +1,161 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const FeaturedProducts = () => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const axiosSecure = useAxiosSecure();
   const [featuredProducts, setFeaturedProducts] = useState([]);
 
   useEffect(() => {
-    fetch('/featuredProducts.json')
-      .then((res) => res.json())
-      .then((data) => setFeaturedProducts(data))
-      .catch((error) => console.error('Error fetching data:', error));
-  }, []);
+    const fetchGadgets = async () => {
+      try {
+        const response = await axiosSecure.get(`/gadgets`);
+        setFeaturedProducts(
+          response.data.filter(
+            (gadget) => gadget.approvalStatus === 'Published',
+          ).slice(-6),
+        );
+        setLoading(false);
+      } catch (err) {
+        console.error('Error fetching gadgets:', err);
+        setError('Failed to load gadgets.');
+        setLoading(false);
+      }
+    };
+
+    fetchGadgets();
+  }, [axiosSecure]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <div className="py-10">
       <div className="container mx-auto">
         <h2 className="text-4xl font-bold text-center mb-10">
-          Featured Products
+          Latest Gadgets
         </h2>
-        {/* strokeLinejoin */}
-        <div className="grid grid-cols-1 p-2 lg:p-4 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredProducts.map((gadget) => (
-            <div
-              key={gadget.id}
-              className="bg-white border border-gray-200 rounded-lg shadow-sm transition-shadow group"
-            >
-              <div className="relative overflow-hidden">
-                <Link to={'/cam-sony-a7iii'}>
-                  <img
-                    src={gadget.image}
-                    alt={gadget.name}
-                    className="group-hover:scale-105 transition-transform duration-300 ease-in-out rounded-t-lg w-full h-48 object-cover"
-                  />
-                </Link>
-                {!gadget.available && (
-                  <div className="absolute top-2 right-2 bg-black text-white text-xs font-semibold px-2 py-1 rounded">
-                    Out of Stock
-                  </div>
-                )}
-              </div>
-              <div className="p-4">
-                <div className="flex justify-between items-start mb-1">
-                  <p className="text-xs text-gray-500">{gadget.brand}</p>
-                  <div className="flex items-center">
-                    <svg
-                      className="w-4 h-4 text-black"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                    </svg>
-                    <span className="ml-1 text-xs text-gray-600">
-                      {gadget.rating} ({gadget.reviews})
-                    </span>
-                  </div>
+        {featuredProducts.length === 0 ? (
+          <div className="text-center py-12">
+            <h3 className="text-lg font-medium text-gray-900 mb-2">
+              No Gadgets found
+            </h3>
+            <p className="text-gray-500">
+              Try adjusting your search or filter criteria
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {featuredProducts.map((gadget) => (
+              <div
+                key={gadget._id}
+                className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 group perspective-1000"
+              >
+                <div className="relative overflow-hidden h-48">
+                  <Link to={`/gadget/${gadget._id}`}>
+                    <div className="relative w-full h-full preserve-3d group-hover:rotate-y-10 group-hover:scale-105 transition-all duration-500 ease-out">
+                      <img
+                        src={gadget.images[0]}
+                        alt={gadget.name}
+                        className="absolute w-full h-full object-cover rounded-t-lg backface-hidden"
+                        style={{
+                          transformStyle: 'preserve-3d',
+                          transform: 'translateZ(20px)',
+                          filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.1))',
+                        }}
+                      />
+                      {/* Reflection effect */}
+                      <div
+                        className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-30 group-hover:opacity-50 transition-opacity duration-300"
+                        style={{
+                          transform: 'rotateX(90deg) translateZ(-20px)',
+                          transformOrigin: 'bottom center',
+                        }}
+                      />
+                      {/* Floating shadow */}
+                      <div
+                        className="absolute -bottom-4 left-1/4 w-1/2 h-2 bg-black rounded-full blur-md opacity-10 group-hover:opacity-20 transition-all duration-300"
+                        style={{
+                          transform: 'translateZ(-30px)',
+                        }}
+                      />
+                    </div>
+                  </Link>
+                  {gadget.availability.status !== 'In Stock' && (
+                    <div className="absolute top-2 right-2 bg-black text-white text-xs font-semibold px-2 py-1 rounded">
+                      {gadget.availability.status}
+                    </div>
+                  )}
                 </div>
-                <Link
-                  to={'/cam-sony-a7iii'}
-                  className="text-lg font-medium mb-2 text-black"
-                >
-                  {gadget.name}
-                </Link>
-                <div className="flex justify-between items-center">
-                  <div>
-                    <span className="text-lg font-bold text-black">
-                      ${gadget.price}
-                    </span>
-                    <span className="text-gray-500 text-sm"> / day</span>
+                <div className="p-4">
+                  <div className="flex justify-between items-start mb-1">
+                    <p className="text-xs text-gray-500">{gadget.brand}</p>
+                    <p className="text-gray-600 text-xs">
+                      {gadget?.reviews?.count < 1
+                        ? 'No reviews'
+                        : `${gadget.reviews.average}/5 (${gadget.reviews.count})`}
+                    </p>
                   </div>
-                  <button
-                    className={`px-3 py-1 rounded-md text-sm font-medium ${
-                      gadget.available
-                        ? 'bg-black text-white hover:bg-gray-800'
-                        : 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                    }`}
-                    disabled={!gadget.available}
+                  <Link
+                    to={`/gadget/${gadget._id}`}
+                    className="text-lg font-medium mb-2 text-black"
                   >
-                    {gadget.available ? 'Add to Cart' : 'Unavailable'}
-                  </button>
+                    {gadget.name}
+                  </Link>
+                  <div className="mb-2">
+                    <p className="text-sm text-gray-600 line-clamp-2">
+                      {gadget.description}
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-3 gap-1 mb-3 text-xs">
+                    <div className="text-center">
+                      <span className="font-bold">
+                        ${gadget.pricing.hourly}
+                      </span>
+                      <span className="block text-gray-500">hour</span>
+                    </div>
+                    <div className="text-center">
+                      <span className="font-bold">${gadget.pricing.daily}</span>
+                      <span className="block text-gray-500">day</span>
+                    </div>
+                    <div className="text-center">
+                      <span className="font-bold">
+                        ${gadget.pricing.weekly}
+                      </span>
+                      <span className="block text-gray-500">week</span>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <div className="text-sm">
+                      <span className="font-medium">
+                        {gadget.availability.quantity} available
+                      </span>
+                    </div>
+                    <button
+                      className={`px-3 py-1 rounded-md text-sm font-medium ${
+                        gadget.availability.status === 'In Stock'
+                          ? 'bg-black text-white hover:bg-gray-800'
+                          : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                      }`}
+                      disabled={gadget.availability.status !== 'In Stock'}
+                    >
+                      {gadget.availability.status === 'In Stock'
+                        ? 'Rent Now'
+                        : gadget.availability.status}
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
