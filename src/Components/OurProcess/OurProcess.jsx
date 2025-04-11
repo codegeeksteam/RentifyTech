@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const OurProcess = () => {
   return (
-    <section className="relative py-12 bg-gray-100 overflow-hidden">
+    <section className="relative py-12 overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 lg:px-12 text-center">
         <motion.h2 
           initial={{ opacity: 0, y: -20 }}
