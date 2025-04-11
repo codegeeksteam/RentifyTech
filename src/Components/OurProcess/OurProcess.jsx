@@ -9,7 +9,7 @@ const OurProcess = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-3xl md:text-4xl font-bold"
+          className="text-3xl text-black md:text-4xl font-bold"
         >
           Our Process
         </motion.h2>

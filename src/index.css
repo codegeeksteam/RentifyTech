@@ -40,3 +40,26 @@
     transform-origin: bottom left;
   }
   
+
+  
+/* Default Light Theme */
+body.light-theme {
+  background-color: white;
+  color: black;
+}
+
+/* Dark Mode */
+body.dark-theme {
+  background-color: black;
+  color: rgb(192, 191, 191);
+}
+
+body.light-theme button {
+  background-color: black;
+  color: white;
+}
+
+body.dark-theme button {
+  background-color: rgb(192, 191, 191);
+  color: black;
+}
