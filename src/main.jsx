@@ -23,6 +23,9 @@ import Blogs from './Pages/Blogs/Blogs.jsx';
 import AddProduct from './Pages/addProduct/AddProduct.jsx';
 import Contact from './Pages/contactUs/contact.jsx';
 import ThemeProvider from './Provider/ThemeProvider.jsx';
+import UpdateProduct from './Pages/updateProduct/UpdateProduct.jsx';
+import AllDeep from './Pages/allProducts/AllDeep.jsx';
+import NewDetails from './Pages/productDetails/NewDetails.jsx';
 
 const queryClient = new QueryClient();
 
@@ -51,7 +54,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/update-gadget/:id',
-        element: <UpdateProduct />,
+        element: <UpdateProduct></UpdateProduct>,
         loader: ({ params }) =>
           fetch(`http://localhost:4000/gadget/${params.id}`),
       },
@@ -62,13 +65,13 @@ const router = createBrowserRouter([
       {
         path: '/all-gadgets',
         // element: <AllGadgetsPage />,
-        element: <AllDeep />,
+        element: <AllDeep></AllDeep>,
         // element: <NewAll />,
       },
       {
         path: '/gadget/:id',
         // element: <ProductDetailsPage />,
-        element: <NewDetails />,
+        element: <NewDetails></NewDetails>,
         loader: ({ params }) =>
           fetch(`http://localhost:4000/gadget/${params.id}`),
       },

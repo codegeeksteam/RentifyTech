@@ -1,9 +1,7 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from '../../Components/Navbar';
 import Footer from '../../Components/Footer';
 import toast, { Toaster } from 'react-hot-toast';
-import { AuthContext } from '../../Provider/AuthProvider';
-import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import HelmetTitle from '../../Components/HelmetTitle';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
