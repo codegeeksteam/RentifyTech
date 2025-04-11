@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Navbar from "../../Components/Navbar";
 import HelmetTitle from "../../Components/HelmetTitle";
 import { Link } from "react-router-dom";
-import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 function OurNews() {
   const [filter, setFilter] = useState("All");
