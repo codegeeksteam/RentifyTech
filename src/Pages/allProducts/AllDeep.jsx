@@ -141,11 +141,11 @@ const AllDeep = () => {
     <>
       <HelmetTitle title={'All Gadgets'} />
       <Navbar />
-      <div className="min-h-screen bg-white">
+      <div className="min-h-screen">
         <div className="max-w-6xl mx-auto p-4 md:p-6">
           <header className="mb-6">
             <h1 className="text-3xl font-bold mb-2">Rental Gadgets</h1>
-            <p className="text-gray-600">
+            <p className="text-gray-500">
               Find the perfect equipment for your next project
             </p>
           </header>
@@ -172,7 +172,7 @@ const AllDeep = () => {
               </div>
               <input
                 type="text"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full pl-10 p-2.5"
+                className="border placeholder-gray-500 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full pl-10 p-2.5"
                 placeholder="Search Gadgets..."
                 value={searchTerm}
                 onChange={handleSearchChange}
@@ -184,13 +184,13 @@ const AllDeep = () => {
               <div className="sm:w-1/2">
                 <label
                   htmlFor="category"
-                  className="block mb-2 text-sm font-medium text-gray-900"
+                  className="block mb-2 text-sm font-medium text-gray-500"
                 >
                   Category
                 </label>
                 <select
                   id="category"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
+                  className=" border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
                   value={categoryFilter}
                   onChange={handleCategoryChange}
                 >
@@ -204,13 +204,13 @@ const AllDeep = () => {
               <div className="sm:w-1/2">
                 <label
                   htmlFor="sort"
-                  className="block mb-2 text-sm font-medium text-gray-900"
+                  className="block mb-2 text-sm font-medium text-gray-500"
                 >
                   Sort by
                 </label>
                 <select
                   id="sort"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
+                  className="border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
                   value={sortBy}
                   onChange={handleSortChange}
                 >
@@ -224,7 +224,7 @@ const AllDeep = () => {
           </div>
 
           {/* Results Summary */}
-          <div className="mb-4 text-sm text-gray-600">
+          <div className="mb-4 text-sm text-gray-500">
             Showing {filteredGadgets.length === 0 ? 0 : indexOfFirstgadget + 1}-
             {Math.min(indexOfLastgadget, filteredGadgets.length)} of{' '}
             {filteredGadgets.length} results
@@ -233,7 +233,7 @@ const AllDeep = () => {
           {/* gadget Grid with 3D animations */}
           {filteredGadgets.length === 0 ? (
             <div className="text-center py-12">
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
+              <h3 className="text-lg font-medium text-gray-500 mb-2">
                 No Gadgets found
               </h3>
               <p className="text-gray-500">
@@ -245,7 +245,7 @@ const AllDeep = () => {
               {currentGadgets.map((gadget) => (
                 <div
                   key={gadget._id}
-                  className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 group perspective-1000"
+                  className=" border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 group perspective-1000"
                 >
                   <div className="relative overflow-hidden h-48">
                     <Link to={`/gadget/${gadget._id}`}>
@@ -270,7 +270,7 @@ const AllDeep = () => {
                         />
                         {/* Floating shadow */}
                         <div
-                          className="absolute -bottom-4 left-1/4 w-1/2 h-2 bg-black rounded-full blur-md opacity-10 group-hover:opacity-20 transition-all duration-300"
+                          className="absolute -bottom-4 left-1/4 w-1/2 h-2 rounded-full blur-md opacity-10 group-hover:opacity-20 transition-all duration-300"
                           style={{
                             transform: 'translateZ(-30px)',
                           }}
@@ -278,7 +278,7 @@ const AllDeep = () => {
                       </div>
                     </Link>
                     {gadget.availability.status !== 'In Stock' && (
-                      <div className="absolute top-2 right-2 bg-black text-white text-xs font-semibold px-2 py-1 rounded">
+                      <div className="absolute top-2 right-2 text-xs font-semibold px-2 py-1 rounded">
                         {gadget.availability.status}
                       </div>
                     )}
@@ -286,7 +286,7 @@ const AllDeep = () => {
                   <div className="p-4">
                     <div className="flex justify-between items-start mb-1">
                       <p className="text-xs text-gray-500">{gadget.brand}</p>
-                      <p className="text-gray-600 text-xs">
+                      <p className="text-gray-500 text-xs">
                         {gadget?.reviews?.count < 1
                           ? 'No reviews'
                           : `${gadget.reviews.average}/5 (${gadget.reviews.count})`}
@@ -294,12 +294,12 @@ const AllDeep = () => {
                     </div>
                     <Link
                       to={`/gadget/${gadget._id}`}
-                      className="text-lg font-medium mb-2 text-black"
+                      className="text-lg font-medium mb-2"
                     >
                       {gadget.name}
                     </Link>
                     <div className="mb-2">
-                      <p className="text-sm text-gray-600 line-clamp-2">
+                      <p className="text-sm text-gray-500 line-clamp-2">
                         {gadget.description}
                       </p>
                     </div>
