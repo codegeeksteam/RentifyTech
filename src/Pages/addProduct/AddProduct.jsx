@@ -239,12 +239,12 @@ function AddProduct() {
 
         <form onSubmit={handleSubmit} className="space-y-8">
           {/* Basic Information */}
-          <div className="bg-white p-6 rounded-lg shadow">
+          <div className="p-6 rounded-lg shadow">
             <h2 className="text-xl font-semibold mb-4">Basic Information</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-500 mb-1">
                   Product Name*
                 </label>
                 <input
@@ -258,7 +258,7 @@ function AddProduct() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-500 mb-1">
                   Brand*
                 </label>
                 <input
@@ -272,7 +272,7 @@ function AddProduct() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-500 mb-1">
                   Category*
                 </label>
                 <select
@@ -292,14 +292,14 @@ function AddProduct() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-500 mb-1">
                   Availability Status
                 </label>
                 <select
                   name="availability.status"
                   value={formData.availability.status}
                   onChange={handleChange}
-                  className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-black focus:border-black"
+                  className="w-full p-2 border border-gray-400 rounded focus:ring-2 focus:ring-black focus:border-black"
                 >
                   <option value="In Stock">In Stock</option>
                   <option value="Out of Stock">Out of Stock</option>
@@ -308,7 +308,7 @@ function AddProduct() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-500 mb-1">
                   Quantity Available*
                 </label>
                 <input
@@ -318,18 +318,18 @@ function AddProduct() {
                   onChange={handleChange}
                   min="0"
                   required
-                  className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-black focus:border-black"
+                  className="w-full p-2 border border-gray-400 rounded focus:ring-2 focus:ring-black focus:border-black"
                 />
               </div>
             </div>
           </div>
 
           {/* Product Images */}
-          <div className="bg-white p-6 rounded-lg shadow">
+          <div className="p-6 rounded-lg shadow">
             <h2 className="text-xl font-semibold mb-4">Product Images</h2>
 
             <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-500 mb-1">
                 Upload Images*
               </label>
               <input
@@ -338,7 +338,7 @@ function AddProduct() {
                 multiple
                 onChange={handleImageUpload}
                 disabled={images.length > 5 || isUploading}
-                className={`w-full p-2 disabled:opacity-40 disabled:cursor-not-allowed border cursor-pointer border-gray-300 rounded focus:ring-2 focus:ring-black focus:border-black`}
+                className={`w-full p-2 disabled:opacity-40 disabled:cursor-not-allowed border cursor-pointer border-gray-400 rounded focus:ring-2 focus:ring-black focus:border-black`}
               />
               <p className="text-sm text-gray-500 mt-1">
                 Upload at least one image. Maximum 6 images.
@@ -355,7 +355,7 @@ function AddProduct() {
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
                 {images.map((imageUrl, index) => (
                   <div key={index} className="relative">
-                    <div className="aspect-square bg-gray-100 rounded overflow-hidden border border-gray-200">
+                    <div className="aspect-square rounded overflow-hidden border border-gray-300">
                       <img
                         src={imageUrl}
                         alt={`Product image ${index + 1}`}
@@ -365,7 +365,7 @@ function AddProduct() {
                     <button
                       type="button"
                       onClick={() => removeImage(index)}
-                      className="absolute top-1 right-1 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600"
+                      className="absolute top-1 right-1 bg-red-500 rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600"
                     >
                       ×
                     </button>
@@ -376,12 +376,12 @@ function AddProduct() {
           </div>
 
           {/* Pricing */}
-          <div className="bg-white p-6 rounded-lg shadow">
+          <div className="p-6 rounded-lg shadow">
             <h2 className="text-xl font-semibold mb-4">Pricing Information</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-500 mb-1">
                   Hourly Rate ($)*
                 </label>
                 <input
@@ -392,11 +392,11 @@ function AddProduct() {
                   step="0.01"
                   min="0"
                   required
-                  className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-black focus:border-black"
+                  className="w-full p-2 border border-gray-400 rounded focus:ring-2 focus:ring-black focus:border-black"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-500 mb-1">
                   Daily Rate ($)*
                 </label>
                 <input
@@ -407,12 +407,12 @@ function AddProduct() {
                   step="0.01"
                   min="0"
                   required
-                  className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-black focus:border-black"
+                  className="w-full p-2 border border-gray-400 rounded focus:ring-2 focus:ring-black focus:border-black"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-500 mb-1">
                   Weekly Rate ($)*
                 </label>
                 <input
@@ -423,12 +423,12 @@ function AddProduct() {
                   step="0.01"
                   min="0"
                   required
-                  className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-black focus:border-black"
+                  className="w-full p-2 border border-gray-400 rounded focus:ring-2 focus:ring-black focus:border-black"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-500 mb-1">
                   Security Deposit ($)*
                 </label>
                 <input
@@ -439,18 +439,18 @@ function AddProduct() {
                   step="0.01"
                   min="0"
                   required
-                  className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-black focus:border-black"
+                  className="w-full p-2 border border-gray-400 rounded focus:ring-2 focus:ring-black focus:border-black"
                 />
               </div>
             </div>
           </div>
 
           {/* Product Description */}
-          <div className="bg-white p-6 rounded-lg shadow">
+          <div className=" p-6 rounded-lg shadow">
             <h2 className="text-xl font-semibold mb-4">Product Details</h2>
 
             <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-500 mb-1">
                 Product Description*
               </label>
               <textarea
@@ -459,13 +459,13 @@ function AddProduct() {
                 onChange={handleChange}
                 rows="4"
                 required
-                className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-black focus:border-black"
+                className="w-full p-2 border border-gray-400 rounded focus:ring-2 focus:ring-black focus:border-black"
                 placeholder="Provide a detailed description of your product..."
               ></textarea>
             </div>
 
             <div className="mb-6">
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-500 mb-1">
                 Usage Guide
               </label>
               <textarea
@@ -473,13 +473,13 @@ function AddProduct() {
                 value={formData.usageGuide}
                 onChange={handleChange}
                 rows="3"
-                className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-black focus:border-black"
+                className="w-full p-2 border border-gray-400 rounded focus:ring-2 focus:ring-black focus:border-black"
                 placeholder="Instructions for optimal use of the product..."
               ></textarea>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-500 mb-1">
                 Rental Policy
               </label>
               <textarea
@@ -487,14 +487,14 @@ function AddProduct() {
                 value={formData.rentalPolicy}
                 onChange={handleChange}
                 rows="3"
-                className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-black focus:border-black"
+                className="w-full p-2 border border-gray-400 rounded focus:ring-2 focus:ring-black focus:border-black"
                 placeholder="Specific rental terms and conditions for this product..."
               ></textarea>
             </div>
           </div>
 
           {/* Specifications */}
-          <div className="bg-white p-6 rounded-lg shadow">
+          <div className="p-6 rounded-lg shadow">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-semibold">Product Specifications</h2>
               <button
@@ -516,7 +516,7 @@ function AddProduct() {
                       updateSpecification(index, 'name', e.target.value)
                     }
                     placeholder="Specification name"
-                    className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-black focus:border-black"
+                    className="w-full p-2 border border-gray-400 rounded focus:ring-2 focus:ring-black focus:border-black"
                   />
                 </div>
                 <div className="flex-1 mr-2">
@@ -527,7 +527,7 @@ function AddProduct() {
                       updateSpecification(index, 'value', e.target.value)
                     }
                     placeholder="Specification value"
-                    className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-black focus:border-black"
+                    className="w-full p-2 border border-gray-400 rounded focus:ring-2 focus:ring-black focus:border-black"
                   />
                 </div>
                 <button
@@ -543,7 +543,7 @@ function AddProduct() {
           </div>
 
           {/* Included Items */}
-          <div className="bg-white p-6 rounded-lg shadow">
+          <div className="p-6 rounded-lg shadow">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-semibold">What's Included</h2>
               <button
@@ -563,7 +563,7 @@ function AddProduct() {
                     value={item}
                     onChange={(e) => updateIncludedItem(index, e.target.value)}
                     placeholder="Item included with rental"
-                    className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-black focus:border-black"
+                    className="w-full p-2 border border-gray-400 rounded focus:ring-2 focus:ring-black focus:border-black"
                   />
                 </div>
                 <button

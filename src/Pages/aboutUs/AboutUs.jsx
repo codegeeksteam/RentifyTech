@@ -7,7 +7,7 @@ import LatestNews from './LatestNews';
 import Gallery from './Gallery';
 import HelmetTitle from '../../Components/HelmetTitle';
 import { Link } from 'react-router-dom';
-import Team from './NewteamCard';
+import NewteamCard from './NewteamCard';
 
 
 const AboutUs = () => {
@@ -135,7 +135,7 @@ const AboutUs = () => {
 
       {/* <Teamcard /> 
       */}
-      <Team/>
+      <NewteamCard></NewteamCard>
       <LatestNews />
       <Gallery />
       <Footer />

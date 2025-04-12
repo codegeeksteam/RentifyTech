@@ -44,10 +44,10 @@ const FeaturedProducts = () => {
         </h2>
         {featuredProducts.length === 0 ? (
           <div className="text-center py-12">
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
+            <h3 className="text-lg font-medium mb-2">
               No Gadgets found.
             </h3>
-            <p className="text-gray-500">
+            <p className="text-gray-400">
               Try adjusting your search or filter criteria
             </p>
           </div>
@@ -56,7 +56,7 @@ const FeaturedProducts = () => {
             {featuredProducts.map((gadget) => (
               <div
                 key={gadget._id}
-                className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 group perspective-1000"
+                className="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 group perspective-1000"
               >
                 <div className="relative overflow-hidden h-48">
                   <Link to={`/gadget/${gadget._id}`}>
@@ -81,7 +81,7 @@ const FeaturedProducts = () => {
                       />
                       {/* Floating shadow */}
                       <div
-                        className="absolute -bottom-4 left-1/4 w-1/2 h-2 bg-black rounded-full blur-md opacity-10 group-hover:opacity-20 transition-all duration-300"
+                        className="absolute -bottom-4 left-1/4 w-1/2 h-2 rounded-full blur-md opacity-10 group-hover:opacity-20 transition-all duration-300"
                         style={{
                           transform: 'translateZ(-30px)',
                         }}
@@ -89,15 +89,15 @@ const FeaturedProducts = () => {
                     </div>
                   </Link>
                   {gadget.availability.status !== 'In Stock' && (
-                    <div className="absolute top-2 right-2 bg-black text-white text-xs font-semibold px-2 py-1 rounded">
+                    <div className="absolute top-2 right-2 text-xs font-semibold px-2 py-1 rounded">
                       {gadget.availability.status}
                     </div>
                   )}
                 </div>
                 <div className="p-4">
                   <div className="flex justify-between items-start mb-1">
-                    <p className="text-xs text-gray-500">{gadget.brand}</p>
-                    <p className="text-gray-600 text-xs">
+                    <p className="text-xs text-gray-400">{gadget.brand}</p>
+                    <p className="text-gray-400 text-xs">
                       {gadget?.reviews?.count < 1
                         ? 'No reviews'
                         : `${gadget.reviews.average}/5 (${gadget.reviews.count})`}
@@ -105,13 +105,13 @@ const FeaturedProducts = () => {
                   </div>
                   <Link
                     to={`/gadget/${gadget._id}`}
-                    className="text-lg font-medium mb-2 text-black"
+                    className="text-lg font-medium mb-2"
 
                   >
                     {gadget.name}
                   </Link>
                   <div className="mb-2">
-                    <p className="text-sm text-gray-600 line-clamp-2">
+                    <p className="text-sm text-gray-400 line-clamp-2">
                       {gadget.description}
                     </p>
                   </div>
@@ -120,17 +120,17 @@ const FeaturedProducts = () => {
                       <span className="font-bold">
                         ${gadget.pricing.hourly}
                       </span>
-                      <span className="block text-gray-500">hour</span>
+                      <span className="block text-gray-400">hour</span>
                     </div>
                     <div className="text-center">
                       <span className="font-bold">${gadget.pricing.daily}</span>
-                      <span className="block text-gray-500">day</span>
+                      <span className="block text-gray-400">day</span>
                     </div>
                     <div className="text-center">
                       <span className="font-bold">
                         ${gadget.pricing.weekly}
                       </span>
-                      <span className="block text-gray-500">week</span>
+                      <span className="block text-gray-400">week</span>
                     </div>
                   </div>
                   <div className="flex justify-between items-center">
