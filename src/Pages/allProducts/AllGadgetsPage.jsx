@@ -585,7 +585,7 @@ const AllGadgetsPage = () => {
               </div>
               <input
                 type="text"
-                className="border placeholder-gray-400 border-gray-300 text-sm rounded-lg focus:ring-black focus:border-black block w-full pl-10 p-2.5"
+                className="border placeholder-gray-400 border-gray-400 text-sm rounded-lg focus:ring-black focus:border-black block w-full pl-10 p-2.5"
                 placeholder="Search Gadgets..."
                 value={searchTerm}
                 onChange={handleSearchChange}
@@ -603,7 +603,7 @@ const AllGadgetsPage = () => {
                 </label>
                 <select
                   id="category"
-                  className="border border-gray-300 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
+                  className="border border-gray-400 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
                   value={categoryFilter}
                   onChange={handleCategoryChange}
                 >
@@ -692,7 +692,7 @@ const AllGadgetsPage = () => {
                       </div>
                     </Link>
                     {!gadget.available && (
-                      <div className="absolute top-2 right-2 bg-black text-xs font-semibold px-2 py-1 rounded">
+                      <div className="absolute top-2 right-2 text-xs font-semibold px-2 py-1 rounded">
                         Out of Stock
                       </div>
                     )}

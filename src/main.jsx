@@ -11,8 +11,6 @@ import SignIn from './Pages/signIn/SignIn.jsx';
 import Error from './Pages/Erorr/Erorr.jsx';
 import Cart from './Pages/cart/Cart.jsx';
 import Dashboard from './Pages/Dashboard/Dashboard.jsx';
-import ProductDetailsPage from './Pages/productDetails/ProductDetailsPage.jsx';
-import AllGadgetsPage from './Pages/allProducts/AllGadgetsPage.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import MyGadgets from './Pages/Dashboard/User-Dashboard/MyGadgets.jsx';
 import UserRoute from './Route/UserRoute.jsx';
@@ -40,7 +38,7 @@ const router = createBrowserRouter([
       { path: '/', element: <Home /> },
       {
         path: '/about-us',
-        element: <AboutUs />,
+        element: <AboutUs></AboutUs>,
       },
       {
         path: '/contact-us',
@@ -56,7 +54,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/update-gadget/:id',
-        element: <UpdateProduct />,
+        element: <UpdateProduct></UpdateProduct>,
         loader: ({ params }) =>
           fetch(`https://rentify-tech-server.vercel.app/gadget/${params.id}`),
       },
@@ -67,13 +65,13 @@ const router = createBrowserRouter([
       {
         path: '/all-gadgets',
         // element: <AllGadgetsPage />,
-        element: <AllDeep />,
+        element: <AllDeep></AllDeep>,
         // element: <NewAll />,
       },
       {
         path: '/gadget/:id',
         // element: <ProductDetailsPage />,
-        element: <NewDetails />,
+        element: <NewDetails></NewDetails>,
         loader: ({ params }) =>
           fetch(`https://rentify-tech-server.vercel.app/gadget/${params.id}`),
       },

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../Components/Navbar";
-import HelmetTitle from "../../Components/HelmetTitle";
 import { Link } from "react-router-dom";
+import HelmetTitle from "../../Components/HelmetTitle";
 
 function OurNews() {
   const [filter, setFilter] = useState("All");
@@ -50,9 +50,8 @@ const ourNews = blogs;
   // Get featured posts
   const featuredPosts = ourNews.filter((post) => post.featured);
   return (
-
-    <div className="bg-gray-100 min-h-screen">
-      <HelmetTitle title={"Blog"} />
+    <div className="min-h-screen">
+      <HelmetTitle title={"About"}></HelmetTitle>
       <Navbar />
 
       {/* Hero Section */}
