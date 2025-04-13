@@ -199,12 +199,12 @@ const SignIn = () => {
                         id="password_field"
                         required
                       />
-                      <Link
+                      <span
                         onClick={() => setShowPassword(!showPassword)}
                         className="absolute right-8 text-gray-300 bottom-3.5"
                       >
                         {showPassword ? <FaEyeSlash /> : <FaEye />}
-                      </Link>
+                      </span>
                     </div>
 
                     {/* <div className="relative">
@@ -250,9 +250,9 @@ const SignIn = () => {
                       <p>
                         Don't have an account?
                         <NavLink to="/signUp">
-                          <Link className="text-blue-400 transition hover:underline">
+                          <span className="text-blue-400 transition hover:underline">
                             Sign Up
-                          </Link>
+                          </span>
                         </NavLink>
                       </p>
                     </div>
