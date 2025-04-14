@@ -1,7 +1,22 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+/*Font Import Link*/
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Dosis:wght@200..800&family=Edu+AU+VIC+WA+NT+Arrows:wght@400..700&display=swap');
 
+.bungee-spice-font{
+  font-family: "Bungee Spice", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.dosis-font{
+  font-family: "Dosis", sans-serif;
+}
+
+.edu-font{
+  font-family: "Edu AU VIC WA NT Arrows", cursive;
+}
 /* From Uiverse.io by alexmaracinaru */ 
 .cta {
     border: none;
