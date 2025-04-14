@@ -20,6 +20,7 @@ import useAgent from "../Hooks/useAgent";
 import useUser from "../Hooks/useUser";
 import { FaNewspaper } from "react-icons/fa";
 import { ThemeContext } from "../Provider/ThemeProvider";
+// import logoImag from "../assets/logoImage.png"
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -96,8 +97,7 @@ export default function Navbar() {
 
         {/* Logo */}
         <Link to={"/"} className="text-3xl font-bold">
-          <span className="text-white">Ren</span>
-          <span className="text-white">Techify</span>
+        <span className="bungee-spice-font font-extrabold text-cyan-400 text-4xl">R</span>en<span className="edu-font">tify</span><span className="text-4xl edu-font font-extrabold text-cyan-400">T</span><span>ech</span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -115,16 +115,16 @@ export default function Navbar() {
 
           {user ? (
             <div className="relative" ref={dropdownRef}>
-              <button onClick={() => setDropdownOpen(!isDropdownOpen)}>
+              <span onClick={() => setDropdownOpen(!isDropdownOpen)}>
                 <img
                   className="w-10 h-10 border rounded-full object-cover"
                   src={user.photoURL}
                   alt="Profile"
                 />
-              </button>
+              </span>
 
               {isDropdownOpen && (
-                <div className="absolute right-0 mt-4 w-64 bg-white shadow-xl rounded-lg text-gray-900 z-50 p-4">
+                <div className="absolute bg-white right-0 mt-4 w-64 shadow-xl rounded-lg text-gray-900 z-50 p-4">
                   <div className="rounded-t-lg h-28 overflow-hidden">
                     <img
                       className="object-cover w-full"
