@@ -56,7 +56,7 @@ const router = createBrowserRouter([
         path: '/update-gadget/:id',
         element: <UpdateProduct></UpdateProduct>,
         loader: ({ params }) =>
-          fetch(`https://rentify-tech-server.vercel.app/gadget/${params.id}`),
+          fetch(`http://localhost:4000/gadget/${params.id}`),
       },
       {
         path: '/cart',
@@ -73,7 +73,7 @@ const router = createBrowserRouter([
         // element: <ProductDetailsPage />,
         element: <NewDetails></NewDetails>,
         loader: ({ params }) =>
-          fetch(`https://rentify-tech-server.vercel.app/gadget/${params.id}`),
+          fetch(`http://localhost:4000/gadget/${params.id}`),
       },
       {
         path: '/signIn',
