@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import signInImg from "../../assets/signIn.json";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -7,21 +7,23 @@ import Lottie from "lottie-react";
 import useAuth from "../../Hooks/useAuth";
 import HelmetTitle from "../../Components/HelmetTitle";
 import { MdMail } from "react-icons/md";
+import { IoIosPersonAdd } from "react-icons/io";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const emailRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state || "/";
-  console.log(from);
   const { singInUser, signInGoogle, forgetPassword } = useAuth();
+  console.log({ singInUser, signInGoogle, forgetPassword }); // Debug auth functions
 
   const handleGoogleSignIn = () => {
     signInGoogle()
       .then((res) => {
-        console.log(res.user);
+        console.log(res);
         Swal.fire({
-          title: "success!",
+          title: "Success!",
           text: "Sign In Successful!",
           icon: "success",
         });
@@ -29,25 +31,34 @@ const SignIn = () => {
       })
       .catch((error) => {
         Swal.fire({
-          title: "ERROR!",
+          title: "Error!",
           text: `${error.message}`,
           icon: "error",
         });
       });
   };
+
   const handleForgetPassword = () => {
-    const email = event.target.email.value;
+    const email = emailRef.current?.value;
+    if (!email) {
+      Swal.fire({
+        title: "Error!",
+        text: "Please enter an email address.",
+        icon: "error",
+      });
+      return;
+    }
     forgetPassword(email)
       .then(() => {
         Swal.fire({
-          title: "success!",
+          title: "Success!",
           text: "Password Reset Link Sent!",
           icon: "success",
         });
       })
       .catch((error) => {
         Swal.fire({
-          title: "ERROR!",
+          title: "Error!",
           text: `${error.message}`,
           icon: "error",
         });
@@ -59,12 +70,20 @@ const SignIn = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    if (typeof singInUser !== 'function') {
+      console.error('singInUser is not a function:', singInUser);
+      Swal.fire({
+        title: "Error!",
+        text: "Authentication function is not available.",
+        icon: "error",
+      });
+      return;
+    }
     singInUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        console.log(result);
         Swal.fire({
-          title: "success!",
+          title: "Success!",
           text: "Sign In Successful!",
           icon: "success",
         });
@@ -72,12 +91,13 @@ const SignIn = () => {
       })
       .catch((error) => {
         Swal.fire({
-          title: "ERROR!",
+          title: "Error!",
           text: `${error.message}`,
           icon: "error",
         });
       });
   };
+
   return (
     <div>
       <HelmetTitle title={"Sign in"} />
@@ -123,7 +143,6 @@ const SignIn = () => {
 
                 <div className="mx-auto max-w-xs">
                   <form onSubmit={handleSignIn} className="space-y-2">
-                    {/**Email Input */}
                     <div className="input_container">
                       <label className="input_label" htmlFor="email_field">
                         Email
@@ -131,15 +150,15 @@ const SignIn = () => {
                       <MdMail size={25} className="icon text-gray-400" />
                       <input
                         placeholder="Your Email"
-                        title="Inpit title"
+                        title="Input title"
                         name="email"
-                        type="text"
+                        type="email"
                         className="input_field"
                         id="email_field"
+                        ref={emailRef}
                         required
                       />
                     </div>
-                    {/**Password Input */}
                     <div className="input_container">
                       <label className="input_label" htmlFor="password_field">
                         Password
@@ -151,7 +170,6 @@ const SignIn = () => {
                         width={24}
                         xmlns="http://www.w3.org/2000/svg"
                         className="icon"
-                        
                       >
                         <path
                           strokeLinecap="round"
@@ -173,8 +191,8 @@ const SignIn = () => {
                       </svg>
                       <input
                         placeholder="Password"
-                        title="Inpit title"
-                        name="input-name"
+                        title="Input title"
+                        name="password"
                         type={showPassword ? "text" : "password"}
                         className="input_field"
                         id="password_field"
@@ -188,45 +206,20 @@ const SignIn = () => {
                       </span>
                     </div>
 
-                    {/* <div className="relative">
-                      <input
-                        type={showPassword ? "text" : "password"}
-                        name="password"
-                        placeholder="Enter your password"
-                        className="input rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white w-full pl-10"
-                        required
-                      />
-                      <button
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-8 bottom-3.5"
-                      >
-                        {showPassword ? <FaEyeSlash /> : <FaEye />}
-                      </button>
-                    </div> */}
-
-                    {/**Forgot Password */}
                     <Link
-                        className="font-medium text-gray-400"
-                        onClick={handleForgetPassword}
-                      >
-                        Forget Password
-                      </Link>
-
-                    <Link className="mt-5 tracking-wide font-semibold bg-green-300 text-white-500 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
-                      <svg
-                        className="w-6 h-6 -ml-2"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                        <circle cx="8.5" cy="7" r="4" />
-                        <path d="M20 8v6M23 11h-6" />
-                      </svg>
-                      <span className="ml-2">Sign In</span>
+                      className="font-medium text-gray-400"
+                      onClick={handleForgetPassword}
+                    >
+                      Forgot Password?
                     </Link>
+
+                    <button
+                      type="submit"
+                      className="mt-5 tracking-wide font-semibold bg-green-300 text-white-500 w-full py-4 rounded-lg hover:bg-green-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                    >
+                      <IoIosPersonAdd size={25} />
+                      <span className="ml-2">Sign In</span>
+                    </button>
                     <div className="flex flex-col mt-4 text-gray-400 text-sm text-center">
                       <p>
                         Don't have an account?
