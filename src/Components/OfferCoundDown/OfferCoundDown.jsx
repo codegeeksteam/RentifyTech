@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 const SoftMonochromeCountdownTimer = () => {
   // Set end date to December 31, 2024
   const calculateTimeLeft = () => {
-    const difference = new Date("April 14, 2025") - new Date();
+    const difference = new Date("Jun 8, 2025") - new Date();
     let timeLeft = {};
 
     if (difference > 0) {
@@ -139,7 +139,7 @@ const SoftMonochromeCountdownTimer = () => {
       <div className="text-center bg-white p-4 rounded shadow-sm border border-gray-100 mb-5">
         <p className="text-gray-600 text-sm font-medium mb-1">Use Promo Code</p>
         <div className="text-xl font-mono font-bold text-gray-800 tracking-wider">
-          NoboBorsho-25
+        Eid ul Adha-25
         </div>
       </div>
 

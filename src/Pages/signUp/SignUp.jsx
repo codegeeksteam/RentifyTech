@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import signUpImg from "../../assets/signUp.json";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -8,12 +8,21 @@ import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import HelmetTitle from "../../Components/HelmetTitle";
+import { MdAddCall, MdLock, MdMail } from "react-icons/md";
+import { RiContactsFill } from "react-icons/ri";
+import { IoIosPersonAdd } from "react-icons/io";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const SignUp = () => {
   const navigate = useNavigate();
   const { signInGoogle, createUser, updateMyProfile } = useAuth();
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const [showPassword, setShowPassword] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const location = useLocation();
   const from = location?.state || "/";
   const {
@@ -22,81 +31,101 @@ const SignUp = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
-    createUser(data.email, data.password).then((res) => {
-      console.log(res.user);
-      updateMyProfile(data.name, data.photoURL)
-        .then(() => {
-          const userInfo = {
-            name: data?.name,
-            email: data?.email,
-            photo: data?.photoURL,
-            phone: data?.phone,
-            role: data?.userType,
-          };
-          axiosPublic.post("/users", userInfo).then((res) => {
-            if (res.data.insertedId) {
-              reset();
-              Swal.fire({
-                title: "success!",
-                text: "Sign Up Successful!",
-                icon: "success",
-              });
-              navigate("/");
-            }
-          });
-        })
-        .catch((error) => {
-          Swal.fire({
-            title: "ERROR!",
-            text: `${error.message}`,
-            icon: "error",
-          });
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const onSubmit = async (data) => {
+    try {
+      // Image upload to ImgBB
+      const imageFile = { image: data.photoURL[0] };
+      const imgUploadRes = await axiosPublic.post(
+        image_hosting_api,
+        imageFile,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      // Get the uploaded image URL
+      const photoURL = imgUploadRes.data.data.url;
+
+      // Create user with Firebase
+      const userRes = await createUser(data.email, data.password);
+      console.log(userRes);
+      // Update Firebase profile with name and photoURL
+      await updateMyProfile(data.name, photoURL);
+
+      // Prepare user info for your backend
+      const userInfo = {
+        name: data?.name,
+        email: data?.email,
+        photo: photoURL, // Use the uploaded photo URL
+        phone: data?.phone,
+        role: data?.userType,
+      };
+
+      // Send user info to your backend
+      const serverRes = await axiosSecure.post("/users", userInfo);
+      if (serverRes.data.insertedId) {
+        reset();
+        Swal.fire({
+          title: "success!",
+          text: "Sign Up Successful!",
+          icon: "success",
         });
-    });
+        navigate("/");
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "ERROR!",
+        text: `${error.message}`,
+        icon: "error",
+      });
+    }
   };
 
-  const handleGoogleSignIn = () => {
-    signInGoogle()
-      .then((res) => {
-        console.log(res.user);
-        const userInfo = {
-          name: res.user?.displayName,
-          email: res.user?.email,
-          role: "User",
-        };
-        axiosPublic.post("/users", userInfo).then((res) => {
-          if (res.data.insertedId) {
-            Swal.fire({
-              title: "success!",
-              text: "Sign Up Successful!",
-              icon: "success",
-            });
-            navigate(from, { replace: true });
-          }
-        });
-      })
-      .catch((error) => {
+  const handleGoogleSignIn = async () => {
+    try {
+      const res = await signInGoogle();
+      const userInfo = {
+        name: res.user?.displayName,
+        email: res.user?.email,
+        role: "User",
+      };
+      const serverRes = await axiosPublic.post("/users", userInfo);
+      if (serverRes.data.insertedId) {
         Swal.fire({
-          title: "ERROR!",
-          text: `${error.message}`,
-          icon: "error",
+          title: "success!",
+          text: "Sign Up Successful!",
+          icon: "success",
         });
+        navigate(from, { replace: true });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: "ERROR!",
+        text: `${error.message}`,
+        icon: "error",
       });
+    }
   };
+
   return (
     <div>
-      <HelmetTitle title={'Sign up'}/>
-      <div className="min-w-screen bg-gray-100 text-gray-900 flex justify-center">
+      <HelmetTitle title={"Sign up"} />
+      <div className="min-w-screen text-gray-900 flex justify-center">
         <div className="max-w-screen-xl m-0 sm:m-10 shadow sm:rounded-lg flex justify-center flex-1">
           <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
-            <div className=" flex flex-col items-center">
+            <div className="flex flex-col items-center">
               <div className="w-full flex-1 mt-10">
                 <div className="flex flex-col items-center">
                   <button
                     onClick={handleGoogleSignIn}
-                    className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-violet-200 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
+                    className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-violet-300 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline"
                   >
                     <div className="bg-white p-2 rounded-full">
                       <svg className="w-4" viewBox="0 0 533.5 544.3">
@@ -125,102 +154,156 @@ const SignUp = () => {
                 </div>
 
                 <div className="my-12 border-b text-center">
-                  <div className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
+                  <div className="leading-none px-3 py-1 rounded-xl inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
                     Or sign up with e-mail
                   </div>
                 </div>
 
                 <div className="mx-auto max-w-xs">
-                  <form onSubmit={handleSubmit(onSubmit)}>
-                    <input
-                      className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 mb-3 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                      type="text"
-                      name="name"
-                      placeholder="Name"
-                      {...register("name", { required: true })}
-                    />
-                    {errors.name && (
-                      <span className="text-red-500">
-                        This Name is required
-                      </span>
-                    )}
-                    <input
-                      className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 mb-3 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                      type="text"
-                      name="photoURL"
-                      {...register("photoURL", { required: true })}
-                      placeholder="photo URL"
-                    />
-                    {errors.name && (
-                      <span className="text-red-500">
-                        This photo URL is required
-                      </span>
-                    )}
-                    <input
-                      className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 mb-3 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                      type="number"
-                      name="phone"
-                      {...register("phone", { required: true })}
-                      placeholder="Phone Number"
-                    />
-                    {errors.phone && (
-                      <span className="text-red-500">
-                        This Phone Number is required
-                      </span>
-                    )}
-                    <input
-                      className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 mb-3 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                      type="email"
-                      name="email"
-                      {...register("email", { required: true })}
-                      placeholder="Email"
-                    />
-                    {errors.email && (
-                      <span className="text-red-500">
-                        This Email is required
-                      </span>
-                    )}
+                  <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
                     <div className="relative">
-                      <input
-                        type={showPassword ? "text" : "password"}
-                        name="password"
-                        {...register("password", {
-                          required: true,
-                          minLength: 6,
-                          pattern:
-                            /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!#&*])/,
-                        })}
-                        placeholder="Enter your password"
-                        className="input rounded-lg px-8 font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:border-gray-400 focus:bg-white w-full"
-                        required
-                      />
-                      {errors.password?.type === "required" && (
-                        <span className="text-red-500">
-                          This Password is required
-                        </span>
-                      )}
-                      {errors.password?.type === "minLength" && (
-                        <span className="text-red-500">
-                          Password must be 6 characters
-                        </span>
-                      )}
-                      {errors.password?.type === "pattern" && (
-                        <span className="text-red-500">
-                          Password must be only @$!#&*
-                        </span>
-                      )}
-                      <button
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-8 bottom-3.5"
-                      >
-                        {showPassword ? <FaEyeSlash /> : <FaEye />}
-                      </button>
+                      <label className="block text-sm font-medium text-gray-700">
+                        Full Name
+                      </label>
+                      <div className="flex items-center border border-gray-300 rounded-lg">
+                        <RiContactsFill
+                          size={25}
+                          className="text-gray-400 ml-3"
+                        />
+                        <input
+                          placeholder="Your Name"
+                          name="name"
+                          type="text"
+                          className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-indigo-500"
+                          {...register("name", { required: true })}
+                        />
+                      </div>
+                      <div className="min-h-[2px]">
+                        {errors.name && (
+                          <span className="text-red-500 text-sm">
+                            This Name is required
+                          </span>
+                        )}
+                      </div>
                     </div>
-                    {/* User Type Dropdown */}
-                    <div className="mb-4">
+
+                    <fieldset className="relative">
+                      <label className="block text-sm font-medium text-gray-700">
+                        Choose a Profile Picture
+                      </label>
+                      <input
+                        type="file"
+                        className="file-input file-input-neutral"
+                        {...register("photoURL", { required: true })}
+                        name="photoURL"
+                      />
+                      <div className="min-h-[2px]">
+                        {errors.photoURL && (
+                          <span className="text-red-500 text-sm">
+                            This photo URL is required
+                          </span>
+                        )}
+                      </div>
+                    </fieldset>
+
+                    <div className="relative">
+                      <label className="block text-sm font-medium text-gray-700">
+                        Phone Number
+                      </label>
+                      <div className="flex items-center border border-gray-300 rounded-lg">
+                        <MdAddCall size={25} className="text-gray-400 ml-3" />
+                        <input
+                          placeholder="Your Number"
+                          name="phone"
+                          type="number"
+                          className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-indigo-500"
+                          {...register("phone", { required: true })}
+                        />
+                      </div>
+                      <div className="min-h-[2px]">
+                        {errors.phone && (
+                          <span className="text-red-500 text-sm">
+                            This Phone Number is required
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="relative">
+                      <label className="block text-sm font-medium text-gray-700">
+                        Email
+                      </label>
+                      <div className="flex items-center border border-gray-300 rounded-lg">
+                        <MdMail size={25} className="text-gray-400 ml-3" />
+                        <input
+                          placeholder="Your Email"
+                          name="email"
+                          type="text"
+                          className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-indigo-500"
+                          {...register("email", { required: true })}
+                          autoComplete="email"
+                        />
+                      </div>
+                      <div className="min-h-[2px]">
+                        {errors.email && (
+                          <span className="text-red-500 text-sm">
+                            This Email is required
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="relative">
+                      <label className="block text-sm font-medium text-gray-700">
+                        Password
+                      </label>
+                      <div className="flex items-center border border-gray-300 rounded-lg">
+                        <MdLock size={25} className="text-gray-400 ml-3" />
+                        <input
+                          placeholder="Password"
+                          name="password"
+                          autoComplete="new-password"
+                          type={showPassword ? "text" : "password"}
+                          className="w-full px-4 py-2 rounded-lg focus:outline-none focus:border-indigo-500"
+                          {...register("password", {
+                            required: true,
+                            minLength: 6,
+                            pattern:
+                              /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!#&*])/,
+                          })}
+                        />
+                        <span
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute right-3 text-gray-300"
+                        >
+                          {showPassword ? <FaEyeSlash /> : <FaEye />}
+                        </span>
+                      </div>
+                      <div className="min-h-[2px]">
+                        {errors.password?.type === "required" && (
+                          <span className="text-red-500 text-sm">
+                            This Password is required
+                          </span>
+                        )}
+                        {errors.password?.type === "minLength" && (
+                          <span className="text-red-500 text-sm">
+                            Password must be 6 characters
+                          </span>
+                        )}
+                        {errors.password?.type === "pattern" && (
+                          <span className="text-red-500 text-sm">
+                            Password must include a lowercase, uppercase,
+                            number, and special character (@$!#&*)
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="relative">
                       <select
                         id="userType"
-                        className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 mt-3 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500"
                         {...register("userType", {
                           required: "User type is required",
                         })}
@@ -229,34 +312,30 @@ const SignUp = () => {
                         <option value="User">User</option>
                         <option value="Agent">Agent</option>
                       </select>
-                      {errors.userType && (
-                        <p className="text-red-500 text-sm mt-1">
-                          {errors.userType.message}
-                        </p>
-                      )}
+                      <div className="min-h-[5px]">
+                        {errors.userType && (
+                          <p className="text-red-500 text-sm">
+                            {errors.userType.message}
+                          </p>
+                        )}
+                      </div>
                     </div>
-                    <button className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
-                      <svg
-                        className="w-6 h-6 -ml-2"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      >
-                        <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                        <circle cx="8.5" cy="7" r="4" />
-                        <path d="M20 8v6M23 11h-6" />
-                      </svg>
+
+                    <button
+                      type="submit"
+                      className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                    >
+                      <IoIosPersonAdd size={25} />
                       <span className="ml-3">Sign Up</span>
                     </button>
+
                     <div className="flex flex-col mt-4 text-sm text-center dark:text-gray-300">
                       <p>
                         Already have an account? Please
                         <Link to="/signin">
-                          <button className="text-blue-400 transition hover:underline">
+                          <span className="text-blue-400 transition hover:underline">
                             Sign in
-                          </button>
+                          </span>
                         </Link>
                       </p>
                     </div>
@@ -267,7 +346,9 @@ const SignUp = () => {
           </div>
           <div className="flex-1 text-center hidden lg:flex">
             <div className="m-12 flex items-center xl:m-16 w-full bg-contain bg-center bg-no-repeat">
-              <Lottie animationData={signUpImg}></Lottie>
+              {isMounted && (
+                <Lottie animationData={signUpImg} style={{ width: "50%" }} />
+              )}
             </div>
           </div>
         </div>
