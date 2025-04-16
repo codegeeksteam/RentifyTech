@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
@@ -8,7 +12,6 @@ const testimonials = [
     testimonial:
       "Great pricing and reliable service! I've rented cameras and drones multiple times—delivery is always timely, and the gear arrives in perfect condition. Would love to see even more model options in the future. Highly recommend for quality tech rentals!",
   },
-  // Add more testimonials here
   {
     name: "Sarah Johnson",
     img: "https://randomuser.me/api/portraits/women/44.jpg",
@@ -27,7 +30,7 @@ const testimonials = [
 
 const TestimonialCard = ({ testimonial }) => {
   return (
-    <div className="p-6 rounded-lg border border-gray-400 shadow-md hover:shadow-lg transition-shadow duration-300">
+    <div className="testimonial-card p-6 rounded-lg border border-gray-400 shadow-md hover:shadow-lg transition-shadow duration-300">
       <div className="flex items-center mb-4">
         <img
           src={testimonial.img}
@@ -57,13 +60,33 @@ const TestimonialCard = ({ testimonial }) => {
 };
 
 const TestimonialSection = () => {
+  const sectionRef = useRef();
+
+  useEffect(() => {
+    const cards = sectionRef.current.querySelectorAll(".testimonial-card");
+
+    gsap.fromTo(
+      cards,
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.2,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 60%",
+        },
+      }
+    );
+  }, []);
+
   return (
-    <section className="py-12">
+    <section className="py-12" ref={sectionRef}>
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-2">
-            What Our Customers Say
-          </h2>
+          <h2 className="text-3xl font-bold mb-2">What Our Customers Say</h2>
           <p className="text-gray-500 max-w-2xl mx-auto">
             Don't just take our word for it - hear from our satisfied customers
           </p>

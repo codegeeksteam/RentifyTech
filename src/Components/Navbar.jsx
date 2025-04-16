@@ -61,8 +61,8 @@ export default function Navbar() {
           t1.from("#rentechify", {
               xPercent: "-100",
               opacity: 0,
-              duration: 1,
-              delay: 0.3,
+              duration: 0.5,
+              delay: 0.1,
           })
               .from(["#nav1", "#nav2", "#nav3", "#nav4", "#nav5", "#resumeBtn", "#dbmode"], {
                   opacity: 0,
