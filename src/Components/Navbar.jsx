@@ -1,4 +1,4 @@
-import {useState, useRef, useContext } from "react";
+import {useState, useRef, useContext, useLayoutEffect } from "react";
 import {
   FiShoppingCart,
   FiSun,
@@ -21,6 +21,7 @@ import useUser from "../Hooks/useUser";
 import { FaNewspaper } from "react-icons/fa";
 import { ThemeContext } from "../Provider/ThemeProvider";
 // import logoImag from "../assets/logoImage.png"
+import gsap from "gsap";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -52,9 +53,30 @@ export default function Navbar() {
       });
   };
 
+  const navRef = useRef(null);
+
+  useLayoutEffect(() => {
+      let ctx = gsap.context(() => {
+          const t1 = gsap.timeline()
+          t1.from("#rentechify", {
+              xPercent: "-100",
+              opacity: 0,
+              duration: 1,
+              delay: 0.3,
+          })
+              .from(["#nav1", "#nav2", "#nav3", "#nav4", "#nav5", "#resumeBtn", "#dbmode"], {
+                  opacity: 0,
+                  y: "-=30",
+                  stagger: 0.1,
+              })
+      }, navRef)
+
+      return () => ctx.revert()
+  }, [])
+
   const navLinks = (
     <>
-      <NavLink className="font-semibold uppercase cta" to={"/"}>
+      <NavLink id="nav1" className="font-semibold uppercase cta" to={"/"}>
         <span className="hover-underline-animation flex gap-1 items-center">
           <FiHome /> Home
         </span>
@@ -62,22 +84,22 @@ export default function Navbar() {
       {/* <NavLink className="font-semibold uppercase cta" to={"/shop"}>
         <span className="hover-underline-animation flex gap-1 items-center"><FiShoppingBag /> Shop</span>
       </NavLink> */}
-      <NavLink className="font-semibold uppercase cta" to={"/all-gadgets"}>
+      <NavLink id="nav2" className="font-semibold uppercase cta" to={"/all-gadgets"}>
         <span className="hover-underline-animation flex gap-1 items-center">
           <FiGrid /> All Gadgets
         </span>
       </NavLink>
-      <NavLink className="font-semibold uppercase cta" to={"/blogs"}>
+      <NavLink id="nav3" className="font-semibold uppercase cta" to={"/blogs"}>
         <span className="hover-underline-animation flex gap-1 items-center">
           <FaNewspaper /> Blog
         </span>
       </NavLink>
-      <NavLink className="font-semibold uppercase cta" to={"/about-us"}>
+      <NavLink id="nav4" className="font-semibold uppercase cta" to={"/about-us"}>
         <span className="hover-underline-animation flex gap-1 items-center">
           <FiInfo /> About
         </span>
       </NavLink>
-      <NavLink className="font-semibold uppercase cta" to={"/contact-us"}>
+      <NavLink id="nav5" className="font-semibold uppercase cta" to={"/contact-us"}>
         <span className="hover-underline-animation flex gap-1 items-center">
           <FiPhone /> Contact
         </span>
@@ -86,7 +108,7 @@ export default function Navbar() {
   );
 
   return (
-    <div className="w-full top-0 sticky bg-black/50 backdrop-blur text-white z-50">
+    <div ref={navRef} className="w-full top-0 sticky bg-black/50 backdrop-blur text-white z-50">
       <div className="navbar container mx-auto flex justify-between items-center">
         {/* Mobile Menu Button */}
         <div className="lg:hidden">
@@ -96,7 +118,7 @@ export default function Navbar() {
         </div>
 
         {/* Logo */}
-        <Link to={"/"} className="text-3xl font-bold">
+        <Link to={"/"} id="rentechify" className="text-3xl font-bold">
         <span className="bungee-spice-font font-extrabold text-cyan-400 text-4xl">R</span>en<span className="edu-font">tify</span><span className="text-4xl edu-font font-extrabold text-cyan-400">T</span><span>ech</span>
         </Link>
 
@@ -104,7 +126,7 @@ export default function Navbar() {
         <div className="hidden lg:flex space-x-6 items-center">{navLinks}</div>
 
         {/* Dark Mode Toggle & Profile */}
-        <div className="flex bg-transparent items-center gap-4">
+        <div id="dbmode" className="flex bg-transparent items-center gap-4">
           <Link className="bg-transparent" onClick={toggleDarkMode}>
             {darkMode ? <FiMoon size={22} /> : <FiSun size={22} />}
           </Link>
