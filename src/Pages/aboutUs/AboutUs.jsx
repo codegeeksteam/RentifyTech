@@ -25,11 +25,11 @@ const AboutUs = () => {
                 </div>
                 {/* about us banner */}
                 <div className='relative'>
-                    <div className='flex gap-15'>
-                        <div className='w-1/2'>
-                            <img src="https://i.ibb.co.com/YBWh2rMk/frame-155.webp" alt="" className='w-full h-full' />
+                    <div className='flex flex-col-reverse lg:flex-row lg:gap-15'>
+                        <div className='w-full'>
+                            <img src="https://i.ibb.co.com/YBWh2rMk/frame-155.webp" alt="" className='w-full hidden lg:flex h-full' />
                         </div>
-                        <div className='w-1/2 space-y-5 my-auto'>
+                        <div className='w-full space-y-5 my-auto'>
                             <p className='text-lg font-semibold text-gray-500'>Quality & Efficience</p>
                             <h1 className='text-5xl font-bold'>Exceptional <br /> Craftsmanship, Endless Possibilities</h1>
                             <p className='text-lg text-gray-500'>
@@ -38,7 +38,7 @@ const AboutUs = () => {
                         </div>
                     </div>
 
-                    <div className='bg-black/80 p-6 text-center w-1/2 absolute top-4/5 left-1/6  rounded-xl  '>
+                    <div className='bg-black/80 p-6 text-center hidden w-1/2 absolute top-4/5 left-1/6  rounded-xl  '>
                         <h1 className='text-4xl text-gray-400 font-bold uppercase'>
                             Where every detail matters in crafting your perfect floor
                         </h1>
@@ -51,7 +51,7 @@ const AboutUs = () => {
                 {/* about us banner end */}
             </section>
 
-            <div style={{ backgroundImage: `url("https://i.ibb.co.com/0yPcrQcv/lonovo-think-x1-5-scaled.webp")`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', objectFit: 'cover' }} className='my-20' >
+            <div style={{ backgroundImage: `url("https://i.ibb.co.com/0yPcrQcv/lonovo-think-x1-5-scaled.webp")`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat', objectFit: 'cover' }} className='my-20 hidden' >
 
                 <div className='py-28 w-11/12 mx-auto'>
                     <div className='w-6/12 space-y-5'>
@@ -126,7 +126,7 @@ const AboutUs = () => {
               style. From concept to delivery, our team of experts will work
               closely with you to bring your vision to life.
             </p>
-            <Link className="btn bg-blue-500 text-white border-none text-lg md:text-xl font-bold">
+            <Link to={'/all-gadgets'} className="btn btn-outline py-4 bg-black text-white border-none text-lg md:text-xl font-bold">
               Explore Products
             </Link>
           </div>
