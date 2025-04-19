@@ -78,7 +78,7 @@ const ProductDetailsPage = () => {
 
   /// Handle Add to Card
   const handleAddToCard = product => {
-  console.log("all Products");
+  console.log("all Products", product);
   }
 
   return (
