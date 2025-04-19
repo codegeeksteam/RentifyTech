@@ -10,6 +10,7 @@ import ElectronicsRental from "./Secondary/SecondaryBAnner";
 import Electronics from "./ElecronicsRental/Electronis";
 import OurProcess from "../../Components/OurProcess/OurProcess";
 import HelmetTitle from "../../Components/HelmetTitle";
+// import LiveChat from "../../Components/LiveChat/LiveChat";
 
 const Home = () => {
   return (
@@ -25,6 +26,7 @@ const Home = () => {
       {/* <LattesrBanner /> */}
       <Electronics />
       <Testimonials />
+      {/* <LiveChat/> */}
       {/* <OurNews />  FIXME: I create a new blog page  */}
       <Footer />
     </div>
