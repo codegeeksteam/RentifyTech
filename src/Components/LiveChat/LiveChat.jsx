@@ -5,7 +5,7 @@ export default function LiveChat() {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([
-    { text: "Hello! How can I help you today?", isUser: false, time: new Date() }
+    { text: "Hello! Welcome to Rentify Tech?", isUser: false, time: new Date() }
   ]);
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
@@ -31,6 +31,7 @@ export default function LiveChat() {
         "Thanks for your message! Our team will get back to you soon.",
         "Hi there! How can I assist you today?",
         "I understand your concern. Let me help you with that.",
+        "Can u give your email address so we can contact you?ß",
         "That's a great question! Here's what you need to know..."
       ];
       

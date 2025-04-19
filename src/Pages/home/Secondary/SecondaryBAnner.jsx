@@ -57,6 +57,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Link } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -233,16 +234,20 @@ const ElectronicsRental = () => {
 
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
+              
+              
               <button
-                ref={(el) => (buttonsRef.current[0] = el)}
-                className="relative px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-medium overflow-hidden group"
+                 className="  px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl  "
               >
-                <span className="relative z-10">Browse Available Tech</span>
-                <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-indigo-700 opacity-0 group-hover:opacity-100 transition duration-300"></span>
-              </button>
+                <Link to={'/'}>
+               Browse Available Tech<br /></Link>
+               </button>
+             
+               
+             
 
               <button
-                ref={(el) => (buttonsRef.current[1] = el)}
+               
                 className="px-8 py-4 border-2 border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition duration-300 flex items-center justify-center gap-2"
               >
                 <svg
@@ -258,7 +263,8 @@ const ElectronicsRental = () => {
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   ></path>
                 </svg>
-                Contact Our Team
+               <Link to={'/contact-us'}>
+                Contact Us</Link>
               </button>
             </div>
           </div>
