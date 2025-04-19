@@ -54,7 +54,87 @@
 
 // export default ElectronicsRental;
 
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Link } from "react-router-dom";
+
+gsap.registerPlugin(ScrollTrigger);
+
 const ElectronicsRental = () => {
+  const imageRef = useRef(null);
+  const contentRef = useRef(null);
+  const featuresRef = useRef([]);
+  const buttonsRef = useRef([]);
+
+  useEffect(() => {
+    gsap.fromTo(
+      imageRef.current,
+      { opacity: 0, x: -50 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: imageRef.current,
+          start: "top 65%",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      contentRef.current,
+      { opacity: 0, x: 50 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: contentRef.current,
+          start: "top 65%",
+        },
+      }
+    );
+
+    featuresRef.current.forEach((el, i) => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 80%",
+          },
+          delay: i * 0.2,
+        }
+      );
+    });
+
+    buttonsRef.current.forEach((el, i) => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+          },
+          delay: i * 0.2,
+        }
+      );
+    });
+  }, []);
+
   return (
     <section className="relative overflow-hidden">
       {/* Decorative elements */}
@@ -63,8 +143,11 @@ const ElectronicsRental = () => {
 
       <div className="container mx-auto px-4 py-20 lg:py-28">
         <div className="flex flex-col lg:flex-row items-center gap-12 xl:gap-20">
-          {/* Image with modern frame */}
-          <div className="relative flex-1 max-w-xl">
+          {/* Image */}
+          <div
+            ref={imageRef}
+            className="relative flex-1 max-w-xl"
+          >
             <div className="relative z-10 aspect-w-16 aspect-h-12 overflow-hidden rounded-2xl shadow-2xl">
               <img
                 src="https://i.ibb.co.com/pth2LXr/big-monitor-768x511.webp"
@@ -76,7 +159,10 @@ const ElectronicsRental = () => {
           </div>
 
           {/* Content */}
-          <div className="flex-1 max-w-2xl">
+          <div
+            ref={contentRef}
+            className="flex-1 max-w-2xl"
+          >
             <span className="inline-block px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-sm font-semibold mb-4">
               Sustainable Electronics
             </span>
@@ -95,61 +181,75 @@ const ElectronicsRental = () => {
               the long-term costs.
             </p>
 
-            {/* Features grid */}
+            {/* Features */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-              <div className="p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mb-3">
-                  <svg
-                    className="w-6 h-6 text-blue-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+              {[
+                {
+                  iconColor: "blue",
+                  title: "Convenient",
+                  desc: "Next-day delivery with easy returns. We handle the logistics.",
+                },
+                {
+                  iconColor: "indigo",
+                  title: "Cost Effective",
+                  desc: "Save up to 70% compared to buying. No maintenance costs.",
+                },
+              ].map((feature, index) => (
+                <div
+                  key={index}
+                  ref={(el) => (featuresRef.current[index] = el)}
+                  className="p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow"
+                >
+                  <div
+                    className={`w-10 h-10 bg-${feature.iconColor}-100 rounded-lg flex items-center justify-center mb-3`}
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M5 13l4 4L19 7"
-                    ></path>
-                  </svg>
+                    <svg
+                      className={`w-6 h-6 text-${feature.iconColor}-600`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      {index === 0 ? (
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M5 13l4 4L19 7"
+                        ></path>
+                      ) : (
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                        ></path>
+                      )}
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-gray-500">{feature.desc}</p>
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Convenient</h3>
-                <p className="text-gray-500">
-                  Next-day delivery with easy returns. We handle the logistics.
-                </p>
-              </div>
-
-              <div className="p-5 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mb-3">
-                  <svg
-                    className="w-6 h-6 text-indigo-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    ></path>
-                  </svg>
-                </div>
-                <h3 className="text-xl font-semibold mb-2">Cost Effective</h3>
-                <p className="text-gray-500">
-                  Save up to 70% compared to buying. No maintenance costs.
-                </p>
-              </div>
+              ))}
             </div>
 
-            {/* Buttons with hover effects */}
+            {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="relative px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl font-medium overflow-hidden group">
-                <span className="relative z-10">Browse Available Tech</span>
-                <span className="absolute inset-0 bg-gradient-to-r from-blue-700 to-indigo-700 opacity-0 group-hover:opacity-100 transition duration-300"></span>
-              </button>
+              
+              
+              <button
+                 className="  px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl  "
+              >
+                <Link to={'/'}>
+               Browse Available Tech<br /></Link>
+               </button>
+             
+               
+             
 
-              <button className="px-8 py-4 border-2 border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition duration-300 flex items-center justify-center gap-2">
+              <button
+               
+                className="px-8 py-4 border-2 border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition duration-300 flex items-center justify-center gap-2"
+              >
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -163,7 +263,8 @@ const ElectronicsRental = () => {
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   ></path>
                 </svg>
-                Contact Our Team
+               <Link to={'/contact-us'}>
+                Contact Us</Link>
               </button>
             </div>
           </div>

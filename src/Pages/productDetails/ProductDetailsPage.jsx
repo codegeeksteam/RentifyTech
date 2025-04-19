@@ -76,6 +76,11 @@ const ProductDetailsPage = () => {
     setSelectedPeriod(period);
   };
 
+  /// Handle Add to Card
+  const handleAddToCard = product => {
+  console.log("all Products", product);
+  }
+
   return (
     <>
       <Navbar />
@@ -233,7 +238,8 @@ const ProductDetailsPage = () => {
                 </div>
 
                 <div className="flex gap-3">
-                  <button className="flex-1 bg-black hover:bg-gray-800 text-white py-3 px-4 rounded-lg font-medium">
+                  <button
+                  onClick={() => handleAddToCard(product)} className="flex-1 bg-black cursor-pointer hover:bg-gray-800 text-white py-3 px-4 rounded-lg font-medium">
                     Add to Cart
                   </button>
                   <button className="flex-1 bg-white hover:bg-gray-50 text-black py-3 px-4 rounded-lg border border-gray-200 font-medium">
