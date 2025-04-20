@@ -26,6 +26,7 @@ import ThemeProvider from './Provider/ThemeProvider.jsx';
 import UpdateProduct from './Pages/updateProduct/UpdateProduct.jsx';
 import AllDeep from './Pages/allProducts/AllDeep.jsx';
 import NewDetails from './Pages/productDetails/NewDetails.jsx';
+import Analytics from './Pages/Dashboard/Admin-Dashboard/Analytics.jsx';
 
 const queryClient = new QueryClient();
 
@@ -113,6 +114,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AllUsers />
+          </AdminRoute>
+        ),
+      },
+      {
+        path:'analytics',
+        element: (
+          <AdminRoute>
+            <Analytics/>
           </AdminRoute>
         ),
       },

@@ -41,7 +41,7 @@ const AdminDashboard = ({ handleSignOut }) => {
           </a>
         </NavLink>
 
-        <NavLink>
+        <NavLink to={"/dashboard/analytics"}>
           <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-900">
             <BarChart2 size={18} />
             <span>Analytics</span>

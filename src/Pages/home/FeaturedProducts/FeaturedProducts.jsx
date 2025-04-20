@@ -139,6 +139,8 @@ const FeaturedProducts = () => {
                         {gadget.availability.quantity} available
                       </span>
                     </div>
+                    <Link
+                        to={`/gadget/${gadget._id}`} >
                     <button
                       className={`px-3 py-1 rounded-md text-sm font-medium ${
                         gadget.availability.status === 'In Stock'
@@ -148,9 +150,10 @@ const FeaturedProducts = () => {
                       disabled={gadget.availability.status !== 'In Stock'}
                     >
                       {gadget.availability.status === 'In Stock'
-                        ? 'Rent Now'
+                        ?  'Rent Now' 
                         : gadget.availability.status}
                     </button>
+                    </Link>
                   </div>
                 </div>
               </div>

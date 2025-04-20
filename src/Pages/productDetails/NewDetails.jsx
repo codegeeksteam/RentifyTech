@@ -68,7 +68,12 @@ const NewDetails = () => {
       </>
     );
   }
+  // FIXME: SIRAJ aikhan hek add to cart hit kortase function aikhane implement korn 
+  
 
+  const handelAddtoCart =()=>{
+    console.log('ok ')
+  }
   return (
     <>
       <HelmetTitle title={gadget.name} />
@@ -228,7 +233,7 @@ const NewDetails = () => {
                 </div>
 
                 <div className="flex gap-3">
-                  <button
+                  <button onClick={handelAddtoCart}
                     className={`flex-1 text-white py-3 px-4 rounded-lg font-medium ${
                       gadget.availability.status === 'In Stock'
                         ? 'bg-black hover:bg-gray-800'
@@ -237,7 +242,7 @@ const NewDetails = () => {
                     disabled={gadget.availability.status !== 'In Stock'}
                   >
                     {gadget.availability.status === 'In Stock'
-                      ? 'Add to Cart'
+                      ? 'Add to Cart '
                       : 'Not Available'}
                   </button>
                   <button
