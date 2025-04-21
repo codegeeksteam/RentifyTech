@@ -3,6 +3,7 @@ import { CiLogout } from "react-icons/ci";
 import { FaHome } from "react-icons/fa";
 import { Home, ShoppingBag, Users, Settings, LogOut, Menu, X, Bell, User, Package, Calendar, HelpCircle, BarChart2, Truck, DollarSign } from 'lucide-react';
 import { NavLink } from "react-router-dom";
+import { CgProfile } from "react-icons/cg";
 
 const UsersDashboard = ({handleSignOut}) => {
   return (
@@ -55,8 +56,8 @@ const UsersDashboard = ({handleSignOut}) => {
 
       <NavLink>
         <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-900">
-        <HelpCircle size={18} />
-        <span>Help</span>
+        <CgProfile size={18} />
+        <span>My Profile</span>
         </div>
       </NavLink>
       <div className="divider divider-neutral"></div>
