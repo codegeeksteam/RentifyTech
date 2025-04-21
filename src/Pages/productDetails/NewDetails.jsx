@@ -1,9 +1,17 @@
-import { useEffect, useState } from 'react';
-import Footer from '../../Components/Footer';
-import Navbar from '../../Components/Navbar';
-import useAxiosSecure from '../../Hooks/useAxiosSecure';
-import { Link, useLoaderData } from 'react-router-dom';
-import HelmetTitle from '../../Components/HelmetTitle';
+import { useEffect, useState } from "react";
+import Footer from "../../Components/Footer";
+import Navbar from "../../Components/Navbar";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import {
+  Link,
+  useLoaderData,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
+import HelmetTitle from "../../Components/HelmetTitle";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const NewDetails = () => {
   const [gadget, setGadget] = useState({
@@ -15,10 +23,13 @@ const NewDetails = () => {
     seller: {},
   });
   const axiosSecure = useAxiosSecure();
-
+  const axiosPublic = useAxiosPublic();
+  const { user } = useAuth();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const gadgetData = useLoaderData();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const fetchGadget = async () => {
@@ -27,8 +38,8 @@ const NewDetails = () => {
         setGadget(response.data);
         setLoading(false);
       } catch (err) {
-        console.error('Error fetching gadget:', err);
-        setError('Failed to load gadget.');
+        console.error("Error fetching gadget:", err);
+        setError("Failed to load gadget.");
         setLoading(false);
       }
     };
@@ -37,7 +48,7 @@ const NewDetails = () => {
   }, [axiosSecure, gadgetData._id]);
 
   // State for selected rental period
-  const [selectedPeriod, setSelectedPeriod] = useState('daily');
+  const [selectedPeriod, setSelectedPeriod] = useState("daily");
 
   // State for selected image
   const [selectedImage, setSelectedImage] = useState(0);
@@ -61,19 +72,54 @@ const NewDetails = () => {
   if (error) {
     return (
       <>
-        <HelmetTitle title={'Sorry!'} />
+        <HelmetTitle title={"Sorry!"} />
         <Navbar />
         <div className="h-[50vh] p-5 text-red-600 text-center">{error}</div>;
         <Footer />
       </>
     );
   }
-  // FIXME: SIRAJ aikhan hek add to cart hit kortase function aikhane implement korn 
-  
+  // FIXME: SIRAJ aikhan hek add to cart hit kortase function aikhane implement korn
 
-  const handelAddtoCart =()=>{
-    console.log('ok ', gadgetData)
-  }
+  const handelAddtoCart = async () => {
+    console.log(gadget.pricing[selectedPeriod]);
+    if (user && user.email) {
+      // sent card item to the database
+      console.log(user.email, gadget);
+      const cartItem = {
+        menuId: gadget._id,
+        userEmail: user?.email,
+        gadgetName: gadget.name,
+        gadgetCategory: gadget.category,
+        gadgetPrice: gadget.pricing[selectedPeriod],
+        gadgetImage: gadget.images[selectedImage],
+      };
+      const res = await axiosPublic.post("/carts", cartItem);
+       // Log the response from the server
+      if (res?.data.insertedId) {
+        Swal.fire({
+          title: "Success!",
+          text: `${gadget.name} Added Successful!`,
+          icon: "success",
+        });
+      }
+    } else {
+      Swal.fire({
+        title: "You are not logged in?",
+        text: "Please log in to your account!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // sent to the user login page
+          navigate("/signIn", { state: { from: location } });
+        }
+      });
+    }
+  };
   return (
     <>
       <HelmetTitle title={gadget.name} />
@@ -84,7 +130,7 @@ const NewDetails = () => {
           <nav className="mb-4 text-sm">
             <ol className="flex">
               <li className="text-gray-500 hover:text-black">
-                <Link to={'/all-gadgets'}>Home</Link>
+                <Link to={"/all-gadgets"}>Home</Link>
               </li>
               <li className="mx-2 text-gray-500">/</li>
               <li className="text-gray-500 hover:text-black">
@@ -112,8 +158,8 @@ const NewDetails = () => {
                     key={index}
                     className={`bg-white p-2 rounded border hover:border-black ${
                       selectedImage === index
-                        ? 'border-black'
-                        : 'border-gray-200'
+                        ? "border-black"
+                        : "border-gray-200"
                     }`}
                     onClick={() => setSelectedImage(index)}
                   >
@@ -144,8 +190,8 @@ const NewDetails = () => {
                         key={i}
                         className={`w-4 h-4 ${
                           i < Math.round(gadget?.reviews?.average || 0)
-                            ? 'text-black'
-                            : 'text-gray-300'
+                            ? "text-black"
+                            : "text-gray-300"
                         }`}
                         fill="currentColor"
                         viewBox="0 0 20 20"
@@ -156,7 +202,7 @@ const NewDetails = () => {
                   </div>
                   <span className="text-gray-600 text-sm">
                     {gadget?.reviews?.count < 1
-                      ? 'No reviews'
+                      ? "No reviews"
                       : `${gadget.reviews.average}/5 (${gadget.reviews.count} reviews)`}
                   </span>
                 </div>
@@ -164,11 +210,11 @@ const NewDetails = () => {
                 <div className="flex items-center">
                   <div
                     className={`px-2 py-1 rounded text-sm ${
-                      gadget.availability.status === 'In Stock'
-                        ? 'bg-green-100 text-green-800'
-                        : gadget.availability.status === 'Out of Stock'
-                        ? 'bg-red-100 text-red-800'
-                        : 'bg-yellow-100 text-yellow-800'
+                      gadget.availability.status === "In Stock"
+                        ? "bg-green-100 text-green-800"
+                        : gadget.availability.status === "Out of Stock"
+                        ? "bg-red-100 text-red-800"
+                        : "bg-yellow-100 text-yellow-800"
                     }`}
                   >
                     {gadget.availability.status}
@@ -186,11 +232,11 @@ const NewDetails = () => {
                 <div className="grid grid-cols-4 gap-2 mb-4">
                   <button
                     className={`py-2 px-3 rounded-md border ${
-                      selectedPeriod === 'hourly'
-                        ? 'bg-black text-white border-black'
-                        : 'bg-white text-black border-gray-200 hover:border-gray-400'
+                      selectedPeriod === "hourly"
+                        ? "bg-black text-white border-black"
+                        : "bg-white text-black border-gray-200 hover:border-gray-400"
                     }`}
-                    onClick={() => handlePeriodChange('hourly')}
+                    onClick={() => handlePeriodChange("hourly")}
                   >
                     <div className="text-xs mb-1">Hourly</div>
                     <div className="font-semibold">
@@ -200,11 +246,11 @@ const NewDetails = () => {
 
                   <button
                     className={`py-2 px-3 rounded-md border ${
-                      selectedPeriod === 'daily'
-                        ? 'bg-black text-white border-black'
-                        : 'bg-white text-black border-gray-200 hover:border-gray-400'
+                      selectedPeriod === "daily"
+                        ? "bg-black text-white border-black"
+                        : "bg-white text-black border-gray-200 hover:border-gray-400"
                     }`}
-                    onClick={() => handlePeriodChange('daily')}
+                    onClick={() => handlePeriodChange("daily")}
                   >
                     <div className="text-xs mb-1">Daily</div>
                     <div className="font-semibold">${gadget.pricing.daily}</div>
@@ -212,11 +258,11 @@ const NewDetails = () => {
 
                   <button
                     className={`py-2 px-3 rounded-md border ${
-                      selectedPeriod === 'weekly'
-                        ? 'bg-black text-white border-black'
-                        : 'bg-white text-black border-gray-200 hover:border-gray-400'
+                      selectedPeriod === "weekly"
+                        ? "bg-black text-white border-black"
+                        : "bg-white text-black border-gray-200 hover:border-gray-400"
                     }`}
-                    onClick={() => handlePeriodChange('weekly')}
+                    onClick={() => handlePeriodChange("weekly")}
                   >
                     <div className="text-xs mb-1">Weekly</div>
                     <div className="font-semibold">
@@ -233,25 +279,26 @@ const NewDetails = () => {
                 </div>
 
                 <div className="flex gap-3">
-                  <button onClick={handelAddtoCart}
-                    className={`flex-1 text-white py-3 px-4 rounded-lg font-medium ${
-                      gadget.availability.status === 'In Stock'
-                        ? 'bg-black hover:bg-gray-800'
-                        : 'bg-gray-400 cursor-not-allowed'
+                  <button
+                    onClick={handelAddtoCart}
+                    className={`flex-1 text-white py-3 cursor-pointer px-4 rounded-lg font-medium ${
+                      gadget.availability.status === "In Stock"
+                        ? "bg-black hover:bg-gray-800"
+                        : "bg-gray-400 cursor-not-allowed"
                     }`}
-                    disabled={gadget.availability.status !== 'In Stock'}
+                    disabled={gadget.availability.status !== "In Stock"}
                   >
-                    {gadget.availability.status === 'In Stock'
-                      ? 'Add to Cart '
-                      : 'Not Available'}
+                    {gadget.availability.status === "In Stock"
+                      ? "Add to Cart "
+                      : "Not Available"}
                   </button>
                   <button
                     className={`flex-1 py-3 px-4 rounded-lg font-medium border ${
-                      gadget.availability.status === 'In Stock'
-                        ? 'bg-white hover:bg-gray-50 text-black border-gray-200'
-                        : 'bg-gray-100 text-gray-400 border-gray-300 cursor-not-allowed'
+                      gadget.availability.status === "In Stock"
+                        ? "bg-white hover:bg-gray-50 text-black border-gray-200"
+                        : "bg-gray-100 text-gray-400 border-gray-300 cursor-not-allowed"
                     }`}
-                    disabled={gadget.availability.status !== 'In Stock'}
+                    disabled={gadget.availability.status !== "In Stock"}
                   >
                     Reserve Now
                   </button>
