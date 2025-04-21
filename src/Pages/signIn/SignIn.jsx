@@ -14,9 +14,8 @@ const SignIn = () => {
   const emailRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location?.state || "/";
+  const from = location?.state?.from?.pathname || "/";
   const { singInUser, signInGoogle, forgetPassword } = useAuth();
-  console.log({ singInUser, signInGoogle, forgetPassword }); // Debug auth functions
 
   const handleGoogleSignIn = () => {
     signInGoogle()
