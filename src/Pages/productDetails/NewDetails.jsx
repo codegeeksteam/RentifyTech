@@ -72,7 +72,7 @@ const NewDetails = () => {
   
 
   const handelAddtoCart =()=>{
-    console.log('ok ')
+    console.log('ok ', gadgetData)
   }
   return (
     <>
