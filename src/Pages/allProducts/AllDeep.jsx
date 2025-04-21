@@ -337,11 +337,15 @@ const AllDeep = () => {
                         }`}
                         disabled={gadget.availability.status !== 'In Stock'}
                       >
-                        {gadget.availability.status === 'In Stock'
-                          ? 'Rent Now'
+                       
+                      {gadget.availability.status === 'In Stock'
+                          ?  
+                            
+                             'Rent Now'
+                           
                           : gadget.availability.status}
-                      </button>
-                    </div>
+                           </button>
+                     </div>
                   </div>
                 </div>
               ))}

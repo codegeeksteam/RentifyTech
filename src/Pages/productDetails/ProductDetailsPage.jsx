@@ -240,7 +240,7 @@ const ProductDetailsPage = () => {
                 <div className="flex gap-3">
                   <button
                   onClick={() => handleAddToCard(product)} className="flex-1 bg-black cursor-pointer hover:bg-gray-800 text-white py-3 px-4 rounded-lg font-medium">
-                    Add to Cart
+                    Add to Cart 
                   </button>
                   <button className="flex-1 bg-white hover:bg-gray-50 text-black py-3 px-4 rounded-lg border border-gray-200 font-medium">
                     Reserve Now
