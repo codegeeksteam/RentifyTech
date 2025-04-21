@@ -11,7 +11,6 @@ import {
 import HelmetTitle from "../../Components/HelmetTitle";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const NewDetails = () => {
   const [gadget, setGadget] = useState({
@@ -23,7 +22,6 @@ const NewDetails = () => {
     seller: {},
   });
   const axiosSecure = useAxiosSecure();
-  const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -82,10 +80,8 @@ const NewDetails = () => {
   // FIXME: SIRAJ aikhan hek add to cart hit kortase function aikhane implement korn
 
   const handelAddtoCart = async () => {
-    console.log(gadget.pricing[selectedPeriod]);
     if (user && user.email) {
       // sent card item to the database
-      console.log(user.email, gadget);
       const cartItem = {
         menuId: gadget._id,
         userEmail: user?.email,
@@ -94,7 +90,7 @@ const NewDetails = () => {
         gadgetPrice: gadget.pricing[selectedPeriod],
         gadgetImage: gadget.images[selectedImage],
       };
-      const res = await axiosPublic.post("/carts", cartItem);
+      const res = await axiosSecure.post("/carts", cartItem);
        // Log the response from the server
       if (res?.data.insertedId) {
         Swal.fire({
