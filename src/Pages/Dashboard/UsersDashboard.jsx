@@ -43,7 +43,7 @@ const UsersDashboard = ({handleSignOut}) => {
       <NavLink>
         <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-900">
         <ShoppingBag size={18} />
-        <span>My rental</span>
+        <span>My Wishlist</span>
         </div>
       </NavLink>
 
@@ -60,9 +60,13 @@ const UsersDashboard = ({handleSignOut}) => {
         <span>My Profile</span>
         </div>
       </NavLink>
+
       <div className="divider divider-neutral"></div>
+
       <div className="flex flex-col justify-between bg-gray-700">
+
         <NavLink to={"/"} className="flex-1">
+
           <a
             href="#"
             className="flex items-center gap-3 px-4 py-2 text-gray-100 hover:bg-gray-900"
@@ -71,6 +75,7 @@ const UsersDashboard = ({handleSignOut}) => {
             Home
           </a>
         </NavLink>
+        
         <NavLink className="flex-2">
           <a
           onClick={handleSignOut}

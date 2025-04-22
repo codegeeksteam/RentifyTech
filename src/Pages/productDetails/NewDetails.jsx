@@ -11,6 +11,7 @@ import {
 import HelmetTitle from "../../Components/HelmetTitle";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import useCart from "../../Hooks/useCart";
 
 const NewDetails = () => {
   const [gadget, setGadget] = useState({
@@ -28,6 +29,7 @@ const NewDetails = () => {
   const gadgetData = useLoaderData();
   const navigate = useNavigate();
   const location = useLocation();
+  const [, refetch] = useCart();
 
   useEffect(() => {
     const fetchGadget = async () => {
@@ -83,14 +85,18 @@ const NewDetails = () => {
     if (user && user.email) {
       // sent card item to the database
       const cartItem = {
-        menuId: gadget._id,
+        id: gadget._id,
         userEmail: user?.email,
-        gadgetName: gadget.name,
-        gadgetCategory: gadget.category,
-        gadgetPrice: gadget.pricing[selectedPeriod],
-        gadgetImage: gadget.images[selectedImage],
+        name: gadget.name,
+        description: gadget.description,
+        category: gadget.category,
+        rentalPeriod:  selectedPeriod,
+        rentalPrice: gadget.pricing[selectedPeriod],
+        image: gadget.images[selectedImage],
+        quantity: 1,
       };
-      const res = await axiosSecure.post("/carts", cartItem);
+      console.log('cartItem', cartItem);
+      const res = await axiosSecure.post("/cart", cartItem);
        // Log the response from the server
       if (res?.data.insertedId) {
         Swal.fire({
@@ -98,6 +104,8 @@ const NewDetails = () => {
           text: `${gadget.name} Added Successful!`,
           icon: "success",
         });
+        // refetch cart
+        refetch()
       }
     } else {
       Swal.fire({

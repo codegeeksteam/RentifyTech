@@ -22,6 +22,7 @@ import { FaNewspaper } from "react-icons/fa";
 import { ThemeContext } from "../Provider/ThemeProvider";
 // import logoImag from "../assets/logoImage.png"
 import gsap from "gsap";
+import useCart from "../Hooks/useCart";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ export default function Navbar() {
   const dropdownRef = useRef(null);
   const [isAdmin] = useAdmin();
   const [isAgent] = useAgent();
+  const [cart] = useCart();
   const [isUser] = useUser();
 
   const handleSignOut = () => {
@@ -131,8 +133,9 @@ export default function Navbar() {
             {darkMode ? <FiMoon size={22} /> : <FiSun size={22} />}
           </Link>
 
-          <Link to={"/cart"} className="hidden md:block">
+          <Link to={"/cart"} className="hidden md:block relative">
             <FiShoppingCart size={22} />
+            <span className="text-red-600 font-bold absolute -top-2 -right-3 bg-base-200 rounded-full px-1 text-sm">{cart?.length}</span>
           </Link>
 
           {user ? (
