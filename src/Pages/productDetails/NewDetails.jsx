@@ -91,6 +91,7 @@ const NewDetails = () => {
         description: gadget.description,
         category: gadget.category,
         rentalPeriod:  selectedPeriod,
+        orderDate: new Date().toISOString(),
         rentalPrice: gadget.pricing[selectedPeriod],
         image: gadget.images[selectedImage],
         quantity: 1,
