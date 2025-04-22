@@ -13,9 +13,9 @@ const FeaturedProducts = () => {
       try {
         const response = await axiosSecure.get(`/gadgets`);
         setFeaturedProducts(
-          response.data.filter(
-            (gadget) => gadget.approvalStatus === 'Published',
-          ).slice(-6),
+          response.data
+            .filter((gadget) => gadget.approvalStatus === 'Published')
+            .slice(-6),
         );
         setLoading(false);
       } catch (err) {
@@ -39,14 +39,10 @@ const FeaturedProducts = () => {
   return (
     <div className="py-10">
       <div className="container mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-10">
-          Latest Gadgets
-        </h2>
+        <h2 className="text-4xl font-bold text-center mb-10">Latest Gadgets</h2>
         {featuredProducts.length === 0 ? (
           <div className="text-center py-12">
-            <h3 className="text-lg font-medium mb-2">
-              No Gadgets found.
-            </h3>
+            <h3 className="text-lg font-medium mb-2">No Gadgets found.</h3>
             <p className="text-gray-400">
               Try adjusting your search or filter criteria
             </p>
@@ -106,7 +102,6 @@ const FeaturedProducts = () => {
                   <Link
                     to={`/gadget/${gadget._id}`}
                     className="text-lg font-medium mb-2"
-
                   >
                     {gadget.name}
                   </Link>
@@ -139,20 +134,39 @@ const FeaturedProducts = () => {
                         {gadget.availability.quantity} available
                       </span>
                     </div>
-                    <Link
-                        to={`/gadget/${gadget._id}`} >
-                    <button
-                      className={`px-3 py-1 rounded-md text-sm font-medium ${
-                        gadget.availability.status === 'In Stock'
-                          ? 'bg-black text-white hover:bg-gray-800'
-                          : 'bg-gray-200 text-gray-500 cursor-not-allowed'
-                      }`}
-                      disabled={gadget.availability.status !== 'In Stock'}
-                    >
-                      {gadget.availability.status === 'In Stock'
-                        ?  'Rent Now' 
-                        : gadget.availability.status}
-                    </button>
+
+                    <div>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        width="24"
+                        height="24"
+                        color="#000000"
+                        fill="none"
+                        className="transition-all cursor-pointer fill-black/30 text-transparent duration-300 hover:text-red-500 hover:fill-red-500"
+                      >
+                        <path
+                          d="M10.4107 19.9677C7.58942 17.858 2 13.0348 2 8.69444C2 5.82563 4.10526 3.5 7 3.5C8.5 3.5 10 4 12 6C14 4 15.5 3.5 17 3.5C19.8947 3.5 22 5.82563 22 8.69444C22 13.0348 16.4106 17.858 13.5893 19.9677C12.6399 20.6776 11.3601 20.6776 10.4107 19.9677Z"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                    <Link to={`/gadget/${gadget._id}`}>
+                      <button
+                        className={`px-3 py-1 rounded-md text-sm font-medium ${
+                          gadget.availability.status === 'In Stock'
+                            ? 'bg-black text-white hover:bg-gray-800'
+                            : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                        }`}
+                        disabled={gadget.availability.status !== 'In Stock'}
+                      >
+                        {gadget.availability.status === 'In Stock'
+                          ? 'Rent Now'
+                          : gadget.availability.status}
+                      </button>
                     </Link>
                   </div>
                 </div>
