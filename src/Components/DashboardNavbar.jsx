@@ -1,9 +1,16 @@
 import React from "react";
-import { FaSearch } from "react-icons/fa";
+import { RiMenu2Fill } from "react-icons/ri";
 
-const DashboardNavbar = ({ user }) => {
+const DashboardNavbar = ({ user, toggleSidebar }) => {
   return (
     <div className="navbar bg-base-100 shadow-sm">
+      {/* Menu Icon for Mobile */}
+      <button
+        className="md:hidden mx-3 text-gray-800 focus:outline-none"
+        onClick={toggleSidebar}
+      >
+        <RiMenu2Fill size={24} />
+      </button>
       <div className="flex-1">
         {/* Search btn */}
         <div className="flex gap-2 items-center">
