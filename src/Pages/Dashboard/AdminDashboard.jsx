@@ -55,10 +55,10 @@ const AdminDashboard = ({ handleSignOut }) => {
           </div>
         </NavLink>
 
-        <NavLink>
+        <NavLink to={'/dashboard/adminProfile'}>
           <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-900">
             <Settings size={18} />
-            <span>System Settings</span>
+            <span>Profile</span>
           </div>
         </NavLink>
 

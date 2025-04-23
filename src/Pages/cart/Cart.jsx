@@ -143,7 +143,7 @@ function Cart() {
 
                         <button
                           onClick={() => removeItem(product)}
-                          className="text-sm bg-slate-300 py-1 px-2 rounded-full text-gray-500 hover:text-black"
+                          className="text-sm bg-red-600  py-1 px-2 rounded-full text-white hover:text-black"
                         >
                           Remove
                         </button>

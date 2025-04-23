@@ -1,5 +1,6 @@
 import React from "react";
 import { RiMenu2Fill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const DashboardNavbar = ({ user, toggleSidebar }) => {
   return (
@@ -60,15 +61,10 @@ const DashboardNavbar = ({ user, toggleSidebar }) => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-            <li>
+            <Link to={"/dashboard/adminProfile"}>
               <a className="justify-between">Profile</a>
-            </li>
-            <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
-            </li>
+            </Link>
+            
           </ul>
         </div>
       </div>

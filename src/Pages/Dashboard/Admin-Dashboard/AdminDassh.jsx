@@ -7,7 +7,7 @@ const AdminDashboard = () => {
   const [activeMenu, setActiveMenu] = useState('dashboard');
   const [sidebarExpanded, setSidebarExpanded] = useState(true);
   const {user} = useAuth();
-  console.log(user)
+  // console.log(user)
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
