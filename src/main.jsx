@@ -30,6 +30,10 @@ import Analytics from './Pages/Dashboard/Admin-Dashboard/Analytics.jsx';
 import AdminDashboard from './Pages/Dashboard/AdminDashboard.jsx';
 import AdminDassh from './Pages/Dashboard/Admin-Dashboard/AdminDassh.jsx';
 import AdminProfile from './Pages/Dashboard/Admin-Dashboard/AdminProfile.jsx';
+import Payments from './Pages/Dashboard/User-Dashboard/Payments.jsx';
+import Wishlist from './Pages/Dashboard/User-Dashboard/Wishlist.jsx';
+import Profile from './Pages/Dashboard/User-Dashboard/Profile.jsx';
+import Overview from './Pages/Dashboard/User-Dashboard/Overview.jsx';
 
 const queryClient = new QueryClient();
 
@@ -95,6 +99,46 @@ const router = createBrowserRouter([
     children: [
       //User Route
       {
+        path: 'overview',
+        element: (
+          <UserRoute>
+            <Overview />
+          </UserRoute>
+        ),
+      },
+      {
+        path: 'myGadget',
+        element: (
+          <UserRoute>
+            <MyGadgets />
+          </UserRoute>
+        ),
+      },
+      {
+        path: 'payments',
+        element: (
+          <UserRoute>
+            <Payments />
+          </UserRoute>
+        ),
+      },
+      {
+        path: 'wishlist',
+        element: (
+          <UserRoute>
+            <Wishlist />
+          </UserRoute>
+        ),
+      },
+      {
+        path: 'profile',
+        element: (
+          <UserRoute>
+            <Profile />
+          </UserRoute>
+        ),
+      },
+      {
         path: 'myGadget',
         element: (
           <UserRoute>
@@ -121,25 +165,27 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path:'/dashboard/',
-        element:(<AdminRoute>
-           <AdminDassh/>
-        </AdminRoute>)
-      },
-      
-      {
-        path:'analytics',
+        path: '/dashboard/',
         element: (
           <AdminRoute>
-            <Analytics/>
+            <AdminDassh />
+          </AdminRoute>
+        ),
+      },
+
+      {
+        path: 'analytics',
+        element: (
+          <AdminRoute>
+            <Analytics />
           </AdminRoute>
         ),
       },
       {
-        path:'adminProfile',
-        element:(
+        path: 'adminProfile',
+        element: (
           <AdminRoute>
-            <AdminProfile/>
+            <AdminProfile />
           </AdminRoute>
         ),
       },
