@@ -1,6 +1,6 @@
 import { useState } from "react";
 import DashboardNavbar from "../../Components/DashboardNavbar";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import UsersDashboard from "./UsersDashboard";
@@ -47,7 +47,9 @@ const Dashboard = () => {
       {/* Sidebar for Desktop */}
       <div className="w-64 bg-gray-800 hidden md:flex flex-col lg:w-72">
         <div className="flex items-center justify-center h-16 bg-gray-900">
-          <span className="text-white font-bold uppercase">RentifyTech</span>
+          <Link to={'/'}>
+          
+          <span className="text-white font-bold uppercase">RentifyTech </span></Link>
         </div>
         <div className="flex flex-col flex-1 overflow-y-auto">
           {isAdmin && <AdminDashboard handleSignOut={handleSignOut} />}

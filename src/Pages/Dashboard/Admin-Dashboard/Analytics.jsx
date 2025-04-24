@@ -5,9 +5,11 @@ import {
   ResponsiveContainer, Cell, RadarChart, Radar, 
   PolarGrid, PolarAngleAxis, PolarRadiusAxis
 } from 'recharts';
+import useAuth from '../../../Hooks/useAuth';
 
 const AnalyticsDashboard = () => {
   const [period, setPeriod] = useState('monthly');
+  const {user} = useAuth()
   
   // Demo data sets
   const monthlyVisits = [
@@ -94,7 +96,7 @@ const AnalyticsDashboard = () => {
               </button>
             </div>
             <div className="bg-blue-700 rounded-full h-10 w-10 flex items-center justify-center">
-              <span className="font-bold">JS</span>
+            <img className='rounded-4xl' src={user.photoURL} alt="" />
             </div>
           </div>
         </div>
