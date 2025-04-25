@@ -11,6 +11,9 @@ const useWishList = () => {
     enabled: !loading,
     queryFn: async () => {
       const res = await axiosSecure.get(`/wish?email=${user.email}`);
+      if (res.data.length === 0) {
+        return [];
+      }
       return res.data;
     },
   });
