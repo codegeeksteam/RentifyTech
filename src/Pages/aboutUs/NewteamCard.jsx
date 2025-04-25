@@ -4,9 +4,9 @@ const NewteamCard = () => {
   const teamMembers = [
     {
       id: 1,
-      name: "John Doe",
-      role: "CEO & Founder",
-      image: "https://randomuser.me/api/portraits/men/1.jpg",
+      name: "Waseque Arafat",
+      role: "Full Stack Developer",
+      image: "https://i.ibb.co.com/FsrgXvR/20220326-170758-01.jpg",
       social: {
         linkedin: "#",
         twitter: "#",
