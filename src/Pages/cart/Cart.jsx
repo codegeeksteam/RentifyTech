@@ -3,14 +3,17 @@ import Footer from '../../Components/Footer';
 import HelmetTitle from '../../Components/HelmetTitle';
 import Navbar from '../../Components/Navbar';
 import useCart from '../../Hooks/useCart';
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 function Cart() {
   const [cart] = useCart();
+  const axiosSecure = useAxiosSecure()
   const [localCart, setLocalCart] = useState([]);
 
   // cart ডেটা আপডেট হলে localCart আপডেট করা
   useEffect(() => {
-    console.log('কার্ট ডেটা:', cart); // ডিবাগ: cart ডেটা চেক
+  // ডিবাগ: cart ডেটা চেক
     setLocalCart(cart || []);
   }, [cart]);
 
@@ -35,8 +38,28 @@ function Cart() {
   };
 
   // আইটেম রিমুভ করার ফাংশন
-  const removeItem = (id) => {
-    setLocalCart((prev) => prev.filter((item) => item.id !== id));
+  const removeItem = (product) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then( async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosSecure.delete(`/cartDelete/${product._id}`)
+        if(res.data.deletedCount > 0){
+          setLocalCart((prev) => prev.filter((item) => item._id !== product._id));
+          Swal.fire({
+            title: "Deleted!",
+            text: `${product.name} has been deleted.`,
+            icon: "success"
+          });
+        };
+        }
+    });
   };
 
   // সাবটোটাল, ট্যাক্স, এবং টোটাল ক্যালকুলেশন
@@ -109,7 +132,7 @@ function Cart() {
                                 {product.quantity}
                               </span>
                               <button
-                                onClick={() => increaseQuantity(product.id)}
+                                onClick={() => increaseQuantity(product.id, product.name)}
                                 className="px-2 py-1 text-gray-600 hover:bg-gray-100"
                               >
                                 +
@@ -119,8 +142,8 @@ function Cart() {
                         </div>
 
                         <button
-                          onClick={() => removeItem(product.id)}
-                          className="text-sm text-gray-500 hover:text-black"
+                          onClick={() => removeItem(product)}
+                          className="text-sm bg-red-600  py-1 px-2 rounded-full text-white hover:text-black"
                         >
                           Remove
                         </button>

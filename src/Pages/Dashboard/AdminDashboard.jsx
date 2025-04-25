@@ -18,13 +18,15 @@ import {
   Truck,
   DollarSign,
 } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const AdminDashboard = ({ handleSignOut }) => {
   return (
       <nav className="flex-1 px-2 py-4 bg-gray-700">
+<Link to='/'>
         <h2 className="text-white font-bold mx-auto my-2 py-2 text-3xl">Admin Dashboard</h2>
-        <NavLink>
+
+</Link>        <NavLink>
           <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-900">
             <Home size={18} />
             <span>Dashboard</span>
@@ -55,10 +57,10 @@ const AdminDashboard = ({ handleSignOut }) => {
           </div>
         </NavLink>
 
-        <NavLink>
+        <NavLink to={'/dashboard/adminProfile'}>
           <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-900">
             <Settings size={18} />
-            <span>System Settings</span>
+            <span>Profile</span>
           </div>
         </NavLink>
 

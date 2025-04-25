@@ -7,7 +7,7 @@ const AdminDashboard = () => {
   const [activeMenu, setActiveMenu] = useState('dashboard');
   const [sidebarExpanded, setSidebarExpanded] = useState(true);
   const {user} = useAuth();
-  console.log(user)
+  // console.log(user)
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -190,7 +190,7 @@ const AdminDashboard = () => {
     // Fetch all users
   const fetchUsers = () => {
     setLoading(true);
-    fetch('http://localhost:4000/all-users')
+    fetch('https://rentify-tech-server.vercel.app/all-users')
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);
