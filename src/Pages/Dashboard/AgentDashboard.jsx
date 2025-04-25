@@ -13,7 +13,7 @@ const AgentDashboard = ({ handleSignOut }) => {
       <NavLink to={'/dashboard/myAll'}>
         <div
           href="#"
-          className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-100 hover:text-black"
+          className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-100 hover:text-black rounded-lg"
         >
           <Home size={18} />
           <span>Dashboard</span>
@@ -23,7 +23,7 @@ const AgentDashboard = ({ handleSignOut }) => {
       <NavLink to={'/dashboard/myAll'}>
         <div
           href="#"
-          className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-100 hover:text-black"
+          className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-100 hover:text-black rounded-lg"
         >
         <Package size={18} />
           <span>Gadget Management</span>
@@ -31,21 +31,21 @@ const AgentDashboard = ({ handleSignOut }) => {
       </NavLink>
 
       <NavLink>
-        <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-100 hover:text-black">
+        <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-100 hover:text-black rounded-lg">
         <Truck size={18} />
         <span>Delivery</span>
         </div>
       </NavLink>
 
       <NavLink>
-        <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-100 hover:text-black">
+        <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-100 hover:text-black rounded-lg">
         <BarChart2 size={18} />
         <span>Reports</span>
         </div>
       </NavLink>
 
       <NavLink>
-        <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-100 hover:text-black">
+        <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-100 hover:text-black rounded-lg">
         <Settings size={18} />
         <span>Settings</span>
         </div>
@@ -55,14 +55,14 @@ const AgentDashboard = ({ handleSignOut }) => {
         <NavLink to={'/'} className="flex-1">
           <div
             href="#"
-            className="flex items-center gap-3 px-4 py-2 text-gray-100 hover:bg-gray-100 hover:text-black"
+            className="flex items-center gap-3 px-4 py-2 text-gray-100 hover:bg-gray-100 hover:text-black rounded-lg"
           >
             <FaHome />
             Home
           </div>
         </NavLink>
         <NavLink to={'/add-gadget'} className="flex-1">
-          <p className="flex items-center gap-3 px-4 py-2 text-gray-100 hover:bg-gray-100 hover:text-black">
+          <p className="flex items-center gap-3 px-4 py-2 text-gray-100 hover:bg-gray-100 hover:text-black rounded-lg">
             <FiPlus />
             Add Gadget
           </p>
@@ -71,7 +71,7 @@ const AgentDashboard = ({ handleSignOut }) => {
           <div
             onClick={handleSignOut}
             href="#"
-            className="flex items-center gap-3 px-4 py-2 text-gray-100 hover:bg-gray-100 hover:text-black"
+            className="flex items-center gap-3 px-4 py-2 text-gray-100 hover:bg-gray-100 hover:text-black rounded-lg"
           >
             <CiLogout size={18} /> Logout
           </div>
