@@ -48,7 +48,7 @@ const SoftMonochromeCountdownTimer = () => {
   if (compactMode) {
     // Compact version that sticks to top right
     return (
-      <div className="fixed -top-76 right-4 z-50 bg-white shadow-lg rounded-lg border border-gray-200 p-3 transition-all duration-500">
+      <div className="fixed -top-65 right-4 z-50 bg-white shadow-lg rounded-lg border border-gray-200 p-3 transition-all duration-500">
         <div className="flex items-center gap-2">
           <div className="text-xs font-semibold text-gray-600">SALE ENDS:</div>
           <div className="flex gap-1">
