@@ -79,8 +79,8 @@ const NewDetails = () => {
       </>
     );
   }
-  // FIXME: SIRAJ aikhan hek add to cart hit kortase function aikhane implement korn
 
+// Add To Card Function
   const handelAddtoCart = async () => {
     if (user && user.email) {
       // sent card item to the database
@@ -125,6 +125,8 @@ const NewDetails = () => {
       });
     }
   };
+
+
   return (
     <>
       <HelmetTitle title={gadget.name} />
