@@ -1,14 +1,45 @@
-import React from "react";
-
-import { Heart, Trash2, ExternalLink } from "lucide-react";
+import { Heart, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import useWishList from "../../../Hooks/useWishList";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useEffect, useState } from "react";
 
 function Wishlist() {
-  const [wishList] = useWishList();
-  const removeItem = (id) => {
-    console.log("Removing item with id:", id);
-    // setWishlistItems(wishlistItems.filter((item) => item.id !== id));
+  const [wishList, refetch] = useWishList(); // Assuming useWishList returns [data, refetch]
+  const axiosSecure = useAxiosSecure();
+  const [localCart, setLocalCart] = useState([]);
+
+  // wishlist ডেটা আপডেট হলে localCart আপডেট করা
+  useEffect(() => {
+  // ডিবাগ: wishlist ডেটা চেক
+    setLocalCart(wishList || []);
+  }, [wishList]);
+
+
+  const removeItem = (item) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+          const res = await axiosSecure.delete(`/wishListDelete/${item._id}`);
+          if (res.data.deletedCount > 0) {
+            setLocalCart((wishlist) => wishlist.filter((wish) => wish._id !== item._id));
+            refetch();
+            Swal.fire({
+              title: "Deleted!",
+              text: `${item.gadgetName} has been deleted.`,
+              icon: "success",
+            });
+          }
+      }
+    });
   };
 
   return (
@@ -19,7 +50,7 @@ function Wishlist() {
           <h2 className="text-2xl font-bold">My Wishlist</h2>
         </div>
         <span className="bg-black text-white px-3 py-1 rounded-full text-sm">
-          {wishList.length} items
+          {localCart.length} items
         </span>
       </div>
 
@@ -74,7 +105,7 @@ function Wishlist() {
               </button>
               <button
                 className="p-1 hover:bg-gray-100 rounded-full"
-                onClick={() => removeItem(item._id)}
+                onClick={() => removeItem(item)}
               >
                 <Trash2 className="w-5 h-5 text-gray-500" />
               </button>
