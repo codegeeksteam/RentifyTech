@@ -12,7 +12,7 @@ import Error from './Pages/Erorr/Erorr.jsx';
 import Cart from './Pages/cart/Cart.jsx';
 import Dashboard from './Pages/Dashboard/Dashboard.jsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import MyGadgets from './Pages/Dashboard/User-Dashboard/MyGadgets.jsx';
+// import MyGadgets from './Pages/Dashboard/User-Dashboard/MyGadgets.jsx';
 import UserRoute from './Route/UserRoute.jsx';
 import AgentRoute from './Route/AgentRoute.jsx';
 import MyAll from './Pages/Dashboard/Agent-Dashboard/MyAll.jsx';
@@ -34,6 +34,7 @@ import Payments from './Pages/Dashboard/User-Dashboard/Payments.jsx';
 import Wishlist from './Pages/Dashboard/User-Dashboard/Wishlist.jsx';
 import Profile from './Pages/Dashboard/User-Dashboard/Profile.jsx';
 import Overview from './Pages/Dashboard/User-Dashboard/Overview.jsx';
+import MyCart from './Pages/Dashboard/User-Dashboard/MyCart.jsx';
 
 const queryClient = new QueryClient();
 
@@ -107,10 +108,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'myGadget',
+        path: 'myCart',
         element: (
           <UserRoute>
-            <MyGadgets />
+            <MyCart />
           </UserRoute>
         ),
       },
@@ -139,10 +140,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'myGadget',
+        path: 'myCart',
         element: (
           <UserRoute>
-            <MyGadgets />
+            <MyCart />
           </UserRoute>
         ),
       },
