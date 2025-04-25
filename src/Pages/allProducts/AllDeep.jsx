@@ -1,17 +1,23 @@
-import { useState, useEffect } from 'react';
-import Footer from '../../Components/Footer';
-import Navbar from '../../Components/Navbar';
-import { Link } from 'react-router-dom';
-import './AllGadgets.css';
-import HelmetTitle from '../../Components/HelmetTitle';
-import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { useState, useEffect } from "react";
+import Footer from "../../Components/Footer";
+import Navbar from "../../Components/Navbar";
+import { Link } from "react-router-dom";
+import "./AllGadgets.css";
+import HelmetTitle from "../../Components/HelmetTitle";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useWishList from "../../Hooks/useWishList";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const AllDeep = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
   const [allGadgetsData, setAllGadgetsData] = useState([]);
+  const [wishList, refetchWishList] = useWishList();
 
+  // Fetch all gadgets from the backend
   useEffect(() => {
     const fetchGadgets = async () => {
       try {
@@ -19,8 +25,8 @@ const AllDeep = () => {
         setAllGadgetsData(response.data);
         setLoading(false);
       } catch (err) {
-        console.error('Error fetching gadgets:', err);
-        setError('Failed to load gadgets.');
+        console.error("Error fetching gadgets:", err);
+        setError("Failed to load gadgets. Please try again later.");
         setLoading(false);
       }
     };
@@ -29,20 +35,21 @@ const AllDeep = () => {
   }, [axiosSecure]);
 
   // States for filtering, pagination, and sorting
-  const [searchTerm, setSearchTerm] = useState('');
-  const [categoryFilter, setCategoryFilter] = useState('All');
-  const [sortBy, setSortBy] = useState('recommended');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filterColor, setFilterColor] = useState(false);
+  const [categoryFilter, setCategoryFilter] = useState("All");
+  const [sortBy, setSortBy] = useState("recommended");
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredGadgets, setFilteredGadgets] = useState(allGadgetsData);
   const GadgetsPerPage = 12;
 
   // Get unique categories for filter dropdown
   const categories = [
-    'All',
+    "All",
     ...new Set(allGadgetsData.map((gadget) => gadget.category)),
   ];
 
-  // Filter and sort Gadgets whenever filter states change
+  // Filter and sort gadgets whenever filter states change
   useEffect(() => {
     let result = [...allGadgetsData];
 
@@ -51,53 +58,46 @@ const AllDeep = () => {
       result = result.filter(
         (gadget) =>
           gadget.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          gadget.brand.toLowerCase().includes(searchTerm.toLowerCase()),
+          gadget.brand.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
     // Filter by category
-    if (categoryFilter !== 'All') {
+    if (categoryFilter !== "All") {
       result = result.filter((gadget) => gadget.category === categoryFilter);
     }
 
-    // Sort Gadgets
+    // Sort gadgets
     switch (sortBy) {
-      case 'price-low':
+      case "price-low":
         result.sort((a, b) => a.pricing.daily - b.pricing.daily);
         break;
-      case 'price-high':
+      case "price-high":
         result.sort((a, b) => b.pricing.daily - a.pricing.daily);
         break;
-      case 'name-asc':
+      case "name-asc":
         result.sort((a, b) => a.name.localeCompare(b.name));
         break;
       default: // 'recommended'
-        // Do nothing, keep original order
         break;
     }
 
     setFilteredGadgets(
-      result.filter((gadget) => gadget.approvalStatus === 'Published'),
+      result.filter((gadget) => gadget.approvalStatus === "Published")
     );
     setCurrentPage(1); // Reset to first page after filtering
   }, [searchTerm, categoryFilter, sortBy, allGadgetsData]);
 
-  // Get current Gadgets for pagination
-  const indexOfLastgadget = currentPage * GadgetsPerPage;
-  const indexOfFirstgadget = indexOfLastgadget - GadgetsPerPage;
-  // const currentGadgets = filteredGadgets.slice(
-  //   indexOfFirstgadget,
-  //   indexOfLastgadget,
-  // );
+  // Pagination logic
+  const indexOfLastGadget = currentPage * GadgetsPerPage;
+  const indexOfFirstGadget = indexOfLastGadget - GadgetsPerPage;
   const currentGadgets = filteredGadgets.slice(
-    indexOfFirstgadget,
-    indexOfLastgadget,
+    indexOfFirstGadget,
+    indexOfLastGadget
   );
-
-  // Calculate total pages
   const totalPages = Math.ceil(filteredGadgets.length / GadgetsPerPage);
 
-  // Change page
+  // Handle page change
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   // Handle search input change
@@ -115,12 +115,70 @@ const AllDeep = () => {
     setSortBy(e.target.value);
   };
 
+  // Handle wishlist button click
+  const handleWishListbtn = async (gadget) => {
+    if (!user) {
+      Swal.fire({
+        title: "You are not logged in?",
+        text: "Please log in to your account!",
+        icon: "warning",
+        confirmButtonText: "LOGIN",
+      });
+      return;
+    }
+    const isInWishlist = wishList.some((item) => item.gadgetId === gadget._id);
+    const newData = {
+      email: user.email,
+      gadgetId: gadget._id,
+      gadgetName: gadget.name,
+      gadgetImage: gadget.images[0],
+      pricing: gadget.pricing,
+      gadgetAvailability: gadget.availability,
+      gadgetReviews: gadget.reviews,
+    };
+    try {
+      if (isInWishlist) {
+        // Remove from wishlist
+        await axiosSecure.delete(`/wishListDelete/${gadget._id}`);
+        refetchWishList();
+        Swal.fire({
+          title: "Success!",
+          text: `${gadget.name} has been deleted.`,
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+        setFilterColor(false)
+      } else {
+        // Add to wishlist
+        await axiosSecure.post("/wishList", newData);
+        refetchWishList();
+        Swal.fire({
+          title: "Success!",
+          text: `${gadget.name} Wishlist Added Successful!`,
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+        setFilterColor(true);
+      }
+    } catch (err) {
+      console.error("Error updating wishlist:", err);
+      Swal.fire({
+        title: "ERROR!",
+        text:
+          err.response?.data?.message || "Wishlist Error!",
+        icon: "error",
+      });
+    }
+  };
+
   if (loading) {
     return (
       <>
-        <HelmetTitle title={'All Gadgets'} />
+        <HelmetTitle title={"All Gadgets"} />
         <Navbar />
-        <div className="flex justify-center items-center h-64">Loading...</div>;
+        <div className="flex justify-center items-center h-64">Loading...</div>
         <Footer />
       </>
     );
@@ -129,9 +187,9 @@ const AllDeep = () => {
   if (error) {
     return (
       <>
-        <HelmetTitle title={'All Gadgets'} />
+        <HelmetTitle title={"All Gadgets"} />
         <Navbar />
-        <div className="h-[50vh] p-5 text-red-600 text-center">{error}</div>;
+        <div className="h-[50vh] p-5 text-red-600 text-center">{error}</div>
         <Footer />
       </>
     );
@@ -139,7 +197,7 @@ const AllDeep = () => {
 
   return (
     <>
-      <HelmetTitle title={'All Gadgets'} />
+      <HelmetTitle title={"All Gadgets"} />
       <Navbar />
       <div className="min-h-screen">
         <div className="max-w-6xl mx-auto p-4 md:p-6">
@@ -190,7 +248,7 @@ const AllDeep = () => {
                 </label>
                 <select
                   id="category"
-                  className=" border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
+                  className="border border-gray-300 text-gray-500 text-sm rounded-lg focus:ring-black focus:border-black block w-full p-2.5"
                   value={categoryFilter}
                   onChange={handleCategoryChange}
                 >
@@ -225,12 +283,12 @@ const AllDeep = () => {
 
           {/* Results Summary */}
           <div className="mb-4 text-sm text-gray-500">
-            Showing {filteredGadgets.length === 0 ? 0 : indexOfFirstgadget + 1}-
-            {Math.min(indexOfLastgadget, filteredGadgets.length)} of{' '}
+            Showing {filteredGadgets.length === 0 ? 0 : indexOfFirstGadget + 1}-
+            {Math.min(indexOfLastGadget, filteredGadgets.length)} of{" "}
             {filteredGadgets.length} results
           </div>
 
-          {/* gadget Grid with 3D animations */}
+          {/* Gadget Grid with 3D animations */}
           {filteredGadgets.length === 0 ? (
             <div className="text-center py-12">
               <h3 className="text-lg font-medium text-gray-500 mb-2">
@@ -245,39 +303,37 @@ const AllDeep = () => {
               {currentGadgets.map((gadget) => (
                 <div
                   key={gadget._id}
-                  className=" border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 group perspective-1000"
+                  className="border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 group perspective-1000"
                 >
                   <div className="relative overflow-hidden h-48">
                     <Link to={`/gadget/${gadget._id}`}>
                       <div className="relative w-full h-full preserve-3d group-hover:rotate-y-10 group-hover:scale-105 transition-all duration-500 ease-out">
                         <img
-                          src={gadget.images[0]} // Use first image from array
+                          src={gadget.images[0]}
                           alt={gadget.name}
                           className="absolute w-full h-full object-cover rounded-t-lg backface-hidden"
                           style={{
-                            transformStyle: 'preserve-3d',
-                            transform: 'translateZ(20px)',
-                            filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.1))',
+                            transformStyle: "preserve-3d",
+                            transform: "translateZ(20px)",
+                            filter: "drop-shadow(0 10px 15px rgba(0,0,0,0.1))",
                           }}
                         />
-                        {/* Reflection effect */}
                         <div
                           className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-30 group-hover:opacity-50 transition-opacity duration-300"
                           style={{
-                            transform: 'rotateX(90deg) translateZ(-20px)',
-                            transformOrigin: 'bottom center',
+                            transform: "rotateX(90deg) translateZ(-20px)",
+                            transformOrigin: "bottom center",
                           }}
                         />
-                        {/* Floating shadow */}
                         <div
                           className="absolute -bottom-4 left-1/4 w-1/2 h-2 rounded-full blur-md opacity-10 group-hover:opacity-20 transition-all duration-300"
                           style={{
-                            transform: 'translateZ(-30px)',
+                            transform: "translateZ(-30px)",
                           }}
                         />
                       </div>
                     </Link>
-                    {gadget.availability.status !== 'In Stock' && (
+                    {gadget.availability.status !== "In Stock" && (
                       <div className="absolute top-2 right-2 text-xs font-semibold px-2 py-1 rounded">
                         {gadget.availability.status}
                       </div>
@@ -288,7 +344,7 @@ const AllDeep = () => {
                       <p className="text-xs text-gray-500">{gadget.brand}</p>
                       <p className="text-gray-500 text-xs">
                         {gadget?.reviews?.count < 1
-                          ? 'No reviews'
+                          ? "No reviews"
                           : `${gadget.reviews.average}/5 (${gadget.reviews.count})`}
                       </p>
                     </div>
@@ -329,37 +385,46 @@ const AllDeep = () => {
                           {gadget.availability.quantity} available
                         </span>
                       </div>
-
                       <div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          width="24"
-                          height="24"
-                          color="#000000"
-                          fill="none"
-                          className="transition-all cursor-pointer fill-black/30 text-transparent duration-300 hover:text-red-500 hover:fill-red-500"
+                        <button
+                          className={`transition-all cursor-pointer duration-300 ${
+                            wishList.some((item) => item._id === gadget._id)
+                              ? "text-red-500 fill-red-500"
+                              : "fill-black/30 text-transparent"
+                          }`}
+                          onClick={() => handleWishListbtn(gadget)}
                         >
-                          <path
-                            d="M10.4107 19.9677C7.58942 17.858 2 13.0348 2 8.69444C2 5.82563 4.10526 3.5 7 3.5C8.5 3.5 10 4 12 6C14 4 15.5 3.5 17 3.5C19.8947 3.5 22 5.82563 22 8.69444C22 13.0348 16.4106 17.858 13.5893 19.9677C12.6399 20.6776 11.3601 20.6776 10.4107 19.9677Z"
-                            stroke="currentColor"
-                            stroke-width="1.5"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            width="24"
+                            height="24"
+                            fill="none"
+                            className={`transition-all cursor-pointer duration-300 ${filterColor
+                                ? "text-red-500 fill-red-500"
+                                : "fill-black/30 text-transparent"
+                            }`}
+                          >
+                            <path
+                              d="M10.4107 19.9677C7.58942 17.858 2 13.0348 2 8.69444C2 5.82563 4.10526 3.5 7 3.5C8.5 3.5 10 4 12 6C14 4 15.5 3.5 17 3.5C19.8947 3.5 22 5.82563 22 8.69444C22 13.0348 16.4106 17.858 13.5893 19.9677C12.6399 20.6776 11.3601 20.6776 10.4107 19.9677Z"
+                              stroke="currentColor"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </button>
                       </div>
-
                       <button
                         className={`px-3 py-1 rounded-md text-sm font-medium ${
-                          gadget.availability.status === 'In Stock'
-                            ? 'bg-black text-white hover:bg-gray-800'
-                            : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                          gadget.availability.status === "In Stock"
+                            ? "bg-black text-white hover:bg-gray-800"
+                            : "bg-gray-200 text-gray-500 cursor-not-allowed"
                         }`}
-                        disabled={gadget.availability.status !== 'In Stock'}
+                        disabled={gadget.availability.status !== "In Stock"}
                       >
-                        {gadget.availability.status === 'In Stock'
-                          ? 'Rent Now'
+                        {gadget.availability.status === "In Stock"
+                          ? "Rent Now"
                           : gadget.availability.status}
                       </button>
                     </div>
@@ -380,8 +445,8 @@ const AllDeep = () => {
                       disabled={currentPage === 1}
                       className={`flex items-center justify-center px-4 h-10 ml-0 leading-tight rounded-l-lg border ${
                         currentPage === 1
-                          ? 'text-gray-400 cursor-not-allowed bg-gray-100 border-gray-300'
-                          : 'text-gray-700 bg-white border-gray-300 hover:bg-gray-100'
+                          ? "text-gray-400 cursor-not-allowed bg-gray-100 border-gray-300"
+                          : "text-gray-700 bg-white border-gray-300 hover:bg-gray-100"
                       }`}
                     >
                       <span className="sr-only">Previous</span>
@@ -400,22 +465,20 @@ const AllDeep = () => {
                       </svg>
                     </button>
                   </li>
-
                   {[...Array(totalPages)].map((_, index) => (
                     <li key={index}>
                       <button
                         onClick={() => paginate(index + 1)}
                         className={`flex items-center justify-center px-4 h-10 leading-tight border ${
                           currentPage === index + 1
-                            ? 'text-white bg-black border-black hover:bg-gray-800'
-                            : 'text-gray-700 bg-white border-gray-300 hover:bg-gray-100'
+                            ? "text-white bg-black border-black hover:bg-gray-800"
+                            : "text-gray-700 bg-white border-gray-300 hover:bg-gray-100"
                         }`}
                       >
                         {index + 1}
                       </button>
                     </li>
                   ))}
-
                   <li>
                     <button
                       onClick={() =>
@@ -424,8 +487,8 @@ const AllDeep = () => {
                       disabled={currentPage === totalPages}
                       className={`flex items-center justify-center px-4 h-10 leading-tight rounded-r-lg border ${
                         currentPage === totalPages
-                          ? 'text-gray-400 cursor-not-allowed bg-gray-100 border-gray-300'
-                          : 'text-gray-700 bg-white border-gray-300 hover:bg-gray-100'
+                          ? "text-gray-400 cursor-not-allowed bg-gray-100 border-gray-300"
+                          : "text-gray-700 bg-white border-gray-300 hover:bg-gray-100"
                       }`}
                     >
                       <span className="sr-only">Next</span>
