@@ -27,7 +27,7 @@ const AdminDashboard = ({ handleSignOut }) => {
         <h2 className="text-white font-bold mx-auto my-2 py-2 text-3xl">Admin Dashboard</h2>
 
 </Link>        <NavLink>
-          <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-900">
+          <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-100 hover:text-black">
             <Home size={18} />
             <span>Dashboard</span>
           </div>
@@ -36,7 +36,7 @@ const AdminDashboard = ({ handleSignOut }) => {
         <NavLink to={"/dashboard/allUsers"}>
           <a
             href="#"
-            className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-900"
+            className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-100 hover:text-black"
           >
             <Users size={18} />
             <span>Users Management</span>
@@ -44,21 +44,21 @@ const AdminDashboard = ({ handleSignOut }) => {
         </NavLink>
 
         <NavLink to={"/dashboard/analytics"}>
-          <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-900">
+          <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-100 hover:text-black">
             <BarChart2 size={18} />
             <span>Analytics</span>
           </div>
         </NavLink>
 
         <NavLink>
-          <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-900">
+          <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-100 hover:text-black">
             <Package size={18} />
             <span>Gadget Management</span>
           </div>
         </NavLink>
 
         <NavLink to={'/dashboard/adminProfile'}>
-          <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-900">
+          <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-100 hover:text-black">
             <Settings size={18} />
             <span>Profile</span>
           </div>
@@ -67,7 +67,7 @@ const AdminDashboard = ({ handleSignOut }) => {
         {/* <NavLink to={"/dashboard/addCategory"}>
         <a
           href="#"
-          className="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-900"
+          className="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-100 hover:text-black"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +91,7 @@ const AdminDashboard = ({ handleSignOut }) => {
           <NavLink to={"/"} className="flex-1">
             <a
               href="#"
-              className="flex items-center gap-3 px-4 py-2 text-gray-100 hover:bg-gray-900"
+              className="flex items-center gap-3 px-4 py-2 text-gray-100 hover:bg-gray-100 hover:text-black"
             >
               <FaHome />
               Home
@@ -101,7 +101,7 @@ const AdminDashboard = ({ handleSignOut }) => {
             <a
               onClick={handleSignOut}
               href="#"
-              className="flex items-center gap-3 px-4 py-2 text-gray-100 hover:bg-gray-900"
+              className="flex items-center gap-3 px-4 py-2 text-gray-100 hover:bg-gray-100 hover:text-black"
             >
               <CiLogout size={18} /> Logout
             </a>

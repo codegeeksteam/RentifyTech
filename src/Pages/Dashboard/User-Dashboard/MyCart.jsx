@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useCart from '../../../Hooks/useCart';
 import HelmetTitle from '../../../Components/HelmetTitle';
+import Swal from 'sweetalert2';
 
 
 function MyCart() {
