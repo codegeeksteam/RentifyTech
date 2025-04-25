@@ -3,6 +3,7 @@ import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import { AuthContext } from '../../../Provider/AuthProvider';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2'; // For confirmation dialog
+import { Watch } from 'react-loader-spinner';
 
 const MyAll = () => {
   const [gadgets, setGadgets] = useState([]);
@@ -60,7 +61,19 @@ const MyAll = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>
+ <Watch
+  visible={true}
+  height="40"
+  width="40"
+  radius="48"
+  color="#000000"
+  ariaLabel="watch-loading"
+  wrapperStyle={{}}
+  wrapperClass=""
+  />
+
+    </div>;
   }
 
   if (error) {
