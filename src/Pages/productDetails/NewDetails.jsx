@@ -11,6 +11,7 @@ import {
 import HelmetTitle from "../../Components/HelmetTitle";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { Watch } from "react-loader-spinner";
 import useCart from "../../Hooks/useCart";
 
 const NewDetails = () => {
@@ -63,16 +64,20 @@ const NewDetails = () => {
       <>
         {/* <HelmetTitle title={'Loading...'} /> */}
         <Navbar />
-        <div className="flex justify-center items-center h-64">  <Watch
-  visible={true}
-  height="40"
-  width="40"
-  radius="48"
-  color="#000000"
-  ariaLabel="watch-loading"
-  wrapperStyle={{}}
-  wrapperClass=""
-  /></div>;
+        <div className="flex justify-center items-center h-64">
+          {" "}
+          <Watch
+            visible={true}
+            height="40"
+            width="40"
+            radius="48"
+            color="#000000"
+            ariaLabel="watch-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+          />
+        </div>
+        ;
         <Footer />
       </>
     );
@@ -89,7 +94,7 @@ const NewDetails = () => {
     );
   }
 
-// Add To Card Function
+  // Add To Card Function
   const handelAddtoCart = async () => {
     if (user && user.email) {
       // sent card item to the database
@@ -99,16 +104,16 @@ const NewDetails = () => {
         name: gadget.name,
         description: gadget.description,
         category: gadget.category,
-        rentalPeriod:  selectedPeriod,
+        rentalPeriod: selectedPeriod,
         orderDate: new Date().toLocaleDateString(),
         orderTime: new Date().toLocaleTimeString(),
         rentalPrice: gadget.pricing[selectedPeriod],
         image: gadget.images[selectedImage],
         quantity: 1,
       };
-      console.log('cartItem', cartItem);
+      console.log("cartItem", cartItem);
       const res = await axiosSecure.post("/cart", cartItem);
-       // Log the response from the server
+      // Log the response from the server
       if (res?.data.insertedId) {
         Swal.fire({
           title: "Success!",
@@ -116,7 +121,7 @@ const NewDetails = () => {
           icon: "success",
         });
         // refetch cart
-        refetch()
+        refetch();
       }
     } else {
       Swal.fire({
@@ -135,7 +140,6 @@ const NewDetails = () => {
       });
     }
   };
-
 
   return (
     <>
