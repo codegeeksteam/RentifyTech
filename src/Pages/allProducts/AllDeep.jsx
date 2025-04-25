@@ -15,7 +15,7 @@ const AllDeep = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const [allGadgetsData, setAllGadgetsData] = useState([]);
-  const [wishList, refetchWishList] = useWishList();
+  const [wishList, refetch] = useWishList();
 
   // Fetch all gadgets from the backend
   useEffect(() => {
@@ -36,7 +36,6 @@ const AllDeep = () => {
 
   // States for filtering, pagination, and sorting
   const [searchTerm, setSearchTerm] = useState("");
-  const [filterColor, setFilterColor] = useState(false);
   const [categoryFilter, setCategoryFilter] = useState("All");
   const [sortBy, setSortBy] = useState("recommended");
   const [currentPage, setCurrentPage] = useState(1);
@@ -126,7 +125,7 @@ const AllDeep = () => {
       });
       return;
     }
-    const isInWishlist = wishList.some((item) => item.gadgetId === gadget._id);
+
     const newData = {
       email: user.email,
       gadgetId: gadget._id,
@@ -135,40 +134,20 @@ const AllDeep = () => {
       pricing: gadget.pricing,
       gadgetAvailability: gadget.availability,
       gadgetReviews: gadget.reviews,
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(),
     };
-    try {
-      if (isInWishlist) {
-        // Remove from wishlist
-        await axiosSecure.delete(`/wishListDelete/${gadget._id}`);
-        refetchWishList();
-        Swal.fire({
-          title: "Success!",
-          text: `${gadget.name} has been deleted.`,
-          icon: "success",
-          timer: 1500,
-          showConfirmButton: false,
-        });
-        setFilterColor(false)
-      } else {
-        // Add to wishlist
-        await axiosSecure.post("/wishList", newData);
-        refetchWishList();
-        Swal.fire({
-          title: "Success!",
-          text: `${gadget.name} Wishlist Added Successful!`,
-          icon: "success",
-          timer: 1500,
-          showConfirmButton: false,
-        });
-        setFilterColor(true);
-      }
-    } catch (err) {
-      console.error("Error updating wishlist:", err);
+
+    // Add to wishlist
+  const res =  await axiosSecure.post("/wishlist", newData);
+    if(res.data.insertedId){
+      refetch()
       Swal.fire({
-        title: "ERROR!",
-        text:
-          err.response?.data?.message || "Wishlist Error!",
-        icon: "error",
+        title: "Success!",
+        text: `${gadget.name} Wishlist Added Successful!`,
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false,
       });
     }
   };
@@ -386,21 +365,17 @@ const AllDeep = () => {
                         </span>
                       </div>
                       <div>
-                        <button
-                          className={`transition-all cursor-pointer duration-300 ${
-                            wishList.some((item) => item._id === gadget._id)
-                              ? "text-red-500 fill-red-500"
-                              : "fill-black/30 text-transparent"
-                          }`}
-                          onClick={() => handleWishListbtn(gadget)}
-                        >
+                        <button onClick={() => handleWishListbtn(gadget)}>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
                             width="24"
                             height="24"
                             fill="none"
-                            className={`transition-all cursor-pointer duration-300 ${filterColor
+                            className={`transition-all cursor-pointer duration-300 ${
+                              wishList.some(
+                                (item) => item.gadgetId === gadget._id
+                              )
                                 ? "text-red-500 fill-red-500"
                                 : "fill-black/30 text-transparent"
                             }`}

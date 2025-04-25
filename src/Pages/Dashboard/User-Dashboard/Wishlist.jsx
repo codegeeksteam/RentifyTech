@@ -1,40 +1,14 @@
-import React from 'react';
-import { useState } from 'react';
-import { Heart, Trash2, ExternalLink } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React from "react";
+
+import { Heart, Trash2, ExternalLink } from "lucide-react";
+import { Link } from "react-router-dom";
+import useWishList from "../../../Hooks/useWishList";
 
 function Wishlist() {
-  const [wishlistItems, setWishlistItems] = useState([
-    {
-      id: 1,
-      name: 'Mechanical Keyboard',
-      price: '$89.99',
-      image: 'https://vibegaming.com.bd/wp-content/uploads/2023/08/v227.jpg',
-      added: '2 days ago',
-      priority: 'High',
-    },
-    {
-      id: 2,
-      name: 'Ultra-wide Monitor',
-      price: '$349.99',
-      image:
-        'https://cdn.thewirecutter.com/wp-content/media/2025/02/BEST-ULTRAWIDE-MONITORS-2048px-422.jpg?auto=webp&quality=75&width=1024',
-      added: '1 week ago',
-      priority: 'Medium',
-    },
-    {
-      id: 3,
-      name: 'Desk Lamp',
-      price: '$24.99',
-      image:
-        'https://lw-cdn.com/images/9622910CDB03/k_f4a89ab5a88f4a999d0c078faac7ee03;w_1600;h_1600;q_100/10013616.jpg',
-      added: '3 weeks ago',
-      priority: 'Low',
-    },
-  ]);
-
+  const [wishList] = useWishList();
   const removeItem = (id) => {
-    setWishlistItems(wishlistItems.filter((item) => item.id !== id));
+    console.log("Removing item with id:", id);
+    // setWishlistItems(wishlistItems.filter((item) => item.id !== id));
   };
 
   return (
@@ -45,40 +19,51 @@ function Wishlist() {
           <h2 className="text-2xl font-bold">My Wishlist</h2>
         </div>
         <span className="bg-black text-white px-3 py-1 rounded-full text-sm">
-          {wishlistItems.length} items
+          {wishList.length} items
         </span>
       </div>
 
       <div className="space-y-4 mb-6">
-        {wishlistItems.map((item) => (
+        {wishList.map((item) => (
           <div
-            key={item.id}
+            key={item._id}
             className="flex items-center justify-between border-b border-gray-200 pb-4"
           >
             <div className="flex items-center">
               <div className="w-16 h-16 bg-gray-100 rounded-md overflow-hidden mr-4">
                 <img
-                  src={item.image}
-                  alt={item.name}
+                  src={item.gadgetImage}
+                  alt={item.gadgetName}
                   className="w-full h-full object-cover"
                 />
               </div>
               <div>
-                <h3 className="font-semibold">{item.name}</h3>
-                <div className="flex items-center text-sm text-gray-500 mt-1">
-                  <span className="mr-4">{item.price}</span>
+                <h3 className="font-semibold">{item.gadgetName}</h3>
+                <div className="grid grid-cols-3 gap-1 mb-3 text-xs">
+                  <div className="text-center">
+                    <span className="font-bold">${item.pricing?.hourly}</span>
+                    <span className="block text-gray-400">hour</span>
+                  </div>
+                  <div className="text-center">
+                    <span className="font-bold">${item.pricing?.daily}</span>
+                    <span className="block text-gray-400">day</span>
+                  </div>
+                  <div className="text-center">
+                    <span className="font-bold">${item.pricing?.weekly}</span>
+                    <span className="block text-gray-400">week</span>
+                  </div>
                 </div>
                 <div className="mt-1">
                   <span
                     className={`text-xs px-2 py-1 rounded ${
-                      item.priority === 'High'
-                        ? 'bg-black text-white'
-                        : item.priority === 'Medium'
-                        ? 'bg-gray-200 text-black'
-                        : 'bg-gray-100 text-gray-500'
+                      item.gadgetAvailability?.status === "In Stock"
+                        ? "bg-black text-white"
+                        : item.gadgetAvailability?.status === "Coming Soon"
+                        ? "bg-gray-200 text-black"
+                        : "bg-gray-100 text-gray-500"
                     }`}
                   >
-                    {item.priority}
+                    {item.gadgetAvailability?.status}
                   </span>
                 </div>
               </div>
@@ -89,7 +74,7 @@ function Wishlist() {
               </button>
               <button
                 className="p-1 hover:bg-gray-100 rounded-full"
-                onClick={() => removeItem(item.id)}
+                onClick={() => removeItem(item._id)}
               >
                 <Trash2 className="w-5 h-5 text-gray-500" />
               </button>

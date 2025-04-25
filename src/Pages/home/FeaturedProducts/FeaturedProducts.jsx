@@ -1,9 +1,14 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
+import useWishList from "../../../Hooks/useWishList";
 
 const FeaturedProducts = () => {
   const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
+  const [wishList, refetch] = useWishList();
   const [error, setError] = useState(null);
   const axiosSecure = useAxiosSecure();
   const [featuredProducts, setFeaturedProducts] = useState([]);
@@ -14,13 +19,13 @@ const FeaturedProducts = () => {
         const response = await axiosSecure.get(`/gadgets`);
         setFeaturedProducts(
           response.data
-            .filter((gadget) => gadget.approvalStatus === 'Published')
-            .slice(-6),
+            .filter((gadget) => gadget.approvalStatus === "Published")
+            .slice(-6)
         );
         setLoading(false);
       } catch (err) {
-        console.error('Error fetching gadgets:', err);
-        setError('Failed to load gadgets.');
+        console.error("Error fetching gadgets:", err);
+        setError("Failed to load gadgets.");
         setLoading(false);
       }
     };
@@ -35,6 +40,44 @@ const FeaturedProducts = () => {
   if (error) {
     return <div>{error}</div>;
   }
+
+  //Handle Wishlist
+  const handleWishListbtn = async (gadget) => {
+    if (!user) {
+      Swal.fire({
+        title: "You are not logged in?",
+        text: "Please log in to your account!",
+        icon: "warning",
+        confirmButtonText: "LOGIN",
+      });
+      return;
+    }
+
+    const newData = {
+      email: user.email,
+      gadgetId: gadget._id,
+      gadgetName: gadget.name,
+      gadgetImage: gadget.images[0],
+      pricing: gadget.pricing,
+      gadgetAvailability: gadget.availability,
+      gadgetReviews: gadget.reviews,
+      date: new Date().toLocaleDateString(),
+      time: new Date().toLocaleTimeString(),
+    };
+
+    // Add to wishlist
+    const res = await axiosSecure.post("/wishlist", newData);
+    if (res.data.insertedId) {
+      refetch();
+      Swal.fire({
+        title: "Success!",
+        text: `${gadget.name} Wishlist Added Successful!`,
+        icon: "success",
+        timer: 1500,
+        showConfirmButton: false,
+      });
+    }
+  };
 
   return (
     <div className="py-10">
@@ -62,29 +105,29 @@ const FeaturedProducts = () => {
                         alt={gadget.name}
                         className="absolute w-full h-full object-cover rounded-t-lg backface-hidden"
                         style={{
-                          transformStyle: 'preserve-3d',
-                          transform: 'translateZ(20px)',
-                          filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.1))',
+                          transformStyle: "preserve-3d",
+                          transform: "translateZ(20px)",
+                          filter: "drop-shadow(0 10px 15px rgba(0,0,0,0.1))",
                         }}
                       />
                       {/* Reflection effect */}
                       <div
                         className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-30 group-hover:opacity-50 transition-opacity duration-300"
                         style={{
-                          transform: 'rotateX(90deg) translateZ(-20px)',
-                          transformOrigin: 'bottom center',
+                          transform: "rotateX(90deg) translateZ(-20px)",
+                          transformOrigin: "bottom center",
                         }}
                       />
                       {/* Floating shadow */}
                       <div
                         className="absolute -bottom-4 left-1/4 w-1/2 h-2 rounded-full blur-md opacity-10 group-hover:opacity-20 transition-all duration-300"
                         style={{
-                          transform: 'translateZ(-30px)',
+                          transform: "translateZ(-30px)",
                         }}
                       />
                     </div>
                   </Link>
-                  {gadget.availability.status !== 'In Stock' && (
+                  {gadget.availability.status !== "In Stock" && (
                     <div className="absolute top-2 right-2 text-xs font-semibold px-2 py-1 rounded">
                       {gadget.availability.status}
                     </div>
@@ -95,7 +138,7 @@ const FeaturedProducts = () => {
                     <p className="text-xs text-gray-400">{gadget.brand}</p>
                     <p className="text-gray-400 text-xs">
                       {gadget?.reviews?.count < 1
-                        ? 'No reviews'
+                        ? "No reviews"
                         : `${gadget.reviews.average}/5 (${gadget.reviews.count})`}
                     </p>
                   </div>
@@ -136,35 +179,42 @@ const FeaturedProducts = () => {
                     </div>
 
                     <div>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        width="24"
-                        height="24"
-                        color="#000000"
-                        fill="none"
-                        className="transition-all cursor-pointer fill-black/30 text-transparent duration-300 hover:text-red-500 hover:fill-red-500"
-                      >
-                        <path
-                          d="M10.4107 19.9677C7.58942 17.858 2 13.0348 2 8.69444C2 5.82563 4.10526 3.5 7 3.5C8.5 3.5 10 4 12 6C14 4 15.5 3.5 17 3.5C19.8947 3.5 22 5.82563 22 8.69444C22 13.0348 16.4106 17.858 13.5893 19.9677C12.6399 20.6776 11.3601 20.6776 10.4107 19.9677Z"
-                          stroke="currentColor"
-                          stroke-width="1.5"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
+                      <button onClick={() => handleWishListbtn(gadget)}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          width="24"
+                          height="24"
+                          fill="none"
+                          className={`transition-all cursor-pointer duration-300 ${
+                            wishList.some(
+                              (item) => item.gadgetId === gadget._id
+                            )
+                              ? "text-red-500 fill-red-500"
+                              : "fill-black/30 text-transparent"
+                          }`}
+                        >
+                          <path
+                            d="M10.4107 19.9677C7.58942 17.858 2 13.0348 2 8.69444C2 5.82563 4.10526 3.5 7 3.5C8.5 3.5 10 4 12 6C14 4 15.5 3.5 17 3.5C19.8947 3.5 22 5.82563 22 8.69444C22 13.0348 16.4106 17.858 13.5893 19.9677C12.6399 20.6776 11.3601 20.6776 10.4107 19.9677Z"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
                     </div>
                     <Link to={`/gadget/${gadget._id}`}>
                       <button
                         className={`px-3 py-1 rounded-md text-sm font-medium ${
-                          gadget.availability.status === 'In Stock'
-                            ? 'bg-black text-white hover:bg-gray-800'
-                            : 'bg-gray-200 text-gray-500 cursor-not-allowed'
+                          gadget.availability.status === "In Stock"
+                            ? "bg-black text-white hover:bg-gray-800"
+                            : "bg-gray-200 text-gray-500 cursor-not-allowed"
                         }`}
-                        disabled={gadget.availability.status !== 'In Stock'}
+                        disabled={gadget.availability.status !== "In Stock"}
                       >
-                        {gadget.availability.status === 'In Stock'
-                          ? 'Rent Now'
+                        {gadget.availability.status === "In Stock"
+                          ? "Rent Now"
                           : gadget.availability.status}
                       </button>
                     </Link>
