@@ -17,6 +17,7 @@ import {
   BarChart2,
   Truck,
   DollarSign,
+  Heart,
 } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 import { CgProfile } from 'react-icons/cg';
@@ -28,7 +29,8 @@ const UsersDashboard = ({ handleSignOut }) => {
         User Dashboard
       </h2>
 
-      <NavLink to={'/dashboard/overview'}>
+{/* hidden */}
+      <NavLink to={'/dashboard/overview'} className="hidden">
         <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-900">
           <Home size={18} className="text-gray-100" />
           <span className="text-gray-100">Overview</span>
@@ -36,29 +38,16 @@ const UsersDashboard = ({ handleSignOut }) => {
       </NavLink>
 
       <NavLink
-        to={'/dashboard/myGadget'}
-        className="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-900"
+        to={'/dashboard/myCart'}
+        className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-900"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 mr-2"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
-        My Gadget
+        <ShoppingBag size={18} />
+        <span> My Cart</span>
       </NavLink>
 
       <NavLink to={'/dashboard/wishlist'}>
         <div className="flex items-center px-4 py-2 gap-3 text-gray-100 hover:bg-gray-900">
-          <ShoppingBag size={18} />
+          <Heart size={18} />
           <span>My Wishlist</span>
         </div>
       </NavLink>

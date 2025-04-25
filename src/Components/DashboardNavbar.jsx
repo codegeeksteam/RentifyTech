@@ -62,7 +62,7 @@ const DashboardNavbar = ({ user, toggleSidebar }) => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <Link to={"/dashboard/adminProfile"}>
-              <a className="justify-between">Profile</a>
+              <button className="">Profile</button>
             </Link>
             
           </ul>

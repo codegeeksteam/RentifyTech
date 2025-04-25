@@ -181,7 +181,7 @@ export default function Navbar() {
                       </Link>
                     )}
                     {isUser && (
-                      <Link to="/dashboard/myGadget" className="btn btn-sm">
+                      <Link to="/dashboard/myCart" className="btn btn-sm">
                         Dashboard
                       </Link>
                     )}
