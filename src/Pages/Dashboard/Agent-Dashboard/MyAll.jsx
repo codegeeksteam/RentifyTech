@@ -63,7 +63,7 @@ const MyAll = () => {
   if (loading) {
     return <div>
  
-
+loading..
     </div>;
   }
 
