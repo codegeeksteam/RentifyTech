@@ -8,6 +8,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useWishList from "../../Hooks/useWishList";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import { Watch } from "react-loader-spinner";
 
 const AllDeep = () => {
   const [loading, setLoading] = useState(true);
@@ -157,7 +158,19 @@ const AllDeep = () => {
       <>
         <HelmetTitle title={"All Gadgets"} />
         <Navbar />
-        <div className="flex justify-center items-center h-64">Loading...</div>
+        <div className="flex justify-center items-center h-64">
+
+        <Watch
+  visible={true}
+  height="40"
+  width="40"
+  radius="48"
+  color="#000000"
+  ariaLabel="watch-loading"
+  wrapperStyle={{}}
+  wrapperClass=""
+  />
+        </div>
         <Footer />
       </>
     );
