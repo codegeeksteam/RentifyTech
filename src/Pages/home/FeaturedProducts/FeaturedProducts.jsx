@@ -4,7 +4,6 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
 import useWishList from "../../../Hooks/useWishList";
-import { Watch } from "react-loader-spinner";
 
 const FeaturedProducts = () => {
   const [loading, setLoading] = useState(true);
@@ -35,16 +34,7 @@ const FeaturedProducts = () => {
   }, [axiosSecure]);
 
   if (loading) {
-    return <div className="flex justify-center py-10">  <Watch
-    visible={true}
-    height="40"
-    width="40"
-    radius="48"
-    color="#000000"
-    ariaLabel="watch-loading"
-    wrapperStyle={{}}
-    wrapperClass=""
-    /></div>;
+    return <div> </div>;
   }
 
   if (error) {

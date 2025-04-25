@@ -278,16 +278,7 @@ function UpdateProduct() {
       <>
         <HelmetTitle title={'All Gadgets'} />
         <Navbar />
-        <div className="flex justify-center items-center h-64">   <Watch
-  visible={true}
-  height="40"
-  width="40"
-  radius="48"
-  color="#000000"
-  ariaLabel="watch-loading"
-  wrapperStyle={{}}
-  wrapperClass=""
-  /></div>;
+        <div className="flex justify-center items-center h-64">  </div>;
         <Footer />
       </>
     );
