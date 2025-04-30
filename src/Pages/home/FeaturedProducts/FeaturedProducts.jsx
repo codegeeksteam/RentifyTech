@@ -4,7 +4,6 @@ import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
 import useWishList from "../../../Hooks/useWishList";
-import { Watch } from "react-loader-spinner";
 
 const FeaturedProducts = () => {
   const [loading, setLoading] = useState(true);
