@@ -35,6 +35,7 @@ import Wishlist from './Pages/Dashboard/User-Dashboard/Wishlist.jsx';
 import Profile from './Pages/Dashboard/User-Dashboard/Profile.jsx';
 import Overview from './Pages/Dashboard/User-Dashboard/Overview.jsx';
 import MyCart from './Pages/Dashboard/User-Dashboard/MyCart.jsx';
+import BlogDetails from './Pages/Blogs/BlogDetails.jsx';
 
 const queryClient = new QueryClient();
 
@@ -56,6 +57,9 @@ const router = createBrowserRouter([
       {
         path: '/blogs',
         element: <Blogs />,
+      },{
+        path:"/blogs/:id",
+        element :<BlogDetails/>
       },
       {
         path: '/add-gadget',

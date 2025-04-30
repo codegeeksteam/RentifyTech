@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const SoftMonochromeCountdownTimer = () => {
   // Set end date to December 31, 2024
@@ -147,12 +148,18 @@ const SoftMonochromeCountdownTimer = () => {
         <p className="text-gray-500 text-sm mb-4">
           Get 45% off your entire purchase
         </p>
+        <Link to={'/all-gadgets'}>
         <button className="w-full bg-gray-800 hover:bg-gray-900 text-white font-medium py-3 px-6 rounded transition-all">
           SHOP NOW
         </button>
+        </Link>
       </div>
     </div>
   );
 };
 
 export default SoftMonochromeCountdownTimer;
+
+
+
+
