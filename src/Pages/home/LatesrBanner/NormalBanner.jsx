@@ -45,7 +45,7 @@ const NormalBanner = () => {
   }, []);
 
   return (
-    <div>
+    <div className="lg:py-10 mx-auto">
       <div>
         <h1
           ref={titleRef}
@@ -55,7 +55,7 @@ const NormalBanner = () => {
         </h1>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 px-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:px-20 md:px-10 px-3">
         {[
           {
             link: "/",
@@ -70,7 +70,7 @@ const NormalBanner = () => {
           {
             link: "/",
             src: "https://i.ibb.co.com/SSwszwF/div-card-two.webp",
-            className: "h-50 w-96",
+            className: "h-50 w-full",
           },
         ].map((item, index) => (
           <div key={index}>

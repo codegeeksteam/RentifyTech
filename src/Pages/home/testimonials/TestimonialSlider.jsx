@@ -93,7 +93,7 @@ export default function TestimonialSlider() {
     : 'animate-slide-in opacity-100 scale-100 rotate-0 shadow-2xl';
 
   return (
-    <div className="mx-auto p-4 md:p-8 w-full relative overflow-hidden">
+    <div className="mx-auto p-4 md:p-8 w-full relative overflow-hidden lg:px-16 md:px-8">
       <div className="absolute w-full h-full top-0 left-0 opacity-5">
         <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-400 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/3 right-1/3 w-40 h-40 bg-purple-400 rounded-full blur-3xl"></div>
@@ -106,7 +106,7 @@ export default function TestimonialSlider() {
           <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-700 to-indigo-800 bg-clip-text text-transparent">What Customers Are Saying</h2>
         </div>
         
-        <div className="relative h-[400px] flex items-center justify-center px-4">
+        <div className="relative h-[400px] flex items-center justify-center">
           {/* Main Testimonial Card */}
           <div 
             className={`w-full lg:px-32 md:px-16 rounded-xl p-8 relative border border-gray-200 backdrop-blur-sm bg-white/80 
