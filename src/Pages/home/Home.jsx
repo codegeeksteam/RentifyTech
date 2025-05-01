@@ -5,11 +5,11 @@ import Footer from "../../Components/Footer";
 import FeaturedProducts from "./FeaturedProducts/FeaturedProducts";
 import Banner from "./Banner/Banner";
 import NormalBanner from "./LatesrBanner/NormalBanner";
-import Features from "./Features/Features";
 import ElectronicsRental from "./Secondary/SecondaryBAnner";
 import Electronics from "./ElecronicsRental/Electronis";
 import OurProcess from "../../Components/OurProcess/OurProcess";
 import HelmetTitle from "../../Components/HelmetTitle";
+import TestimonialSlider from "./testimonials/TestimonialSlider";
 // import LiveChat from "../../Components/LiveChat/LiveChat";
 
 const Home = () => {
@@ -21,11 +21,9 @@ const Home = () => {
       <FeaturedProducts></FeaturedProducts>
       <OurProcess />
       <NormalBanner />
-      {/* <ServiceSection /> */}
       <ElectronicsRental />
-      {/* <LattesrBanner /> */}
       <Electronics />
-      <Testimonials />
+      <TestimonialSlider />
       {/* <LiveChat/> */}
       {/* <OurNews />  FIXME: I create a new blog page  */}
       <Footer />

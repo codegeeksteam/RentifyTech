@@ -4,18 +4,6 @@ import { FaHome } from 'react-icons/fa';
 import {
   Home,
   ShoppingBag,
-  Users,
-  Settings,
-  LogOut,
-  Menu,
-  X,
-  Bell,
-  User,
-  Package,
-  Calendar,
-  HelpCircle,
-  BarChart2,
-  Truck,
   DollarSign,
   Heart,
 } from 'lucide-react';

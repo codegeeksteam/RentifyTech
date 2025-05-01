@@ -190,7 +190,7 @@ const AdminDashboard = () => {
     // Fetch all users
   const fetchUsers = () => {
     setLoading(true);
-    fetch('https://rentify-tech-server.vercel.app/all-users')
+    fetch('http://localhost:4000all-users')
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);

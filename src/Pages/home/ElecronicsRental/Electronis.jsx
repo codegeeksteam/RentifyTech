@@ -51,10 +51,10 @@ export default function Electronics() {
   }, []);
 
   return (
-    <div ref={containerRef} className="text-center py-12">
+    <div ref={containerRef} className="text-center lg:px-16 md:px-8 lg:py-10 md:py-8 py-3 mx-auto">
       <h3 className="text-gray-500 text-sm uppercase">Electronics Rentals</h3>
       <h2 className="text-3xl font-bold mt-2">Freedom and flexibility</h2>
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-6">
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-3">
         {features.map((feature, index) => (
           <div
             key={index}
