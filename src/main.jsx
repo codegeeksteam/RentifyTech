@@ -35,15 +35,11 @@ import Wishlist from './Pages/Dashboard/User-Dashboard/Wishlist.jsx';
 import Profile from './Pages/Dashboard/User-Dashboard/Profile.jsx';
 import Overview from './Pages/Dashboard/User-Dashboard/Overview.jsx';
 import MyCart from './Pages/Dashboard/User-Dashboard/MyCart.jsx';
-<<<<<<< HEAD
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
-=======
-import BlogDetails from './Pages/Blogs/BlogDetails.jsx';
->>>>>>> 2ce7ffacffab4fd36603fa7d2241acc588ced9dd
 
 const queryClient = new QueryClient();
 
