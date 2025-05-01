@@ -101,12 +101,12 @@ export default function TestimonialSlider() {
       </div>
 
       <div className="max-w-full mx-auto relative z-10">
-        <div className="mb-8 text-center">
+        <div className="mb-6 text-center py-6">
           <p className="text-gray-600 font-medium">Testimonial</p>
           <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-700 to-indigo-800 bg-clip-text text-transparent">What Customers Are Saying</h2>
         </div>
         
-        <div className="relative h-[400px] flex items-center justify-center">
+        <div className="relative h-[400px] flex items-center justify-center lg:py-10 md:py-8 py-6">
           {/* Main Testimonial Card */}
           <div 
             className={`w-full lg:px-32 md:px-16 rounded-xl p-8 relative border border-gray-200 backdrop-blur-sm bg-white/80 
