@@ -13,7 +13,6 @@ import TestimonialSlider from "./testimonials/TestimonialSlider";
 // import LiveChat from "../../Components/LiveChat/LiveChat";
 
 const Home = () => {
-  console.log(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
   return (
     <div className="">
       <HelmetTitle title={'Home'}/>
