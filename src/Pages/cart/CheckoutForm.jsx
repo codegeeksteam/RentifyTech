@@ -14,7 +14,7 @@ const CheckoutForm = ({ amount, onSuccess }) => {
 
     setProcessing(true);
 
-    const res = await fetch('https://rentify-tech-server.vercel.app/create-payment-intent', {
+    const res = await fetch('http://localhost:4000/create-payment-intent', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ amount }),
