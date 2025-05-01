@@ -1,44 +1,44 @@
-// src/Components/CheckoutForm.jsx
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
-const CheckoutForm = ({ amount, onSuccess }) => {
+const CheckoutForm = ({ amount, onSuccess, userName = 'Guest' }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [processing, setProcessing] = useState(false);
+  const secureAxios = useAxiosSecure();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!stripe || !elements) return;
 
-    setProcessing(true);
+    try {
+      setProcessing(true);
 
-    const res = await fetch('http://localhost:4000/create-payment-intent', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ amount }),
-    });
+      const { data } = await secureAxios.post('/create-payment-intent', { amount });
+      const clientSecret = data.clientSecret;
 
-    const { clientSecret } = await res.json();
-
-    const card = elements.getElement(CardElement);
-    const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card,
-        billing_details: {
-          name: 'Test User',
+      const card = elements.getElement(CardElement);
+      const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card,
+          billing_details: {
+            name: userName,
+          },
         },
-      },
-    });
+      });
 
-    setProcessing(false);
-
-    if (error) {
-      Swal.fire('Payment Failed', error.message, 'error');
-    } else if (paymentIntent.status === 'succeeded') {
-      Swal.fire('Success', 'Payment completed!', 'success');
-      onSuccess(); // e.g. close modal
+      if (error) {
+        Swal.fire('Payment Failed', error.message, 'error');
+      } else if (paymentIntent.status === 'succeeded') {
+        Swal.fire('Success', 'Payment completed!', 'success');
+        onSuccess(); // Callback after successful payment
+      }
+    } catch (err) {
+      Swal.fire('Error', 'Something went wrong. Please try again.', err);
+    } finally {
+      setProcessing(false);
     }
   };
 
@@ -47,7 +47,7 @@ const CheckoutForm = ({ amount, onSuccess }) => {
       <CardElement className="p-3 border border-gray-300 rounded" />
       <button
         type="submit"
-        disabled={!stripe || processing}
+        disabled={!stripe || !elements || processing}
         className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 disabled:opacity-50"
       >
         {processing ? 'Processing...' : `Pay $${amount}`}
