@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-    // baseURL: 'https://rentify-tech-server.vercel.app'
-    baseURL: `https://rentify-tech-server.vercel.app/`
+    // baseURL: ' http://localhost:4000'
+    baseURL: `http://localhost:4000/`
 })
 const useAxiosPublic = () => {
     return axiosPublic;
