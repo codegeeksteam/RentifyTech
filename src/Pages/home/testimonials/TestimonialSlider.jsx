@@ -93,7 +93,7 @@ export default function TestimonialSlider() {
     : 'animate-slide-in opacity-100 scale-100 rotate-0 shadow-2xl';
 
   return (
-    <div className="mx-auto p-4 md:p-8 w-full relative overflow-hidden lg:px-16 md:px-8">
+    <div className="mx-auto px-4 md:py-10 py-8 w-full relative overflow-hidden lg:px-16 md:px-8">
       <div className="absolute w-full h-full top-0 left-0 opacity-5">
         <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-400 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/3 right-1/3 w-40 h-40 bg-purple-400 rounded-full blur-3xl"></div>
