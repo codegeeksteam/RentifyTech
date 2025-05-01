@@ -24,9 +24,9 @@ const AboutUs = () => {
     },
     {
       id: 2,
-      name: "Jane Smith",
-      role: "CTO",
-      image: "https://randomuser.me/api/portraits/women/1.jpg",
+      name: "Khaled Bin Monowar Hossain ",
+      role: "Full Stack Developer",
+      image: "https://avatars.githubusercontent.com/u/111820117",
       bio: "10+ years of experience in technology leadership and innovation",
       social: {
         linkedin: "#",
