@@ -136,12 +136,12 @@ const ElectronicsRental = () => {
   }, []);
 
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden lg:px-16 md:px-8 px-3">
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-32 h-32 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-70"></div>
       <div className="absolute bottom-0 right-0 w-32 h-32 bg-indigo-200 rounded-full mix-blend-multiply filter blur-xl opacity-70"></div>
 
-      <div className="container mx-auto px-4 py-20 lg:py-28">
+      <div className="container mx-auto lg:py-24 md:py-12 py-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 xl:gap-20">
           {/* Image */}
           <div
