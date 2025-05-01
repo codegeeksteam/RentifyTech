@@ -203,8 +203,8 @@ const Contact = () => {
                   </div>
                 </div>
                 <h3 className="text-lg font-bold text-black mb-2">{method.title}</h3>
-                <p className="text-blue-100 text-black mb-4">{method.content}</p>
-                <a href={method.action} className="inline-flex items-center text-black hover:text-white">
+                <p className="  text-black mb-4">{method.content}</p>
+                <a href={method.action} className="inline-flex items-center text-black ">
                   {method.actionText} <FaAngleRight className="ml-1" />
                 </a>
               </div>
@@ -424,7 +424,7 @@ const Contact = () => {
       {/* FAQ Section */}
       <div 
         data-section="faq"
-        className={`container mx-auto px-4 py-24 ${
+        className={`container mx-auto px-4 py-20 ${
           isVisible.faq ? 'animate-fadeIn' : 'opacity-0'
         }`}
         style={{ animationDelay: '0.6s' }}
@@ -473,12 +473,7 @@ const Contact = () => {
           ))}
         </div>
         
-        <div className="text-center mt-12">
-          <p className="text-gray-600 mb-6">Still have questions? Contact our support team.</p>
-          <Link to="/faq" className="inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-all">
-            View All FAQs
-          </Link>
-        </div>
+        
       </div>
       
       {/* Map Section */}
@@ -554,36 +549,7 @@ const Contact = () => {
         </div>
       </div>
       
-      {/* Newsletter Section */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-700 py-20 mt-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center text-white">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Stay Updated</h2>
-            <p className="text-xl text-blue-100 mb-8">
-              Subscribe to our newsletter for exclusive offers, new product alerts, and rental tips.
-            </p>
-            
-            <form className="flex flex-col sm:flex-row gap-2 max-w-lg mx-auto">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="flex-grow px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-white text-gray-800"
-                required
-              />
-              <button 
-                type="submit"
-                className="bg-white text-blue-600 hover:bg-blue-50 px-6 py-3 rounded-lg font-medium transition-colors whitespace-nowrap"
-              >
-                Subscribe
-              </button>
-            </form>
-            
-            <p className="text-sm text-blue-200 mt-4">
-              We respect your privacy. Unsubscribe at any time.
-            </p>
-          </div>
-        </div>
-      </div>
+   
       
       <Footer />
       
