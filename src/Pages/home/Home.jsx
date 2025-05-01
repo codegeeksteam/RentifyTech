@@ -21,9 +21,7 @@ const Home = () => {
       <FeaturedProducts></FeaturedProducts>
       <OurProcess />
       <NormalBanner />
-      {/* <ServiceSection /> */}
       <ElectronicsRental />
-      {/* <LattesrBanner /> */}
       <Electronics />
       <TestimonialSlider />
       {/* <LiveChat/> */}

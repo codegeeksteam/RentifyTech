@@ -80,7 +80,7 @@ const OurProcess = () => {
   ];
 
   return (
-    <section className="relative py-12 overflow-hidden bg-gray-100">
+    <section className="relative lg:px-16 md:px-8 px-3 md:py-10 py-8 overflow-hidden bg-white">
       <div className="container mx-auto px-4 md:px-6 lg:px-12 text-center">
         <h2
           ref={titleRef}
@@ -93,7 +93,7 @@ const OurProcess = () => {
         </p>
       </div>
 
-      <div className="container mx-auto flex flex-col md:flex-row items-center justify-center gap-8 mt-8 px-4">
+      <div className="container mx-auto flex flex-col md:flex-row items-center justify-center gap-8 mt-8">
         {steps.map((step, index) => (
           <div
             key={index}

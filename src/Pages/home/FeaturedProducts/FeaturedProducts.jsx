@@ -95,7 +95,7 @@ const FeaturedProducts = () => {
   };
 
   return (
-    <div className="py-10">
+    <div className="md:py-10 py-8 lg:px-16 md:px-8 px-3">
       <div className="container mx-auto">
         <h2 className="text-4xl font-bold text-center mb-10">Latest Gadgets</h2>
         {featuredProducts.length === 0 ? (
