@@ -86,7 +86,7 @@ const router = createBrowserRouter([
         // element: <ProductDetailsPage />,
         element: <NewDetails></NewDetails>,
         loader: ({ params }) =>
-          fetch(` http://localhost:4000gadget/${params.id}`),
+          fetch(` http://localhost:4000/gadget/${params.id}`),
       },
       {
         path: '/signIn',

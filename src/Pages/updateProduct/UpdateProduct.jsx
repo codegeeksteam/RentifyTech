@@ -257,8 +257,7 @@ function UpdateProduct() {
     console.log(updateData);
 
     // Send update request to the server
-    axiosSecure
-      .put(`/update-gadget/${gadgetData._id}`, updateData)
+    axiosSecure.put(`/update-gadget/${gadgetData._id}`, updateData)
       .then((res) => {
         if (res.data) {
           toast.success('Product updated successfully!');
