@@ -37,6 +37,7 @@ import Overview from './Pages/Dashboard/User-Dashboard/Overview.jsx';
 import MyCart from './Pages/Dashboard/User-Dashboard/MyCart.jsx';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
+import BlogDetails from './Pages/Blogs/BlogDetails.jsx';
 
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
