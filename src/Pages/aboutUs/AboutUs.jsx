@@ -48,9 +48,9 @@ const AboutUs = () => {
     },
     {
       id: 4,
-      name: "Maria Garcia",
-      role: "UX Designer",
-      image: "https://randomuser.me/api/portraits/women/2.jpg",
+      name: "Shahriar Araf ",
+      role: "Full Stack Developer",
+      image: "https://i.ibb.co.com/5z3j793/Whats-App-Image-2025-05-01-at-16-16-10.jpg",
       bio: "Creating intuitive and beautiful user experiences for digital products",
       social: {
         linkedin: "#",
