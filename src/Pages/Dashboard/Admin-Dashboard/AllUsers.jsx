@@ -11,7 +11,7 @@ const AllUsers = () => {
   // Fetch all users
   const fetchUsers = () => {
     setLoading(true);
-    fetch('https://rentify-tech-server.vercel.app/all-users')
+    fetch('http://localhost:4000/all-users')
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);
@@ -29,7 +29,7 @@ const AllUsers = () => {
 
   // Make Agent an Admin
   const handleMakeAdmin = (email) => {
-    fetch(`https://rentify-tech-server.vercel.app/users/make-admin/${email}`, {
+    fetch(`http://localhost:4000/users/make-admin/${email}`, {
       method: 'PATCH',
     })
       .then((res) => res.json())
@@ -51,7 +51,7 @@ const AllUsers = () => {
       confirmButtonText: 'Yes, delete',
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://rentify-tech-server.vercel.app/delete-user/${id}`, {
+        fetch(`http://localhost:4000/delete-user/${id}`, {
           method: 'DELETE',
         })
           .then((res) => res.json())

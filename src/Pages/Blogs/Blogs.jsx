@@ -24,7 +24,7 @@
 // // useEffect(() => {
 // //   const fetchBlogs = async () => {
 // //     try {
-// //       const response = await fetch('https://rentify-tech-server.vercel.app/posts');
+// //       const response = await fetch(' http://localhost:4000/posts');
 // //       if (!response.ok) {
 // //         throw new Error('Failed to fetch blogs');
 // //       }
@@ -194,7 +194,7 @@
 //   useEffect(() => {
 //     const fetchBlogs = async () => {
 //       try {
-//         const response = await fetch('https://rentify-tech-server.vercel.app/posts');
+//         const response = await fetch(' http://localhost:4000/posts');
 //         if (!response.ok) {
 //           throw new Error('Failed to fetch blogs');
 //         }
@@ -489,7 +489,7 @@ const BlogPage = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch('https://rentify-tech-server.vercel.app/posts');
+        const response = await fetch('http://localhost:4000/posts');
         if (!response.ok) {
           throw new Error('Failed to fetch blogs');
         }
@@ -636,7 +636,7 @@ const BlogPage = () => {
                       </div>
                     </div>
                     <Link 
-                      to={`/blog/${currentFeatured._id}`}
+                      to={`/blogs/${currentFeatured._id}`}
                       className="text-gray-800 font-medium hover:text-gray-600 flex items-center text-sm"
                     >
                       Read Article <ChevronRight size={16} />
@@ -734,7 +734,7 @@ const BlogPage = () => {
                         {post.readTime}
                       </span>
                       <Link 
-                        to={`/blog/${post._id}`}
+                        to={`/blogs/${post._id}`}
                         className="text-blue-600 font-medium hover:text-blue-800 text-sm"
                       >
                         Read Article →
