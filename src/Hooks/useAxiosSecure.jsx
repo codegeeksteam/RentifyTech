@@ -6,7 +6,7 @@ import axios from "axios";
 // Create a new Axios instance with base URL
 const axiosSecure = axios.create({
   // baseURL: " http://localhost:4000",
-  baseURL: "http://localhost:4000/",
+  baseURL: "http://localhost:4000",
 });
 
 const useAxiosSecure = () => {
