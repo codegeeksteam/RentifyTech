@@ -35,11 +35,15 @@ import Wishlist from './Pages/Dashboard/User-Dashboard/Wishlist.jsx';
 import Profile from './Pages/Dashboard/User-Dashboard/Profile.jsx';
 import Overview from './Pages/Dashboard/User-Dashboard/Overview.jsx';
 import MyCart from './Pages/Dashboard/User-Dashboard/MyCart.jsx';
+<<<<<<< HEAD
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
+=======
+import BlogDetails from './Pages/Blogs/BlogDetails.jsx';
+>>>>>>> 2ce7ffacffab4fd36603fa7d2241acc588ced9dd
 
 const queryClient = new QueryClient();
 
@@ -61,6 +65,9 @@ const router = createBrowserRouter([
       {
         path: '/blogs',
         element: <Blogs />,
+      },{
+        path:"/blogs/:id",
+        element :<BlogDetails/>
       },
       {
         path: '/add-gadget',
@@ -70,7 +77,7 @@ const router = createBrowserRouter([
         path: '/update-gadget/:id',
         element: <UpdateProduct></UpdateProduct>,
         loader: ({ params }) =>
-          fetch(`https://rentify-tech-server.vercel.app/gadget/${params.id}`),
+          fetch(`http://localhost:4000/gadget/${params.id}`),
       },
       {
         path: '/cart',
@@ -87,7 +94,7 @@ const router = createBrowserRouter([
         // element: <ProductDetailsPage />,
         element: <NewDetails></NewDetails>,
         loader: ({ params }) =>
-          fetch(`https://rentify-tech-server.vercel.app/gadget/${params.id}`),
+          fetch(` http://localhost:4000/gadget/${params.id}`),
       },
       {
         path: '/signIn',

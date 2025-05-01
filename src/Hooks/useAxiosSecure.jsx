@@ -5,7 +5,8 @@ import axios from "axios";
 
 // Create a new Axios instance with base URL
 const axiosSecure = axios.create({
-  baseURL: "https://rentify-tech-server.vercel.app",
+  // baseURL: " http://localhost:4000",
+  baseURL: "http://localhost:4000",
 });
 
 const useAxiosSecure = () => {

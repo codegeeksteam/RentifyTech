@@ -43,6 +43,7 @@
     "sort-by": "^1.2.0",
     "styled-components": "^6.1.17",
     "sweetalert2": "^11.18.0",
+    "swiper": "^11.2.6",
     "tailwindcss": "^4.1.4"
   },
   "devDependencies": {

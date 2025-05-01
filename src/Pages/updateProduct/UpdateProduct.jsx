@@ -257,8 +257,7 @@ function UpdateProduct() {
     console.log(updateData);
 
     // Send update request to the server
-    axiosSecure
-      .put(`/update-gadget/${gadgetData._id}`, updateData)
+    axiosSecure.put(`/update-gadget/${gadgetData._id}`, updateData)
       .then((res) => {
         if (res.data) {
           toast.success('Product updated successfully!');
@@ -278,16 +277,7 @@ function UpdateProduct() {
       <>
         <HelmetTitle title={'All Gadgets'} />
         <Navbar />
-        <div className="flex justify-center items-center h-64">   <Watch
-  visible={true}
-  height="40"
-  width="40"
-  radius="48"
-  color="#000000"
-  ariaLabel="watch-loading"
-  wrapperStyle={{}}
-  wrapperClass=""
-  /></div>;
+        <div className="flex justify-center items-center h-64">  </div>;
         <Footer />
       </>
     );
