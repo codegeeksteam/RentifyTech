@@ -5,15 +5,17 @@ import Navbar from '../../Components/Navbar';
 import useCart from '../../Hooks/useCart';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import CheckoutForm from './CheckoutForm';
+import Modal from './Modal';
 
 function Cart() {
   const [cart] = useCart();
   const axiosSecure = useAxiosSecure()
   const [localCart, setLocalCart] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
 
   // cart ডেটা আপডেট হলে localCart আপডেট করা
   useEffect(() => {
-  // ডিবাগ: cart ডেটা চেক
     setLocalCart(cart || []);
   }, [cart]);
 
@@ -29,7 +31,7 @@ function Cart() {
   // কোয়ান্টিটি কমানোর ফাংশন
   const decreaseQuantity = (id) => {
     const item = localCart.find((item) => item.id === id);
-    if (item.quantity <= 1) return; // কোয়ান্টিটি ১-এর কম হবে না
+    if (item.quantity <= 1) return;
     setLocalCart((prev) =>
       prev.map((item) =>
         item.id === id ? { ...item, quantity: item.quantity - 1 } : item
@@ -47,10 +49,10 @@ function Cart() {
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!"
-    }).then( async (result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        const res = await axiosSecure.delete(`/cartDelete/${product._id}`)
-        if(res.data.deletedCount > 0){
+        const res = await axiosSecure.delete(`/cartDelete/${product._id}`);
+        if (res.data.deletedCount > 0) {
           setLocalCart((prev) => prev.filter((item) => item._id !== product._id));
           Swal.fire({
             title: "Deleted!",
@@ -58,7 +60,7 @@ function Cart() {
             icon: "success"
           });
         };
-        }
+      }
     });
   };
 
@@ -67,7 +69,7 @@ function Cart() {
     (total, product) => total + product.rentalPrice * product.quantity,
     0
   ) || 0;
-  const tax = subtotal * 0.07; // 7% ট্যাক্স
+  const tax = subtotal * 0.07;
   const serviceFee = 5.99;
   const total = subtotal + tax + serviceFee;
 
@@ -112,9 +114,7 @@ function Cart() {
                             {product.description.substring(0, 100)}
                           </p>
                           <p className="text-gray-800">
-                            $
-                            {(product.rentalPrice * product.quantity).toFixed(2)}{' '}
-                            / {product.rentalPeriod}
+                            ${ (product.rentalPrice * product.quantity).toFixed(2) } / {product.rentalPeriod}
                           </p>
 
                           <div className="mt-2 flex items-center">
@@ -132,7 +132,7 @@ function Cart() {
                                 {product.quantity}
                               </span>
                               <button
-                                onClick={() => increaseQuantity(product.id, product.name)}
+                                onClick={() => increaseQuantity(product.id)}
                                 className="px-2 py-1 text-gray-600 hover:bg-gray-100"
                               >
                                 +
@@ -143,7 +143,7 @@ function Cart() {
 
                         <button
                           onClick={() => removeItem(product)}
-                          className="text-sm bg-red-600  py-1 px-2 rounded-full text-white hover:text-black"
+                          className="text-sm bg-red-600 py-1 px-2 rounded-full text-white hover:text-black"
                         >
                           Remove
                         </button>
@@ -182,16 +182,17 @@ function Cart() {
                     </div>
                   </div>
 
+                  {/* Modal Trigger */}
                   <button
                     disabled={localCart.length === 0}
+                    onClick={() => setIsModalOpen(true)}
                     className="w-full bg-black hover:bg-gray-800 text-white py-3 rounded-lg font-medium disabled:bg-gray-400 disabled:cursor-not-allowed"
                   >
                     Proceed to Checkout
                   </button>
 
                   <p className="text-xs text-gray-500 mt-4">
-                    By proceeding, you agree to our Terms & Conditions and
-                    acknowledge that rental periods begin at time of pickup.
+                    By proceeding, you agree to our Terms & Conditions and acknowledge that rental periods begin at time of pickup.
                   </p>
                 </div>
               </div>
@@ -199,6 +200,18 @@ function Cart() {
           </div>
         </div>
       </section>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          title="Complete Your Payment"
+        >
+          <CheckoutForm amount={total.toFixed(2)} onSuccess={() => setIsModalOpen(false)} />
+        </Modal>
+      )}
+
       <Footer />
     </div>
   );
