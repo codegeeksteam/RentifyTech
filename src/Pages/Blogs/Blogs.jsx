@@ -24,7 +24,7 @@
 // // useEffect(() => {
 // //   const fetchBlogs = async () => {
 // //     try {
-// //       const response = await fetch(' http://localhost:4000/posts');
+// //       const response = await fetch(' http://localhost:4000posts');
 // //       if (!response.ok) {
 // //         throw new Error('Failed to fetch blogs');
 // //       }
@@ -194,7 +194,7 @@
 //   useEffect(() => {
 //     const fetchBlogs = async () => {
 //       try {
-//         const response = await fetch(' http://localhost:4000/posts');
+//         const response = await fetch(' http://localhost:4000posts');
 //         if (!response.ok) {
 //           throw new Error('Failed to fetch blogs');
 //         }
@@ -489,7 +489,7 @@ const BlogPage = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await fetch('http://localhost:4000/posts');
+        const response = await fetch('http://localhost:4000posts');
         if (!response.ok) {
           throw new Error('Failed to fetch blogs');
         }

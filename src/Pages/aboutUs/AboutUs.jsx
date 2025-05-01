@@ -36,10 +36,22 @@ const AboutUs = () => {
     },
     {
       id: 3,
-      name: "Alex Chen",
-      role: "Lead Developer",
-      image: "https://randomuser.me/api/portraits/men/2.jpg",
+      name: "MD. Sirazul Islam",
+      role: "Full Stack Developer",
+      image: "https://i.ibb.co.com/0yCBMSHF/miraz.jpg",
       bio: "Specialized in frontend architecture and performance optimization",
+      social: {
+        linkedin: "https://www.linkedin.com/in/sirazul-islam-1a4893318/",
+        twitter: "https://x.com/SirazulIsl48",
+        email: "sirazulislam3734@gmail.com",
+      },
+    },
+    {
+      id: 4,
+      name: "Maria Garcia",
+      role: "UX Designer",
+      image: "https://randomuser.me/api/portraits/women/2.jpg",
+      bio: "Creating intuitive and beautiful user experiences for digital products",
       social: {
         linkedin: "#",
         twitter: "#",
@@ -47,7 +59,19 @@ const AboutUs = () => {
       },
     },
     {
-      id: 4,
+      id: 5,
+      name: "Maria Garcia",
+      role: "UX Designer",
+      image: "https://randomuser.me/api/portraits/women/2.jpg",
+      bio: "Creating intuitive and beautiful user experiences for digital products",
+      social: {
+        linkedin: "#",
+        twitter: "#",
+        email: "#",
+      },
+    },
+    {
+      id: 6,
       name: "Maria Garcia",
       role: "UX Designer",
       image: "https://randomuser.me/api/portraits/women/2.jpg",
@@ -235,7 +259,7 @@ const AboutUs = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamMembers.map((member) => (
               <div
                 key={member.id}
