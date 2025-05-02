@@ -48,18 +48,6 @@ const AboutUs = () => {
     },
     {
       id: 4,
-      name: "Maria Garcia",
-      role: "UX Designer",
-      image: "https://randomuser.me/api/portraits/women/2.jpg",
-      bio: "Creating intuitive and beautiful user experiences for digital products",
-      social: {
-        linkedin: "#",
-        twitter: "#",
-        email: "#",
-      },
-    },
-    {
-      id: 4,
       name: "Shahriar Araf ",
       role: "Full Stack Developer",
       image: "https://i.ibb.co.com/5z3j793/Whats-App-Image-2025-05-01-at-16-16-10.jpg",
@@ -70,18 +58,7 @@ const AboutUs = () => {
         email: "#",
       },
     },
-    {
-      id: 6,
-      name: "Maria Garcia",
-      role: "UX Designer",
-      image: "https://randomuser.me/api/portraits/women/2.jpg",
-      bio: "Creating intuitive and beautiful user experiences for digital products",
-      social: {
-        linkedin: "#",
-        twitter: "#",
-        email: "#",
-      },
-    },
+    
   ];
 
   // Latest news data
@@ -259,7 +236,7 @@ const AboutUs = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {teamMembers.map((member) => (
               <div
                 key={member.id}
