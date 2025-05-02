@@ -106,12 +106,16 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import { useNavigate } from 'react-router-dom';
+import useAuth from '../../Hooks/useAuth';
 
-const CheckoutForm = ({ amount, onSuccess, userName = 'Guest' }) => {
+const CheckoutForm = ({ amount, onSuccess, userName = 'Guest', gadgetsName , localCart, orderId}) => {
   const stripe = useStripe();
   const elements = useElements();
+  const {user} = useAuth()
   const [processing, setProcessing] = useState(false);
   const secureAxios = useAxiosSecure();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -141,11 +145,9 @@ const CheckoutForm = ({ amount, onSuccess, userName = 'Guest' }) => {
       setProcessing(true);
 
       // Send request to create payment intent
-      const { data } = await secureAxios.post('/create-payment-intent', { amount: parsedAmount });
-      console.log('Payment Intent Created. Client Secret:', data?.clientSecret);
+      const { data } = await secureAxios.post('/create-payment-intent', { amount: parsedAmount, gadgetsName: gadgetsName,userName: user?.displayName, email: user?.email, localCart, orderId });
 
       const clientSecret = data.clientSecret;
-
       const card = elements.getElement(CardElement);
 
       const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
@@ -169,6 +171,7 @@ const CheckoutForm = ({ amount, onSuccess, userName = 'Guest' }) => {
           title: 'Success',
           text: 'Payment completed!',
         });
+        navigate("/dashboard/payments")
         onSuccess(); // Callback after successful payment
       }
     } catch (err) {
