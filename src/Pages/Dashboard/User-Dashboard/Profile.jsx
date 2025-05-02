@@ -29,7 +29,6 @@ export default function Profile() {
         const response = await axiosSecure.get(`/user/${user?.email}`);
         if (response.data.length > 0) {
           const userData = response.data[0];
-          console.log('da', user.photoURL);
           setUserInfo({
             name: userData.name || '',
             email: userData.email || '',
@@ -67,7 +66,6 @@ export default function Profile() {
     setIsEditing(true);
     setEditedInfo({ ...userInfo });
   };
-  console.log('user ifo', userInfo);
   const handleSave = async () => {
     try {
       setLoading(true);

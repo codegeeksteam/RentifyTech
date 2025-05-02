@@ -1,17 +1,15 @@
- 
-
-import { useState, useEffect } from 'react';
-import Footer from '../../Components/Footer';
-import HelmetTitle from '../../Components/HelmetTitle';
-import Navbar from '../../Components/Navbar';
-import useCart from '../../Hooks/useCart';
-import Swal from 'sweetalert2';
-import useAxiosSecure from '../../Hooks/useAxiosSecure';
-import CheckoutForm from './CheckoutForm';
+import { useState, useEffect } from "react";
+import Footer from "../../Components/Footer";
+import HelmetTitle from "../../Components/HelmetTitle";
+import Navbar from "../../Components/Navbar";
+import useCart from "../../Hooks/useCart";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import CheckoutForm from "./CheckoutForm";
 
 function Cart() {
   const [cart] = useCart();
-  const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure();
   const [localCart, setLocalCart] = useState([]);
   const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
 
@@ -45,26 +43,29 @@ function Cart() {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
         const res = await axiosSecure.delete(`/cartDelete/${product._id}`);
         if (res.data.deletedCount > 0) {
-          setLocalCart((prev) => prev.filter((item) => item._id !== product._id));
+          setLocalCart((prev) =>
+            prev.filter((item) => item._id !== product._id)
+          );
           Swal.fire({
             title: "Deleted!",
             text: `${product.name} has been deleted.`,
-            icon: "success"
+            icon: "success",
           });
-        };
+        }
       }
     });
   };
 
-  const subtotal = localCart.reduce(
-    (total, product) => total + product.rentalPrice * product.quantity,
-    0
-  ) || 0;
+  const subtotal =
+    localCart.reduce(
+      (total, product) => total + product.rentalPrice * product.quantity,
+      0
+    ) || 0;
   const tax = subtotal * 0.07;
   const serviceFee = 5.99;
   const total = subtotal + tax + serviceFee;
@@ -76,13 +77,12 @@ function Cart() {
       title: "Payment Successful!",
       text: "Your rental has been confirmed. You'll receive a confirmation email shortly.",
       icon: "success",
-      confirmButtonText: "Great!"
+      confirmButtonText: "Great!",
     });
   };
-
   return (
     <div>
-      <HelmetTitle title={'Cart'} />
+      <HelmetTitle title={"Cart"} />
       <Navbar />
       <section className="min-h-[50vh]">
         <div className="min-h-screen bg-white">
@@ -121,7 +121,11 @@ function Cart() {
                             {product.description.substring(0, 100)}
                           </p>
                           <p className="text-gray-800">
-                            ${ (product.rentalPrice * product.quantity).toFixed(2) } / {product.rentalPeriod}
+                            $
+                            {(product.rentalPrice * product.quantity).toFixed(
+                              2
+                            )}{" "}
+                            / {product.rentalPeriod}
                           </p>
 
                           <div className="mt-2 flex items-center">
@@ -178,7 +182,9 @@ function Cart() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-gray-600">Service Fee</span>
-                      <span className="text-black">${serviceFee.toFixed(2)}</span>
+                      <span className="text-black">
+                        ${serviceFee.toFixed(2)}
+                      </span>
                     </div>
                   </div>
 
@@ -198,7 +204,8 @@ function Cart() {
                   </button>
 
                   <p className="text-xs text-gray-500 mt-4">
-                    By proceeding, you agree to our Terms & Conditions and acknowledge that rental periods begin at time of pickup.
+                    By proceeding, you agree to our Terms & Conditions and
+                    acknowledge that rental periods begin at time of pickup.
                   </p>
                 </div>
               </div>
@@ -213,25 +220,44 @@ function Cart() {
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-2xl font-bold text-gray-800">Complete Payment</h3>
-                <button 
+                <h3 className="text-2xl font-bold text-gray-800">
+                  Complete Payment
+                </h3>
+                <button
                   onClick={() => setIsPaymentModalOpen(false)}
                   className="text-gray-500 hover:text-gray-700"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
               </div>
-              
+
               <div className="mb-6">
                 <div className="bg-gray-50 p-4 rounded-lg mb-4">
-                  <h4 className="font-medium text-gray-700 mb-2">Order Summary</h4>
+                  <h4 className="font-medium text-gray-700 mb-2">
+                    Order Summary
+                  </h4>
                   <div className="space-y-2">
-                    {localCart.map(item => (
+                    {localCart.map((item) => (
                       <div key={item.id} className="flex justify-between">
-                        <span className="text-gray-600">{item.name} (x{item.quantity})</span>
-                        <span className="font-medium">${(item.rentalPrice * item.quantity).toFixed(2)}</span>
+                        <span className="text-gray-600">
+                          {item.name} (x{item.quantity})
+                        </span>
+                        <span className="font-medium">
+                          ${(item.rentalPrice * item.quantity).toFixed(2)}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -242,16 +268,21 @@ function Cart() {
                     </div>
                   </div>
                 </div>
-                
-                <CheckoutForm 
-                  amount={total.toFixed(2)} 
+                <CheckoutForm
+                  gadgetsName={localCart.map((item) => item.name)}
+                  localCart= {localCart}
+                  orderId={localCart.map((item) => item._id)}
+                  amount={total.toFixed(2)}
                   onSuccess={handlePaymentSuccess}
                   onCancel={() => setIsPaymentModalOpen(false)}
-                />
+                 />
               </div>
-              
+
               <div className="text-xs text-gray-500 mt-4">
-                <p>Your payment is secured with 256-bit SSL encryption. We don't store your credit card details.</p>
+                <p>
+                  Your payment is secured with 256-bit SSL encryption. We don't
+                  store your credit card details.
+                </p>
               </div>
             </div>
           </div>
@@ -265,6 +296,4 @@ function Cart() {
 
 export default Cart;
 
-
-
-// 
+//
