@@ -1,3 +1,5 @@
+ 
+
 import { useState, useEffect } from 'react';
 import Footer from '../../Components/Footer';
 import HelmetTitle from '../../Components/HelmetTitle';
@@ -6,20 +8,17 @@ import useCart from '../../Hooks/useCart';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import CheckoutForm from './CheckoutForm';
-import Modal from './Modal';
 
 function Cart() {
   const [cart] = useCart();
   const axiosSecure = useAxiosSecure()
   const [localCart, setLocalCart] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal state
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
 
-  // cart ডেটা আপডেট হলে localCart আপডেট করা
   useEffect(() => {
     setLocalCart(cart || []);
   }, [cart]);
 
-  // কোয়ান্টিটি বাড়ানোর ফাংশন
   const increaseQuantity = (id) => {
     setLocalCart((prev) =>
       prev.map((item) =>
@@ -28,7 +27,6 @@ function Cart() {
     );
   };
 
-  // কোয়ান্টিটি কমানোর ফাংশন
   const decreaseQuantity = (id) => {
     const item = localCart.find((item) => item.id === id);
     if (item.quantity <= 1) return;
@@ -39,7 +37,6 @@ function Cart() {
     );
   };
 
-  // আইটেম রিমুভ করার ফাংশন
   const removeItem = (product) => {
     Swal.fire({
       title: "Are you sure?",
@@ -64,7 +61,6 @@ function Cart() {
     });
   };
 
-  // সাবটোটাল, ট্যাক্স, এবং টোটাল ক্যালকুলেশন
   const subtotal = localCart.reduce(
     (total, product) => total + product.rentalPrice * product.quantity,
     0
@@ -72,6 +68,17 @@ function Cart() {
   const tax = subtotal * 0.07;
   const serviceFee = 5.99;
   const total = subtotal + tax + serviceFee;
+
+  // Payment success handler
+  const handlePaymentSuccess = () => {
+    setIsPaymentModalOpen(false);
+    Swal.fire({
+      title: "Payment Successful!",
+      text: "Your rental has been confirmed. You'll receive a confirmation email shortly.",
+      icon: "success",
+      confirmButtonText: "Great!"
+    });
+  };
 
   return (
     <div>
@@ -85,7 +92,7 @@ function Cart() {
             </h1>
 
             <div className="flex flex-col md:flex-row gap-8">
-              {/* কার্ট আইটেম - বাম পাশে */}
+              {/* Cart Items - Left Side */}
               <div className="md:w-2/3 sticky top-0">
                 <div className="bg-white border border-gray-200 rounded-lg p-4">
                   <h2 className="text-xl font-semibold mb-4 text-black">
@@ -153,7 +160,7 @@ function Cart() {
                 </div>
               </div>
 
-              {/* অর্ডার সামারি - ডান পাশে */}
+              {/* Order Summary - Right Side */}
               <div className="md:w-1/3">
                 <div className="bg-white border border-gray-200 rounded-lg p-4 sticky top-4">
                   <h2 className="text-xl font-semibold mb-4 text-black">
@@ -182,10 +189,9 @@ function Cart() {
                     </div>
                   </div>
 
-                  {/* Modal Trigger */}
                   <button
                     disabled={localCart.length === 0}
-                    onClick={() => setIsModalOpen(true)}
+                    onClick={() => setIsPaymentModalOpen(true)}
                     className="w-full bg-black hover:bg-gray-800 text-white py-3 rounded-lg font-medium disabled:bg-gray-400 disabled:cursor-not-allowed"
                   >
                     Proceed to Checkout
@@ -201,15 +207,55 @@ function Cart() {
         </div>
       </section>
 
-      {/* Modal */}
-      {isModalOpen && (
-        <Modal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          title="Complete Your Payment"
-        >
-          <CheckoutForm amount={total.toFixed(2)} onSuccess={() => setIsModalOpen(false)} />
-        </Modal>
+      {/* Payment Modal */}
+      {isPaymentModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-2xl font-bold text-gray-800">Complete Payment</h3>
+                <button 
+                  onClick={() => setIsPaymentModalOpen(false)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              
+              <div className="mb-6">
+                <div className="bg-gray-50 p-4 rounded-lg mb-4">
+                  <h4 className="font-medium text-gray-700 mb-2">Order Summary</h4>
+                  <div className="space-y-2">
+                    {localCart.map(item => (
+                      <div key={item.id} className="flex justify-between">
+                        <span className="text-gray-600">{item.name} (x{item.quantity})</span>
+                        <span className="font-medium">${(item.rentalPrice * item.quantity).toFixed(2)}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="border-t border-gray-200 mt-3 pt-3">
+                    <div className="flex justify-between font-medium">
+                      <span>Total</span>
+                      <span>${total.toFixed(2)}</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <CheckoutForm 
+                  amount={total.toFixed(2)} 
+                  onSuccess={handlePaymentSuccess}
+                  onCancel={() => setIsPaymentModalOpen(false)}
+                />
+              </div>
+              
+              <div className="text-xs text-gray-500 mt-4">
+                <p>Your payment is secured with 256-bit SSL encryption. We don't store your credit card details.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
 
       <Footer />
