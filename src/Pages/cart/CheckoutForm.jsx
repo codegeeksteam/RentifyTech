@@ -11,14 +11,44 @@ const CheckoutForm = ({ amount, onSuccess, userName = 'Guest' }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!stripe || !elements) return;
+
+    // Check if Stripe and Elements are loaded
+    if (!stripe || !elements) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Stripe or Elements not loaded. Please try again.',
+      });
+      return;
+    }
+
+    // Validate amount
+    const parsedAmount = parseFloat(amount);
+    if (isNaN(parsedAmount) || parsedAmount <= 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid Amount',
+        text: 'Please provide a valid payment amount.',
+      });
+      return;
+    }
 
     try {
       setProcessing(true);
 
-      const { data } = await secureAxios.post('/create-payment-intent', { amount });
-      const clientSecret = data.clientSecret;
+      // Debug: Log the amount being sent
+      console.log('Sending POST request to /create-payment-intent with amount:', parsedAmount);
 
+      const { data } = await secureAxios.post('/create-payment-intent', { amount: parsedAmount });
+      console.log('API Response:', data); // Debug: Log the API response
+
+
+      if(data.data.insertedId){
+        console.log('Payment Intent Created:', data?.insertedId); // Debug: Log the payment intent ID
+      }
+
+      const clientSecret = data.client_secret;
+    console.log('Client Secret:', clientSecret); // Debug: Log the client secret
       const card = elements.getElement(CardElement);
       const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -30,13 +60,26 @@ const CheckoutForm = ({ amount, onSuccess, userName = 'Guest' }) => {
       });
 
       if (error) {
-        Swal.fire('Payment Failed', error.message, 'error');
+        Swal.fire({
+          icon: 'error',
+          title: 'Payment Failed',
+          text: error.message,
+        });
       } else if (paymentIntent.status === 'succeeded') {
-        Swal.fire('Success', 'Payment completed!', 'success');
+        Swal.fire({
+          icon: 'success',
+          title: 'Success',
+          text: 'Payment completed!',
+        });
         onSuccess(); // Callback after successful payment
       }
     } catch (err) {
-      Swal.fire('Error', 'Something went wrong. Please try again.', err);
+      console.error('API Error:', err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: err.message || 'Something went wrong. Please try again.',
+      });
     } finally {
       setProcessing(false);
     }
