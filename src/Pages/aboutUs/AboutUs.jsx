@@ -317,7 +317,7 @@ const AboutUs = () => {
                   <p className="text-sm text-gray-500 mb-2">{news.date}</p>
                   <h3 className="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors">{news.title}</h3>
                   <p className="text-gray-600 mb-4">{news.excerpt}</p>
-                  <a href="#" className="inline-flex items-center text-blue-600 font-medium hover:text-blue-800">
+                  <a href="/blogs" className="inline-flex items-center text-blue-600 font-medium hover:text-blue-800">
                     Read More <FaArrowRight className="ml-2" size={14} />
                   </a>
                 </div>
