@@ -1,12 +1,75 @@
-# React + Vite
+# Rentechify - Electrical Gadget Rental Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Rentechify-blue?style=for-the-badge&logo=firebase)](https://rentechify.web.app/)  
+[![GitHub license](https://img.shields.io/github/license/yourusername/rentechify)](https://github.com/yourusername/rentechify/blob/main/LICENSE)
 
-Currently, two official plugins are available:
+![Rentechify Banner](docs/banner.png) 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+An online platform where users can rent electrical gadgets by the hour or purchase products. Features multi-role authentication (Admin, Agent, Customer), secure payments, and a realtime AI chatbot for customer support.
 
-## Expanding the ESLint configuration
+## Table of Contents
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Screenshots](#-screenshots)
+- [Installation](#-installation)
+- [Configuration](#-configuration)
+- [API Endpoints](#-api-endpoints)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Features
+
+### User Roles
+- **Admin**: Full system control (users, products, orders)
+- **Agent**: Manage products and rentals
+- **Customer**: Browse, rent, and purchase gadgets
+
+### Core Functionality
+- 🔍 Product catalog with filters
+- ⏳ Hourly rental system
+- 💳 Integrated payment gateway
+- 🤖 Realtime AI chatbot
+- 📊 Analytics dashboard
+- 📱 Fully responsive UI
+
+### Advanced Features
+- Real-time inventory updates
+- Rental history tracking
+- Multi-factor authentication
+- Email notifications
+
+## 🛠️ Tech Stack
+
+| Component       | Technology                          |
+|-----------------|-------------------------------------|
+| Frontend        | React, Tailwind CSS, Redux Toolkit  |
+| Backend         | Node.js, Express.js                 |
+| Database        | MongoDB (Mongoose ODM)              |
+| Authentication  | Firebase Authentication             |
+| Realtime        | Firebase Firestore                  |
+| Payments        | Stripe API                          |
+| Chatbot         | Dialogflow + Firebase Functions     |
+| Hosting         | Firebase Hosting (Frontend)         |
+| Backend Hosting | Render/Heroku                       |
+
+## 📸 Screenshots
+
+| ![Homepage](docs/screenshots/home.png) | ![Product Page](docs/screenshots/product.png) |
+|---------------------------------------|----------------------------------------------|
+| ![Dashboard](docs/screenshots/dashboard.png) | ![Chatbot](docs/screenshots/chatbot.png) |
+
+## 🛠️ Installation
+
+### Prerequisites
+- Node.js v16+
+- MongoDB Atlas account
+- Firebase project
+- Stripe account
+
+### Setup Steps
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/rentechify.git
+   cd rentechify
