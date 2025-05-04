@@ -18,7 +18,7 @@
 //     const fetchBlogData = async () => {
 //       try {
 //         // console.log(`Fetching post with ID: ${id}`); // Debug log
-//         const response = await fetch(`http://localhost:4000posts/${id}`);
+//         const response = await fetch(`https://rentify-tech-server.vercel.app/posts/${id}`);
         
 //         console.log('Response status:', response.status); // Debug log
 //         if (!response.ok) {
@@ -236,7 +236,7 @@ const BlogDetails = () => {
   useEffect(() => {
     const fetchBlogData = async () => {
       try {
-        const response = await fetch(`http://localhost:4000posts/${id}`);
+        const response = await fetch(`https://rentify-tech-server.vercel.app/posts/${id}`);
         if (!response.ok) {
           throw new Error(response.status === 404
             ? "Blog post not found"
@@ -260,7 +260,7 @@ const BlogDetails = () => {
       if (!blog) return;
 
       try {
-        const res = await fetch(`http://localhost:4000posts?category=${blog.category}`);
+        const res = await fetch(`https://rentify-tech-server.vercel.app/posts?category=${blog.category}`);
         const data = await res.json();
         const filtered = data.filter(post => post._id !== blog._id);
         setRelatedBlogs(filtered);

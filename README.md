@@ -1,12 +1,56 @@
-# React + Vite
+# ⚡ Rentechify - On-Demand Gadget Rentals
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Live Demo](https://img.shields.io/badge/LIVE-DEMO-brightgreen?style=for-the-badge)](https://rentechify.web.app)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-LIVE-success?style=for-the-badge)
 
-Currently, two official plugins are available:
+![Rentechify Dashboard](/public/rentechify-showcase.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A premium platform for renting high-end electronics by the hour with AI-powered support.
 
-## Expanding the ESLint configuration
+## ✨ Live Demo
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+➡️ **[https://rentechify.web.app](https://rentechify.web.app)** ⬅️
+
+## 🌟 Key Features
+
+### 🎯 Core Functionality
+- **Smart Booking System** - Reserve gadgets in 15-minute increments
+- **Multi-User Ecosystem** - Separate interfaces for Admins, Agents, and Renters
+- **Live Damage Detection** - AI-assisted equipment condition verification
+
+### 🛠️ Rental Management
+| Feature          | Details                          |
+|------------------|----------------------------------|
+| Dynamic Pricing  | Automatic surge pricing          |
+| Fleet Tracking   | Real-time gadget GPS tracking    |
+| Auto Maintenance | Predictive servicing alerts      |
+| Insurance Plans  | Custom protection packages       |
+
+### 🤖 AI Assistant
+- **Instant Rent Calculations**
+- **Equipment Tutorials** (voice/video)
+- **Multilingual Support** (8 languages)
+- **24/7 Issue Resolution**
+
+## 🛠️ Technical Details
+
+### Tech Stack
+```mermaid
+pie
+    title Tech Stack
+    "React.js" : 40
+    "Node.js" : 25
+    "Firebase" : 20
+    "MongoDB" : 10
+    "TensorFlow.js" : 5 
+
+
+sequenceDiagram
+    User->>Frontend: Browse Gadgets
+    Frontend->>Backend: API Request
+    Backend->>MongoDB: Check Availability
+    Backend->>Firebase: Verify User
+    Backend->>Stripe: Process Payment
+    Frontend->>User: Booking Confirmation
+```

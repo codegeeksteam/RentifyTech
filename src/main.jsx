@@ -35,7 +35,12 @@ import Wishlist from './Pages/Dashboard/User-Dashboard/Wishlist.jsx';
 import Profile from './Pages/Dashboard/User-Dashboard/Profile.jsx';
 import Overview from './Pages/Dashboard/User-Dashboard/Overview.jsx';
 import MyCart from './Pages/Dashboard/User-Dashboard/MyCart.jsx';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 import BlogDetails from './Pages/Blogs/BlogDetails.jsx';
+
+
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const queryClient = new QueryClient();
 
@@ -69,7 +74,7 @@ const router = createBrowserRouter([
         path: '/update-gadget/:id',
         element: <UpdateProduct></UpdateProduct>,
         loader: ({ params }) =>
-          fetch(`http://localhost:4000gadget/${params.id}`),
+          fetch(`https://rentify-tech-server.vercel.app/gadget/${params.id}`),
       },
       {
         path: '/cart',
@@ -86,7 +91,7 @@ const router = createBrowserRouter([
         // element: <ProductDetailsPage />,
         element: <NewDetails></NewDetails>,
         loader: ({ params }) =>
-          fetch(` http://localhost:4000gadget/${params.id}`),
+          fetch(` https://rentify-tech-server.vercel.app/gadget/${params.id}`),
       },
       {
         path: '/signIn',
@@ -211,7 +216,9 @@ createRoot(document.getElementById('root')).render(
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <AuthProvider>
-          <RouterProvider router={router} />
+          <Elements stripe={stripePromise}>
+            <RouterProvider router={router} />
+          </Elements>
         </AuthProvider>
       </ThemeProvider>
     </QueryClientProvider>

@@ -48,9 +48,9 @@ const AboutUs = () => {
     },
     {
       id: 4,
-      name: "Maria Garcia",
-      role: "UX Designer",
-      image: "https://randomuser.me/api/portraits/women/2.jpg",
+      name: "Shahriar Araf ",
+      role: "Full Stack Developer",
+      image: "https://i.ibb.co.com/5z3j793/Whats-App-Image-2025-05-01-at-16-16-10.jpg",
       bio: "Creating intuitive and beautiful user experiences for digital products",
       social: {
         linkedin: "#",
@@ -58,30 +58,7 @@ const AboutUs = () => {
         email: "#",
       },
     },
-    {
-      id: 5,
-      name: "Maria Garcia",
-      role: "UX Designer",
-      image: "https://randomuser.me/api/portraits/women/2.jpg",
-      bio: "Creating intuitive and beautiful user experiences for digital products",
-      social: {
-        linkedin: "#",
-        twitter: "#",
-        email: "#",
-      },
-    },
-    {
-      id: 6,
-      name: "Maria Garcia",
-      role: "UX Designer",
-      image: "https://randomuser.me/api/portraits/women/2.jpg",
-      bio: "Creating intuitive and beautiful user experiences for digital products",
-      social: {
-        linkedin: "#",
-        twitter: "#",
-        email: "#",
-      },
-    },
+    
   ];
 
   // Latest news data
@@ -259,7 +236,7 @@ const AboutUs = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {teamMembers.map((member) => (
               <div
                 key={member.id}
@@ -340,7 +317,7 @@ const AboutUs = () => {
                   <p className="text-sm text-gray-500 mb-2">{news.date}</p>
                   <h3 className="text-xl font-bold mb-3 group-hover:text-blue-600 transition-colors">{news.title}</h3>
                   <p className="text-gray-600 mb-4">{news.excerpt}</p>
-                  <a href="#" className="inline-flex items-center text-blue-600 font-medium hover:text-blue-800">
+                  <a href="/blogs" className="inline-flex items-center text-blue-600 font-medium hover:text-blue-800">
                     Read More <FaArrowRight className="ml-2" size={14} />
                   </a>
                 </div>
