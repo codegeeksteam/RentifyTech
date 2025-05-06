@@ -9,7 +9,7 @@
 </div>
 
 <p align="center">
-  <img src="/public/rentify.png" alt="Rentechify Platform" width="100%">
+  <img src="/public/screencapture-rentechify-web-app-2025-05-06-11_19_33.png" alt="Rentechify Platform" width="100%">
 </p>
 
 ## 💡 About Rentechify
