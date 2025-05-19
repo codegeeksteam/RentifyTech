@@ -14,7 +14,7 @@ const AboutUs = () => {
       id: 1,
       name: "Waseque Arafat",
       role: "Full Stack Developer",
-      image: "https://i.ibb.co.com/FsrgXvR/20220326-170758-01.jpg",
+      image: "https://i.ibb.co/JFC4s2kz/wasee2.jpg",
       bio: "Expert in building modern web applications with React and Node.js",
       social: {
         linkedin: "#",
